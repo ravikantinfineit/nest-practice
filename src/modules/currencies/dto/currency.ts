@@ -52,7 +52,7 @@ export class Currency {
     name_plural: string;
 
     /**
-     * The symbol of the currency (e.g., '₹').
+     * The symbol  of the currency (e.g., '₹').
      * @example '₹'
      */
 

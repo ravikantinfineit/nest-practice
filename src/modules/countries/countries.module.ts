@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
+import { ApiExtraModels } from '@nestjs/swagger';
 
 import { CountriesController } from './countries.controller';
 import { CountriesService } from './countries.service';
+import { CreateDto } from './dto/create.dto';
+import { Query } from './query';
 
 /**
  * @fileoverview
@@ -13,7 +16,8 @@ import { CountriesService } from './countries.service';
  */
 @Module({
     controllers: [CountriesController],
-    providers: [CountriesService],
+    providers: [CountriesService, Query],
     exports: [CountriesService],
 })
+@ApiExtraModels(CreateDto)
 export class CountriesModule {}

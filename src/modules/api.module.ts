@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, RouterModule } from '@nestjs/core';
 
 import { HttpErrorFilter } from '@core/exceptions/http-error.filter';
 
@@ -39,6 +39,18 @@ import { HomeModule } from './home/home.module';
          * Module responsible for managing home-related functionalities.
          */
         HomeModule,
+        RouterModule.register([
+            {
+                path: 'v1',
+                module: CountriesModule,
+            },
+        ]),
+        RouterModule.register([
+            {
+                path: 'v1',
+                module: CurrenciesModule,
+            },
+        ]),
     ],
     providers: [
         {

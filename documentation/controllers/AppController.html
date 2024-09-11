@@ -150,6 +150,10 @@ It uses <code>@nestjs/terminus</code> for health checks and <code>PrismaService<
                                     <span class="modifier">Async</span>
                                 <a href="#getHealth" >getHealth</a>
                             </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#getHello" >getHello</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -199,8 +203,8 @@ It uses <code>@nestjs/terminus</code> for health checks and <code>PrismaService<
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/app.controller.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/app.controller.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -232,13 +236,74 @@ The result of the health check is returned in the response.</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getHello"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>getHello</b></span>
+                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getHello()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/log&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/app/app.controller.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Log check endpoint.</p>
+<p>This endpoint performs a log check.
+The result of the log check is returned in the response.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">// Example response
+{
+  &quot;logger&quot;: {
+    &quot;status&quot;: &quot;ok&quot;
+  },
+}</code></pre></div></div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise that resolves with the log check result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get } from &#x27;@nestjs/common&#x27;; // VERSION_NEUTRAL
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Inject } from &#x27;@nestjs/common&#x27;; // VERSION_NEUTRAL
 import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 import { HealthCheck, HealthCheckService } from &#x27;@nestjs/terminus&#x27;;
+
+import Logger, { LoggerKey } from &#x27;@infineit/winston-logger/logger/domain/logger&#x27;;
 
 import { PrismaService } from &#x27;@services/prisma.service&#x27;;
 // import { PublicRoute } from &#x27;src/core/decorators/public.request.decorator&#x27;;
@@ -268,6 +333,7 @@ export class AppController {
      * @param {PrismaService} prismaService - Service for interacting with the Prisma ORM.
      */
     constructor(
+        @Inject(LoggerKey) private logger: Logger,
         private readonly healthCheckService: HealthCheckService,
         private readonly prismaService: PrismaService
     ) {}
@@ -300,6 +366,122 @@ export class AppController {
     // @PublicRoute()
     public async getHealth(): Promise&lt;object&gt; {
         return this.healthCheckService.check([() &#x3D;&gt; this.prismaService.isHealthy()]);
+    }
+
+    /**
+     * Log check endpoint.
+     *
+     * @route GET /log
+     * @returns {Promise&lt;object&gt;} A promise that resolves with the log check result.
+     * @throws {BadRequestException} If the health check fails.
+     *
+     * @description
+     * This endpoint performs a log check.
+     * The result of the log check is returned in the response.
+     *
+     * @example
+     * // Example response
+     * {
+     *   &quot;logger&quot;: {
+     *     &quot;status&quot;: &quot;ok&quot;
+     *   },
+     * }
+     */
+
+    @Get(&#x27;/log&#x27;)
+    getHello(): object {
+        // const user &#x3D; {
+        //     id: &#x27;johndoe&#x27;,
+        //     name: &#x27;John Doe&#x27;,
+        //     address: &#x27;123 Imaginary Street&#x27;,
+        //     passport: {
+        //         number: &#x27;BE123892&#x27;,
+        //         issued: 2023,
+        //         expires: 2027,
+        //     },
+        //     phone: &#x27;123-234-544&#x27;,
+        // };
+        // this.logger.log(&#x27;Hello endpoint called&#x27;);
+        // this.logger.log(&#x27;Hello endpoint called&#x27;);
+        // this.logger.debug(&#x27;foo %s %o&#x27;, &#x27;bar&#x27;);
+        // this.logger.verbose({ foo: &#x27;bar&#x27; }, &#x27;baz %s&#x27;, &#x27;qux&#x27;);
+        // Debug
+        // Debug
+        this.logger.debug(
+            &#x27;I am a debug message!&#x27;,
+            {
+                context: &#x27;Bootstrap&#x27;,
+                correlationId: &#x27;1b3fd064-2bed-4bb4-b3af-a5f3686b1b53&#x27;,
+                sourceClass: &#x27;AppModule&#x27;,
+                props: {
+                    foo: &#x27;bar-debug&#x27;,
+                    baz: &#x27;qux&#x27;,
+                },
+            },
+            &#x27;getHello&#x27;
+        );
+
+        // // Info
+        // this.logger.info(&#x27;I am an info message!&#x27;, {
+        //     props: {
+        //         foo: &#x27;bar&#x27;,
+        //         baz: &#x27;qux&#x27;,
+        //     },
+        // });
+
+        this.logger.info(&#x27;I am an info message should be set!&#x27;, {
+            context: &#x27;Bootstrap&#x27;,
+            correlationId: &#x27;1b3fd064-2bed-4bb4-b3af-a5f3686b1b53&#x27;,
+            sourceClass: &#x27;AppModule&#x27;,
+            // durationMs: 120,
+            // stack: &#x27;Error stack trace&#x27;,
+            props: { foo: &#x27;bar&#x27;, baz: &#x27;qux&#x27; },
+        });
+
+        // Warn
+        this.logger.warn(&#x27;I am a warn message! new one&#x27;, {
+            context: &#x27;Bootstrap&#x27;,
+            correlationId: &#x27;1b3fd064-2bed-4bb4-b3af-a5f3686b1b53&#x27;,
+            sourceClass: &#x27;AppModule&#x27;,
+            props: {
+                foo: &#x27;bar&#x27;,
+                baz: &#x27;qux&#x27;,
+            },
+            error: new Error(&#x27;Hello World!&#x27;),
+        });
+
+        // Error
+        this.logger.error(&#x27;I am an error message!&#x27;, {
+            props: {
+                foo: &#x27;bar&#x27;,
+                baz: &#x27;qux&#x27;,
+            },
+            error: new Error(&#x27;Hello World!&#x27;),
+        });
+
+        // Fatal
+        this.logger.fatal(&#x27;I am a fatal message!&#x27;, {
+            props: {
+                foo: &#x27;bar&#x27;,
+                baz: &#x27;qux&#x27;,
+            },
+            error: new Error(&#x27;Hello World!&#x27;),
+        });
+
+        // Emergency
+        this.logger.emergency(&#x27;I am an emergency message!&#x27;, {
+            props: {
+                foo: &#x27;bar&#x27;,
+                baz: &#x27;qux&#x27;,
+            },
+            error: new Error(&#x27;Hello World!&#x27;),
+        });
+
+        return {
+            logger: {
+                status: &#x27;ok&#x27;,
+            },
+        };
     }
 }
 </code></pre>

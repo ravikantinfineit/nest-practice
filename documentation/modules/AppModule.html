@@ -241,11 +241,15 @@ import { ConfigModule } from &#x27;@nestjs/config&#x27;;
 import { TerminusModule } from &#x27;@nestjs/terminus&#x27;;
 
 // import * as dotenv from &#x27;dotenv&#x27;;
+import { ContextModule } from &#x27;@infineit/winston-logger/context/infrastructure/nestjs/contextModule&#x27;;
+import { LoggerModule } from &#x27;@infineit/winston-logger/logger/infrastructure/nestjs/loggerModule&#x27;;
 
 import { HelperModule } from &#x27;@common/helper/helper.module&#x27;;
 import appConfig from &#x27;@config/app.config&#x27;;
 import databaseConfig from &#x27;@config/database.config&#x27;;
 import fileConfig from &#x27;@config/file.config&#x27;;
+import loggerConfig from &#x27;@config/logger.config&#x27;;
+import { PrismaService } from &#x27;@services/prisma.service&#x27;;
 
 import { ApiModule } from &#x27;../modules/api.module&#x27;;
 
@@ -268,13 +272,22 @@ const ENV &#x3D; process.env.NODE_ENV;
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
-            load: [appConfig, databaseConfig, fileConfig],
+            load: [appConfig, databaseConfig, fileConfig, loggerConfig],
             envFilePath: !ENV ? &#x27;.env&#x27; : &#x60;.env.${ENV}&#x60;,
         }),
         ApiModule,
         TerminusModule,
         HelperModule,
+        LoggerModule.forRoot(PrismaService),
+        ContextModule,
     ],
+    // providers: [
+    //     PrismaService,
+    //     {
+    //         provide: &#x27;PRISMA_CLIENT&#x27;,
+    //         useExisting: PrismaService,
+    //     },
+    // ],
 })
 export class AppModule {}
 </code></pre>

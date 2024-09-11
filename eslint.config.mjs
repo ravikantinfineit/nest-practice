@@ -36,7 +36,7 @@ export default [
             'plugin:@typescript-eslint/eslint-recommended',
             'plugin:@typescript-eslint/recommended',
             'prettier',
-            // "prettier/@typescript-eslint",
+            //'prettier/@typescript-eslint',
             'plugin:prettier/recommended',
             'plugin:import/errors',
             'plugin:import/warnings',
@@ -58,7 +58,7 @@ export default [
                 ...globals.jest,
             },
 
-            // parser: tsParser,
+            //parser: tsParser,
             ecmaVersion: 'latest',
             sourceType: 'module',
 

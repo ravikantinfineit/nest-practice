@@ -1,5 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
+import { PrismaService } from '@app/common/helper/services/prisma.service';
+import { DeepPartial } from '@app/utils/types/deep-partial.type';
 import { PaginationService } from '@services/pagination.service';
 import { UtilsService } from '@services/util.service';
 import { PaginationResponseDto } from '@utils/dto/pagination-response.dto';
@@ -7,6 +9,9 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
 import { Country } from './dto/country';
+//import { CreateCountryDto } from './dto/create.dto';
+import { CreateDto } from './dto/create.dto';
+import { Query } from './query';
 
 /**
  * @fileoverview
@@ -18,10 +23,15 @@ import { Country } from './dto/country';
  */
 @Injectable()
 export class CountriesService {
+    private readonly MODULE: string;
     constructor(
         private readonly paginationService: PaginationService,
-        private readonly utilsService: UtilsService
-    ) {}
+        private readonly utilsService: UtilsService,
+        private readonly prisma: PrismaService,
+        private readonly query: Query
+    ) {
+        this.MODULE = 'country';
+    }
 
     /**
      * Find all countries with pagination.
@@ -66,7 +76,7 @@ export class CountriesService {
         const fieldConfigs: Record<string, IPaginationFieldConfig> = {
             symbol: {
                 joinTable: (alias: string) =>
-                    `JOIN currencies ${alias} ON ${alias}.id_currency = ptlb.id_currency`,
+                    `JOIN currencies ${alias} ON ${alias}.id_currency = ptbl.id_currency`,
                 alias: () => `c${0}`, // Reusing the same alias logic for symbol and code
                 selectFields: (alias: string) => [
                     `${alias}.symbol`,
@@ -75,7 +85,7 @@ export class CountriesService {
             },
             offset: {
                 joinTable: (alias: string) =>
-                    `JOIN timezone ${alias} ON ${alias}.id_timezone = ptlb.id_timezone`,
+                    `JOIN timezone ${alias} ON ${alias}.id_timezone = ptbl.id_timezone`,
                 alias: () => `tz${0}`,
                 selectFields: (alias: string) => [
                     `${alias}.value`,
@@ -86,7 +96,7 @@ export class CountriesService {
             },
             abbr: {
                 joinTable: (alias: string) =>
-                    `JOIN timezone ${alias} ON ${alias}.id_timezone = ptlb.id_timezone`,
+                    `JOIN timezone ${alias} ON ${alias}.id_timezone = ptbl.id_timezone`,
                 alias: () => `tz${0}`,
                 selectFields: (alias: string) => [`${alias}.abbr`],
             },
@@ -123,6 +133,106 @@ export class CountriesService {
 
         // // const select = selectFields.join(', ');
         // return this.paginationService.paginate<Country>(selectQuery, countQuery, paginationQuery);
+    }
+
+    /**
+     * Creates a new country.
+     * @param {CreateCountryDto} createDto - Data required to create a new Country.
+     * @returns {Promise<Country>} The created Country object.
+     * @throws {HttpException} If the Country Name already exists or if an error occurs during creation.
+     */
+
+    async create(createDto: CreateDto): Promise<Country> {
+        //check code for prevent duplict country
+        const find = await this.prisma.executeRawQuery(this.query.findByName(), createDto);
+        if (find) {
+            throw new HttpException(
+                { message: createDto.name + ' is already available' },
+                HttpStatus.CONFLICT
+            );
+        }
+
+        const insert = await this.prisma.executeRawQuery(this.query.insert(), createDto);
+        if (insert && insert.insertid) {
+            const get = await this.findOne(insert.insertid);
+
+            return get as any;
+        } else {
+            throw new HttpException(
+                { message: 'Something went wrong' },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+    /**
+     * Updates an existing Country by its ID.
+     * @param {string} id - The ID of the Country to update.
+     * @param {DeepPartial<CreateCountryDto>} updateDto - Data to update the Country with.
+     * @returns {Promise<Country | null>} The updated Country object or null if not found.
+     * @throws {HttpException} If nothing to update is provided, if record is not exists, or if an error occurs during the update.
+     */
+    async update(id: string, updateDto: DeepPartial<CreateDto>): Promise<Country | null> {
+        if (id == undefined && Object.keys(updateDto).length === 0) {
+            throw new HttpException(
+                {
+                    message: 'Nothing to be update!',
+                },
+                HttpStatus.BAD_REQUEST
+            );
+        }
+        //check Data is Exits or not
+        const recordExits = await this.findOne(id);
+        if (recordExits) {
+            //update Country
+            updateDto.id_country = id;
+            const update = await this.prisma.executeRawQuery(this.query.update(), updateDto);
+            console.log(update);
+            if (!update) {
+                throw new HttpException(
+                    { message: 'Something went wrong' },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
+            if (update[0].updatedid) {
+                return await this.findOne(update[0].updatedid);
+            }
+        } else {
+            throw new HttpException({ message: 'Data Not Found!' }, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    async delete(id: string): Promise<object> {
+        const deleted = await this.prisma.executeRawQuery(this.query.delete(), id);
+        if (!deleted) {
+            throw new HttpException(
+                { message: 'Something went wrong' },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+        if (deleted[0]?.deletedid) {
+            return { status: 'Delete successfully' };
+        } else {
+            throw new HttpException({ message: `${this.MODULE} not found` }, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Retrieves a Country by its ID.
+     * @param {string} id - The ID of the Country to retrieve.
+     * @returns {Promise<Country>} The currency object.
+     */
+    async findOne(id: string): Promise<Country> {
+        // Get By Id
+        try {
+            const data = await this.prisma.$queryRawUnsafe(this.query.findById(id));
+            console.log(data[0]);
+            return data[0];
+        } catch (error) {
+            throw new HttpException(
+                { message: 'Something went wrong ' + error },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 }
 

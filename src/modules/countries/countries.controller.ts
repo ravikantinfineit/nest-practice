@@ -1,11 +1,26 @@
-import { Controller, Get, Query, HttpStatus, HttpCode } from '@nestjs/common';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import {
+    Controller,
+    Get,
+    Query,
+    HttpStatus,
+    HttpCode,
+    Post,
+    Body,
+    Patch,
+    Param,
+    ParseUUIDPipe,
+    Delete,
+} from '@nestjs/common';
+import { ApiTags, ApiOkResponse, ApiParam } from '@nestjs/swagger';
 
 import { PaginationResponse, PaginationResponseDto } from '@utils/dto/pagination-response.dto';
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 
 import { CountriesService } from './countries.service';
 import { Country } from './dto/country';
+//import { CreateCountryDto } from './dto/create.dto';
+import { CreateDto } from './dto/create.dto';
+import { UpdateDto } from './dto/update.dto';
 
 /**
  * @fileoverview
@@ -37,7 +52,7 @@ export class CountriesController {
      * @see Country
      */
 
-    @Get('v1/countries')
+    @Get('findall')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: PaginationResponse(Country) })
     async findAll(@Query() query: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
@@ -45,6 +60,63 @@ export class CountriesController {
 
         return get_all;
     }
+
+    /**
+     * @route POST /country/create
+     * @description Create a new country.
+     * @param {CountryDto} createDto - The data required to create a new country.
+     * @returns {Promise<Country>} The created country object.
+     */
+
+    @Post('create')
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({ type: Country, description: 'Create Country' })
+    async create(@Body() createDto: CreateDto): Promise<Country> {
+        return await this.countriesService.create(createDto);
+    }
+
+    /**
+     * @route PATCH /updatebyid/:id_country
+     * @description Update an existing Country by its ID.
+     * @param {string} id - The ID of the Country to be updated.
+     * @param {UpdateDto} updateDto - The data to update the Country with.
+     * @returns {Promise<Country | null>} The updated Country object or null if not found.
+     */
+
+    @Patch('updatebyid/:id_country')
+    @HttpCode(HttpStatus.OK)
+    @ApiParam({ name: 'id_country', type: String })
+    @ApiOkResponse({
+        type: Country,
+        description: 'Update Country',
+    })
+    async update(
+        @Param('id_country', ParseUUIDPipe) id: string,
+        @Body() updateDto: UpdateDto
+    ): Promise<Country | null> {
+        const updated = await this.countriesService.update(id, updateDto);
+        return updated;
+    }
+    /**
+     * @route DELETE /deletebyid/:id_country
+     * @description Delete a country by its ID.
+     * @param {string} id - The ID of the country to be deleted.
+     * @returns {Promise<object>} An object indicating the deletion result.
+     */
+
+    @Delete(`deletebyid/:id_country`)
+    @HttpCode(HttpStatus.OK)
+    @ApiParam({ name: 'id_country', type: String })
+    @ApiOkResponse({
+        status: HttpStatus.OK,
+        description: `Country has been successfully deleted.`,
+    })
+    async delete(@Param('id_country', ParseUUIDPipe) id: string): Promise<object> {
+        const deleted = await this.countriesService.delete(id);
+        return deleted;
+    }
+
+    // @Get('v1/country')
 }
 
 // import { Controller, Get, Query, HttpStatus, HttpCode } from '@nestjs/common';

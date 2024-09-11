@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/files/infrastructure/uploader/s3/dto/file-response.dto.ts</code>
+            <code>src/modules/files/infrastructure/uploader/local/dto/file-response.dto.ts</code>
         </p>
 
 
@@ -127,10 +127,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Data transfer object (DTO) for representing the response format when returning file metadata. This DTO is used to encapsulate the file&#39;s information in API responses.</p>
-<ul>
-<li><code>@ApiResponseProperty()</code>: Marks the property for inclusion in Swagger API documentation.</li>
-</ul>
+                <p>The <code>FileResponseDto</code> represents the response object returned when a file is successfully uploaded or processed.</p>
 
             </p>
 
@@ -201,16 +198,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/modules/files/infrastructure/uploader/s3/dto/file-response.dto.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/modules/files/infrastructure/uploader/local/dto/file-response.dto.ts:27</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Represents the metadata of the uploaded file.</p>
+                    <div class="io-description"><p>The file details.</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-html">{
-    &quot;id&quot;: &quot;cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae&quot;,
-    &quot;path&quot;: &quot;https://example.com/path/to/file.jpg&quot;
+  id: &#39;cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae&#39;,
+  path: &#39;/api/v1/uploads/example-file.jpg&#39;
 }</code></pre></div></div>
                 </td>
             </tr>
@@ -237,25 +234,18 @@ import { FileType } from &#x27;../../../../domain/file&#x27;;
  * @dto FileResponseDto
  *
  * @description
- * Data transfer object (DTO) for representing the response format when returning file metadata. This DTO is used to encapsulate the file&#x27;s information in API responses.
- *
- * @properties
- *
- * @property {FileType} file - Represents the metadata of the uploaded file, including its path and any other relevant information.
- *
- * @decorators
- * - &#x60;@ApiResponseProperty()&#x60;: Marks the property for inclusion in Swagger API documentation.
+ * The &#x60;FileResponseDto&#x60; represents the response object returned when a file is successfully uploaded or processed.
  */
 export class FileResponseDto {
     /**
-     * Represents the metadata of the uploaded file.
+     * The file details.
      *
      * @type {FileType}
-     * @description Contains details about the file, such as its path and identifier.
+     *
      * @example
      * {
-     *     &quot;id&quot;: &quot;cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae&quot;,
-     *     &quot;path&quot;: &quot;https://example.com/path/to/file.jpg&quot;
+     *   id: &#x27;cbcfa8b8-3a25-4adb-a9c6-e325f0d0f3ae&#x27;,
+     *   path: &#x27;/api/v1/uploads/example-file.jpg&#x27;
      * }
      */
 

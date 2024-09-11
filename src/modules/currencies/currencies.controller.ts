@@ -39,13 +39,13 @@ export class CurrenciesController {
     constructor(private readonly currenciesService: CurrenciesService) {}
 
     /**
-     * @route POST /v1/currencies
+     * @route POST /currencies
      * @description Create a new currency.
      * @param {CreateDto} createDto - The data required to create a new currency.
      * @returns {Promise<Currency>} The created currency object.
      */
 
-    @Post(`v1/${modules}`)
+    @Post(`${modules}`)
     @HttpCode(HttpStatus.OK)
     @ApiCreatedResponse({
         type: Currency,
@@ -57,14 +57,14 @@ export class CurrenciesController {
     }
 
     /**
-     * @route PATCH /v1/currencies/:id_currency
+     * @route PATCH /currencies/:id_currency
      * @description Update an existing currency by its ID.
      * @param {string} id - The ID of the currency to be updated.
      * @param {UpdateDto} updateDto - The data to update the currency with.
      * @returns {Promise<Currency | null>} The updated currency object or null if not found.
      */
 
-    @Patch(`v1/${modules}/:id_currency`)
+    @Patch(`${modules}/:id_currency`)
     @HttpCode(HttpStatus.OK)
     @ApiParam({ name: 'id_currency', type: String })
     @ApiOkResponse({
@@ -81,13 +81,13 @@ export class CurrenciesController {
     }
 
     /**
-     * @route GET /v1/currencies
+     * @route GET /currencies
      * @description Retrieve a list of currencies with pagination.
      * @param {PaginationQueryDto} query - The pagination and filtering parameters.
      * @returns {Promise<PaginationResponseDto<Currency>>} A paginated list of currencies.
      */
 
-    @Get(`v1/${modules}`)
+    @Get(`${modules}`)
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: PaginationResponse(Currency) })
     async findAll(@Query() query: PaginationQueryDto): Promise<PaginationResponseDto<Currency>> {
@@ -103,7 +103,7 @@ export class CurrenciesController {
      * @returns {Promise<object>} An object indicating the deletion result.
      */
 
-    @Delete(`v1/${modules}/:id_currency`)
+    @Delete(`${modules}/:id_currency`)
     @HttpCode(HttpStatus.OK)
     @ApiParam({ name: 'id_currency', type: String })
     @ApiOkResponse({

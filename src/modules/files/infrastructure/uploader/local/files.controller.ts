@@ -53,7 +53,7 @@ export class FilesLocalController {
     @ApiCreatedResponse({
         type: FileResponseDto,
     })
-    @Post('v1/upload')
+    @Post('upload')
     @ApiConsumes('multipart/form-data')
     @ApiBody({
         schema: {

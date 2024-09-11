@@ -12,8 +12,8 @@ model User {
   subscribed       Boolean   @default(true)
   source           String?
   defaultWorkspace String?
-  dharmesh         String?
-  patel            String?
+  //dharmesh         String?
+  //patel            String?
 
   @@index(source)
   @@index(defaultWorkspace)

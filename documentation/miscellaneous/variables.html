@@ -157,6 +157,9 @@
                             <a href="#fsRoot" title="src/providers/file-upload.service.ts" ><b>fsRoot</b>&nbsp;&nbsp;&nbsp;(src/.../file-upload.service.ts)</a>
                         </li>
                         <li>
+                            <a href="#getBooleanEnvVar" title="src/config/logger.config.ts" ><b>getBooleanEnvVar</b>&nbsp;&nbsp;&nbsp;(src/.../logger.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#HTTP_STATUS_MESSAGES" title="src/core/constants/core.constant.ts" ><b>HTTP_STATUS_MESSAGES</b>&nbsp;&nbsp;&nbsp;(src/.../core.constant.ts)</a>
                         </li>
                         <li>
@@ -18419,6 +18422,32 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>process.env.NODE_ENV</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/logger.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBooleanEnvVar"></a>
+                    <span class="name">
+                        <span ><b>getBooleanEnvVar</b></span>
+                        <a href="#getBooleanEnvVar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(key: string, defaultValue: boolean &#x3D; false): boolean &#x3D;&gt; {
+    const value &#x3D; process.env[key];
+    return value ? value.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;true&#x27; : defaultValue;
+}</code>
                     </td>
                 </tr>
 

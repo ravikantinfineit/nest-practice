@@ -150,4 +150,17 @@ export class UtilsService {
 
         return { selectQuery, countQuery };
     }
+
+    public formatValue(value: any): string {
+        if (Array.isArray(value)) {
+            const formattedArray = value.map((v) => `${v.replace(/'/g, "''")}`).join(', ');
+            return `'{${formattedArray}}'`;
+        } else if (typeof value === 'string') {
+            return `'${value.replace(/'/g, "''")}'`;
+        } else if (value === null || value === undefined) {
+            return 'NULL';
+        } else {
+            return `${value}`; // For numbers and other types
+        }
+    }
 }

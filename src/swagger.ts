@@ -92,5 +92,6 @@ export default async function (app: INestApplication) {
             filter: true,
         },
     });
+
     // logger.log(`Docs will serve on ${docPrefix}`, 'NestApplication');
 }
