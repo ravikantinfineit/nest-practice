@@ -3,7 +3,7 @@ import { ApiExtraModels } from '@nestjs/swagger';
 
 import { CountriesController } from './countries.controller';
 import { CountriesService } from './countries.service';
-import { CreateDto } from './dto/create.dto';
+import { CreateCountryDto } from './dto/create.dto';
 import { Query } from './query';
 
 /**
@@ -19,5 +19,5 @@ import { Query } from './query';
     providers: [CountriesService, Query],
     exports: [CountriesService],
 })
-@ApiExtraModels(CreateDto)
+@ApiExtraModels(CreateCountryDto)
 export class CountriesModule {}

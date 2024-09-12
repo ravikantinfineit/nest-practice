@@ -19,7 +19,7 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { CountriesService } from './countries.service';
 import { Country } from './dto/country';
 //import { CreateCountryDto } from './dto/create.dto';
-import { CreateDto } from './dto/create.dto';
+import { CreateCountryDto } from './dto/create.dto';
 import { UpdateDto } from './dto/update.dto';
 
 /**
@@ -71,7 +71,7 @@ export class CountriesController {
     @Post('create')
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: Country, description: 'Create Country' })
-    async create(@Body() createDto: CreateDto): Promise<Country> {
+    async create(@Body() createDto: CreateCountryDto): Promise<Country> {
         return await this.countriesService.create(createDto);
     }
 

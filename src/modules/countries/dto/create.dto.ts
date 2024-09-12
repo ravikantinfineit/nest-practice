@@ -17,7 +17,7 @@ import { upperCaseTransformer } from '@app/utils/transformers/upper-case.transfo
  * specified validation rules and formats. It uses decorators from `class-validator` for validation
  * and `class-transformer` for transforming input data.
  */
-export class CreateDto {
+export class CreateCountryDto {
     /**
      * The name of the country.
      *

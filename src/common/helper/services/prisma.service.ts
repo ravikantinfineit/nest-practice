@@ -153,6 +153,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
                     status: 'down',
                 },
             });
+            console.log(e);
         }
     }
 }

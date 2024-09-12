@@ -10,7 +10,7 @@ import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
 import { Country } from './dto/country';
 //import { CreateCountryDto } from './dto/create.dto';
-import { CreateDto } from './dto/create.dto';
+import { CreateCountryDto } from './dto/create.dto';
 import { Query } from './query';
 
 /**
@@ -142,7 +142,7 @@ export class CountriesService {
      * @throws {HttpException} If the Country Name already exists or if an error occurs during creation.
      */
 
-    async create(createDto: CreateDto): Promise<Country> {
+    async create(createDto: CreateCountryDto): Promise<Country> {
         //check code for prevent duplict country
         const find = await this.prisma.executeRawQuery(this.query.findByName(), createDto);
         if (find) {
@@ -171,7 +171,7 @@ export class CountriesService {
      * @returns {Promise<Country | null>} The updated Country object or null if not found.
      * @throws {HttpException} If nothing to update is provided, if record is not exists, or if an error occurs during the update.
      */
-    async update(id: string, updateDto: DeepPartial<CreateDto>): Promise<Country | null> {
+    async update(id: string, updateDto: DeepPartial<CreateCountryDto>): Promise<Country | null> {
         if (id == undefined && Object.keys(updateDto).length === 0) {
             throw new HttpException(
                 {

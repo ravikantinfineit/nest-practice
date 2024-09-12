@@ -48,7 +48,12 @@ export class Query {
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
                 const values = _.values(conds);
-                const query = `INSERT INTO countries  (${keys.join()}) VALUES ('${values.join("','")}') RETURNING id_country as insertid,name;`;
+                const values1 = keys.map((key) => this.formatValue(conds[key])).join(', ');
+                console.log('keys --' + keys);
+                console.log('values --' + values);
+                console.log('Formated --' + values1);
+                // const query = `INSERT INTO countries  (${keys.join()}) VALUES ('${values.join("','")}') RETURNING id_country as insertid,name;`;
+                const query = `INSERT INTO countries  (${keys.join()}) VALUES (${keys.map((key) => this.formatValue(conds[key])).join(', ')}) RETURNING id_country as insertid,name;`;
                 console.log('Query--- ' + query);
                 return query;
             },
