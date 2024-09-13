@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ApiExtraModels } from '@nestjs/swagger';
 
 import { CountriesController } from './countries.controller';
 import { CountriesService } from './countries.service';
-import { CreateCountryDto } from './dto/create.dto';
 import { Query } from './query';
 
 /**
@@ -19,5 +17,4 @@ import { Query } from './query';
     providers: [CountriesService, Query],
     exports: [CountriesService],
 })
-@ApiExtraModels(CreateCountryDto)
 export class CountriesModule {}

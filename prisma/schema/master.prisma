@@ -1,7 +1,7 @@
 model country_mas {
     id_country    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    name          String    @unique @db.VarChar(80)
-    dial_code     String?   @db.VarChar(10)
+    name          String    @unique @db.VarChar(15)
+    dial_code     String?   @db.VarChar(5)
     status        Int       @default(1) @db.SmallInt
     id_created_by String?   @db.Uuid
     id_updated_by String?   @db.Uuid
@@ -13,7 +13,7 @@ model country_mas {
 
 model state_mas {
     id_state      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    name          String    @unique @db.VarChar(80)
+    name          String    @unique @db.VarChar(20)
     id_country    String    @db.Uuid
     status        Int       @default(1) @db.SmallInt
     id_created_by String?   @db.Uuid
@@ -26,7 +26,7 @@ model state_mas {
 
 model city_mas {
     id_city       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-    name          String    @unique @db.VarChar(80)
+    name          String    @unique @db.VarChar(20)
     id_state      String    @db.Uuid
     id_country    String    @db.Uuid
     status        Int       @default(1) @db.SmallInt
@@ -34,6 +34,71 @@ model city_mas {
     id_updated_by String?   @db.Uuid
     created_at    DateTime  @default(now()) @db.Timestamptz(6)
     updated_at    DateTime? @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
+model banks_mas {
+    id_bank       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    name          String    @unique @db.VarChar(50)
+    short_name    String?   @unique @db.VarChar(5)
+    id_city       String?   @db.Uuid
+    id_state      String?   @db.Uuid
+    id_country    String    @db.Uuid
+    status        Int       @default(1) @db.SmallInt
+    id_created_by String?   @db.Uuid
+    id_updated_by String?   @db.Uuid
+    created_at    DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at    DateTime? @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
+model document_groups {
+    id_document_group String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    name              String    @unique @db.VarChar(25)
+    status            Int       @default(1) @db.SmallInt
+    id_created_by     String?   @db.Uuid
+    id_updated_by     String?   @db.Uuid
+    created_at        DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at        DateTime? @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
+model documents {
+    id_document       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    id_document_group String    @db.Uuid
+    name              String    @unique @db.VarChar(25)
+    status            Int       @default(1) @db.SmallInt
+    id_created_by     String?   @db.Uuid
+    id_updated_by     String?   @db.Uuid
+    created_at        DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at        DateTime? @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
+model address_types {
+    id_address_type String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    address_type    String    @unique @db.VarChar(25)
+    status          Int       @default(1) @db.SmallInt
+    id_created_by   String?   @db.Uuid
+    id_updated_by   String?   @db.Uuid
+    created_at      DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at      DateTime? @db.Timestamptz(6)
+
+    @@schema("public")
+}
+
+model contact_types {
+    id_contact_type String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+    contact_type    String    @unique @db.VarChar(50)
+    status          Int       @default(1) @db.SmallInt
+    id_created_by   String?   @db.Uuid
+    id_updated_by   String?   @db.Uuid
+    created_at      DateTime  @default(now()) @db.Timestamptz(6)
+    updated_at      DateTime? @db.Timestamptz(6)
 
     @@schema("public")
 }
