@@ -12,7 +12,7 @@ import {
     ApiBody,
     ApiConsumes,
     ApiCreatedResponse,
-    ApiExcludeEndpoint,
+    // ApiExcludeEndpoint,
     ApiTags,
 } from '@nestjs/swagger';
 
@@ -91,9 +91,9 @@ export class FilesLocalController {
      * @throws { HttpException } If the file cannot be found or there is an error during download.
      */
 
-    @Get(':path')
-    @ApiExcludeEndpoint()
-    download(@Param('path') path, @Response() response) {
+    @Get('local/download/:path')
+    //@ApiExcludeEndpoint()
+    download(@Param('path') path: string, @Response() response) {
         return response.sendFile(path, { root: filesRoot() + '/local' });
     }
 }

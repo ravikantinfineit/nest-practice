@@ -147,7 +147,30 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#delete" >delete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
                             </li>
                         </ul>
                     </td>
@@ -166,6 +189,181 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(createDto: <a href="../classes/CreateCountryDto.html" target="_self">CreateCountryDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;create&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Country, description: &#x27;Create Country&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/modules/countries/countries.controller.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateCountryDto.html" target="_self" >CreateCountryDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The data required to create a new country.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Country.html" target="_self" >Promise&lt;Country&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The created country object.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(deletebyid/:id_country)<br />@HttpCode(HttpStatus.OK)<br />@ApiParam({name: &#x27;id_country&#x27;, type: String})<br />@ApiOkResponse({status: undefined, description: Country has been successfully deleted.})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/modules/countries/countries.controller.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The ID of the country to be deleted.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;object&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An object indicating the deletion result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -192,14 +390,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;v1/countries&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: undefined})<br /></code>
+                    <code>@Get(&#x27;findall&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: undefined})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/modules/countries/countries.controller.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/modules/countries/countries.controller.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -259,18 +457,139 @@ See Country</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateDto: <a href="../classes/UpdateDto.html" target="_self">UpdateDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;updatebyid/:id_country&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiParam({name: &#x27;id_country&#x27;, type: String})<br />@ApiOkResponse({type: Country, description: &#x27;Update Country&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/modules/countries/countries.controller.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The ID of the Country to be updated.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>updateDto</td>
+                                            <td>
+                                                            <code><a href="../classes/UpdateDto.html" target="_self" >UpdateDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The data to update the Country with.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Country.html" target="_self" >Promise&lt;Country | null&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The updated Country object or null if not found.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query, HttpStatus, HttpCode } from &#x27;@nestjs/common&#x27;;
-import { ApiTags, ApiOkResponse } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    Controller,
+    Get,
+    Query,
+    HttpStatus,
+    HttpCode,
+    Post,
+    Body,
+    Patch,
+    Param,
+    ParseUUIDPipe,
+    Delete,
+} from &#x27;@nestjs/common&#x27;;
+import { ApiTags, ApiOkResponse, ApiParam } from &#x27;@nestjs/swagger&#x27;;
 
 import { PaginationResponse, PaginationResponseDto } from &#x27;@utils/dto/pagination-response.dto&#x27;;
 import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
 
 import { CountriesService } from &#x27;./countries.service&#x27;;
 import { Country } from &#x27;./dto/country&#x27;;
+//import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
+import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
+import { UpdateDto } from &#x27;./dto/update.dto&#x27;;
 
 /**
  * @fileoverview
@@ -302,7 +621,7 @@ export class CountriesController {
      * @see Country
      */
 
-    @Get(&#x27;v1/countries&#x27;)
+    @Get(&#x27;findall&#x27;)
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: PaginationResponse(Country) })
     async findAll(@Query() query: PaginationQueryDto): Promise&lt;PaginationResponseDto&lt;Country&gt;&gt; {
@@ -310,6 +629,63 @@ export class CountriesController {
 
         return get_all;
     }
+
+    /**
+     * @route POST /country/create
+     * @description Create a new country.
+     * @param {CountryDto} createDto - The data required to create a new country.
+     * @returns {Promise&lt;Country&gt;} The created country object.
+     */
+
+    @Post(&#x27;create&#x27;)
+    @HttpCode(HttpStatus.OK)
+    @ApiOkResponse({ type: Country, description: &#x27;Create Country&#x27; })
+    async create(@Body() createDto: CreateCountryDto): Promise&lt;Country&gt; {
+        return await this.countriesService.create(createDto);
+    }
+
+    /**
+     * @route PATCH /updatebyid/:id_country
+     * @description Update an existing Country by its ID.
+     * @param {string} id - The ID of the Country to be updated.
+     * @param {UpdateDto} updateDto - The data to update the Country with.
+     * @returns {Promise&lt;Country | null&gt;} The updated Country object or null if not found.
+     */
+
+    @Patch(&#x27;updatebyid/:id_country&#x27;)
+    @HttpCode(HttpStatus.OK)
+    @ApiParam({ name: &#x27;id_country&#x27;, type: String })
+    @ApiOkResponse({
+        type: Country,
+        description: &#x27;Update Country&#x27;,
+    })
+    async update(
+        @Param(&#x27;id_country&#x27;, ParseUUIDPipe) id: string,
+        @Body() updateDto: UpdateDto
+    ): Promise&lt;Country | null&gt; {
+        const updated &#x3D; await this.countriesService.update(id, updateDto);
+        return updated;
+    }
+    /**
+     * @route DELETE /deletebyid/:id_country
+     * @description Delete a country by its ID.
+     * @param {string} id - The ID of the country to be deleted.
+     * @returns {Promise&lt;object&gt;} An object indicating the deletion result.
+     */
+
+    @Delete(&#x60;deletebyid/:id_country&#x60;)
+    @HttpCode(HttpStatus.OK)
+    @ApiParam({ name: &#x27;id_country&#x27;, type: String })
+    @ApiOkResponse({
+        status: HttpStatus.OK,
+        description: &#x60;Country has been successfully deleted.&#x60;,
+    })
+    async delete(@Param(&#x27;id_country&#x27;, ParseUUIDPipe) id: string): Promise&lt;object&gt; {
+        const deleted &#x3D; await this.countriesService.delete(id);
+        return deleted;
+    }
+
+    // @Get(&#x27;v1/country&#x27;)
 }
 
 // import { Controller, Get, Query, HttpStatus, HttpCode } from &#x27;@nestjs/common&#x27;;

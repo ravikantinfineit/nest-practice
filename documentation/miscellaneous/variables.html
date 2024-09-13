@@ -534,7 +534,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>(req: any, file: any, callback: any) &#x3D;&gt; {
-    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif|PNG)$/)) {
         return callback(new Error(&#x27;Only image files are allowed!&#x27;), false);
     }
     callback(null, true);

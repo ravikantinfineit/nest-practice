@@ -134,6 +134,22 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#MODULE" >MODULE</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -145,7 +161,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#delete" >delete</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
                             </li>
                         </ul>
                     </td>
@@ -165,12 +197,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(paginationService: <a href="../injectables/PaginationService.html" target="_self">PaginationService</a>, utilsService: <a href="../classes/UtilsService.html" target="_self">UtilsService</a>)</code>
+<code>constructor(paginationService: <a href="../injectables/PaginationService.html" target="_self">PaginationService</a>, utilsService: <a href="../classes/UtilsService.html" target="_self">UtilsService</a>, prisma: <a href="../injectables/PrismaService.html" target="_self">PrismaService</a>, query: <a href="../classes/Query.html" target="_self">Query</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modules/countries/countries.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/countries/countries.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -211,6 +243,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>prisma</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PrismaService.html" target="_self" >PrismaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>query</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Query.html" target="_self" >Query</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -225,6 +281,154 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(createDto: <a href="../classes/CreateCountryDto.html" target="_self">CreateCountryDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Creates a new country.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateCountryDto.html" target="_self" >CreateCountryDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Data required to create a new Country.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Country.html" target="_self" >Promise&lt;Country&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The created Country object.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="204"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:204</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;object&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -247,8 +451,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/modules/countries/countries.service.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -315,14 +519,226 @@ See Country</code></pre></div></div>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves a Country by its ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The ID of the Country to retrieve.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Country.html" target="_self" >Promise&lt;Country&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The currency object.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="update"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateDto: <a href="../undefineds/DeepPartial.html" target="_self">DeepPartial&lt;CreateCountryDto&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/modules/countries/countries.service.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates an existing Country by its ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The ID of the Country to update.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>updateDto</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#DeepPartial" target="_self" >DeepPartial&lt;CreateCountryDto&gt;</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Data to update the Country with.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Country.html" target="_self" >Promise&lt;Country | null&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The updated Country object or null if not found.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MODULE"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>MODULE</b></span>
+                        <a href="#MODULE"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modules/countries/countries.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
 
+import { PrismaService } from &#x27;@app/common/helper/services/prisma.service&#x27;;
+import { DeepPartial } from &#x27;@app/utils/types/deep-partial.type&#x27;;
 import { PaginationService } from &#x27;@services/pagination.service&#x27;;
 import { UtilsService } from &#x27;@services/util.service&#x27;;
 import { PaginationResponseDto } from &#x27;@utils/dto/pagination-response.dto&#x27;;
@@ -330,6 +746,9 @@ import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
 import { IPaginationFieldConfig } from &#x27;@utils/types/pagination-options&#x27;;
 
 import { Country } from &#x27;./dto/country&#x27;;
+//import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
+import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
+import { Query } from &#x27;./query&#x27;;
 
 /**
  * @fileoverview
@@ -341,10 +760,15 @@ import { Country } from &#x27;./dto/country&#x27;;
  */
 @Injectable()
 export class CountriesService {
+    private readonly MODULE: string;
     constructor(
         private readonly paginationService: PaginationService,
-        private readonly utilsService: UtilsService
-    ) {}
+        private readonly utilsService: UtilsService,
+        private readonly prisma: PrismaService,
+        private readonly query: Query
+    ) {
+        this.MODULE &#x3D; &#x27;country&#x27;;
+    }
 
     /**
      * Find all countries with pagination.
@@ -389,7 +813,7 @@ export class CountriesService {
         const fieldConfigs: Record&lt;string, IPaginationFieldConfig&gt; &#x3D; {
             symbol: {
                 joinTable: (alias: string) &#x3D;&gt;
-                    &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptlb.id_currency&#x60;,
+                    &#x60;JOIN currencies ${alias} ON ${alias}.id_currency &#x3D; ptbl.id_currency&#x60;,
                 alias: () &#x3D;&gt; &#x60;c${0}&#x60;, // Reusing the same alias logic for symbol and code
                 selectFields: (alias: string) &#x3D;&gt; [
                     &#x60;${alias}.symbol&#x60;,
@@ -398,7 +822,7 @@ export class CountriesService {
             },
             offset: {
                 joinTable: (alias: string) &#x3D;&gt;
-                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptbl.id_timezone&#x60;,
                 alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
                 selectFields: (alias: string) &#x3D;&gt; [
                     &#x60;${alias}.value&#x60;,
@@ -409,7 +833,7 @@ export class CountriesService {
             },
             abbr: {
                 joinTable: (alias: string) &#x3D;&gt;
-                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptlb.id_timezone&#x60;,
+                    &#x60;JOIN timezone ${alias} ON ${alias}.id_timezone &#x3D; ptbl.id_timezone&#x60;,
                 alias: () &#x3D;&gt; &#x60;tz${0}&#x60;,
                 selectFields: (alias: string) &#x3D;&gt; [&#x60;${alias}.abbr&#x60;],
             },
@@ -446,6 +870,106 @@ export class CountriesService {
 
         // // const select &#x3D; selectFields.join(&#x27;, &#x27;);
         // return this.paginationService.paginate&lt;Country&gt;(selectQuery, countQuery, paginationQuery);
+    }
+
+    /**
+     * Creates a new country.
+     * @param {CreateCountryDto} createDto - Data required to create a new Country.
+     * @returns {Promise&lt;Country&gt;} The created Country object.
+     * @throws {HttpException} If the Country Name already exists or if an error occurs during creation.
+     */
+
+    async create(createDto: CreateCountryDto): Promise&lt;Country&gt; {
+        //check code for prevent duplict country
+        const find &#x3D; await this.prisma.executeRawQuery(this.query.findByName(), createDto);
+        if (find) {
+            throw new HttpException(
+                { message: createDto.name + &#x27; is already available&#x27; },
+                HttpStatus.CONFLICT
+            );
+        }
+
+        const insert &#x3D; await this.prisma.executeRawQuery(this.query.insert(), createDto);
+        if (insert &amp;&amp; insert.insertid) {
+            const get &#x3D; await this.findOne(insert.insertid);
+
+            return get as any;
+        } else {
+            throw new HttpException(
+                { message: &#x27;Something went wrong&#x27; },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+    /**
+     * Updates an existing Country by its ID.
+     * @param {string} id - The ID of the Country to update.
+     * @param {DeepPartial&lt;CreateCountryDto&gt;} updateDto - Data to update the Country with.
+     * @returns {Promise&lt;Country | null&gt;} The updated Country object or null if not found.
+     * @throws {HttpException} If nothing to update is provided, if record is not exists, or if an error occurs during the update.
+     */
+    async update(id: string, updateDto: DeepPartial&lt;CreateCountryDto&gt;): Promise&lt;Country | null&gt; {
+        if (id &#x3D;&#x3D; undefined &amp;&amp; Object.keys(updateDto).length &#x3D;&#x3D;&#x3D; 0) {
+            throw new HttpException(
+                {
+                    message: &#x27;Nothing to be update!&#x27;,
+                },
+                HttpStatus.BAD_REQUEST
+            );
+        }
+        //check Data is Exits or not
+        const recordExits &#x3D; await this.findOne(id);
+        if (recordExits) {
+            //update Country
+            updateDto.id_country &#x3D; id;
+            const update &#x3D; await this.prisma.executeRawQuery(this.query.update(), updateDto);
+            console.log(update);
+            if (!update) {
+                throw new HttpException(
+                    { message: &#x27;Something went wrong&#x27; },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
+            if (update[0].updatedid) {
+                return await this.findOne(update[0].updatedid);
+            }
+        } else {
+            throw new HttpException({ message: &#x27;Data Not Found!&#x27; }, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    async delete(id: string): Promise&lt;object&gt; {
+        const deleted &#x3D; await this.prisma.executeRawQuery(this.query.delete(), id);
+        if (!deleted) {
+            throw new HttpException(
+                { message: &#x27;Something went wrong&#x27; },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
+        if (deleted[0]?.deletedid) {
+            return { status: &#x27;Delete successfully&#x27; };
+        } else {
+            throw new HttpException({ message: &#x60;${this.MODULE} not found&#x60; }, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /**
+     * Retrieves a Country by its ID.
+     * @param {string} id - The ID of the Country to retrieve.
+     * @returns {Promise&lt;Country&gt;} The currency object.
+     */
+    async findOne(id: string): Promise&lt;Country&gt; {
+        // Get By Id
+        try {
+            const data &#x3D; await this.prisma.$queryRawUnsafe(this.query.findById(id));
+            console.log(data[0]);
+            return data[0];
+        } catch (error) {
+            throw new HttpException(
+                { message: &#x27;Something went wrong &#x27; + error },
+                HttpStatus.INTERNAL_SERVER_ERROR
+            );
+        }
     }
 }
 

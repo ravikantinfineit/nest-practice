@@ -1,6 +1,6 @@
 import { unlink, createWriteStream, createReadStream } from 'fs';
-import path = require('path');
-import url = require('url');
+import * as path from 'path';
+import * as url from 'url';
 
 // import { fsRoot } from '../server-config';
 

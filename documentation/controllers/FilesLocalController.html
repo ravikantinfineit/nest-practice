@@ -144,7 +144,6 @@ It provides endpoints for uploading and downloading files.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
                                 <a href="#download" >download</a>
                             </li>
                             <li>
@@ -181,7 +180,6 @@ It provides endpoints for uploading and downloading files.</p>
                     <a name="download"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
                         <span ><b>download</b></span>
                         <a href="#download"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -190,7 +188,7 @@ It provides endpoints for uploading and downloading files.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>download(path, response)</code>
+                    <code>download(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, response)</code>
                 </td>
             </tr>
 
@@ -198,7 +196,7 @@ It provides endpoints for uploading and downloading files.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:path&#x27;)<br />@ApiExcludeEndpoint()<br /></code>
+                    <code>@Get(&#x27;local/download/:path&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -222,6 +220,7 @@ It provides endpoints for uploading and downloading files.</p>
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                                 <td>Description</td>
                                         </tr>
@@ -229,6 +228,9 @@ It provides endpoints for uploading and downloading files.</p>
                                     <tbody>
                                         <tr>
                                                 <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
                                             <td>
                                                     No
@@ -242,6 +244,8 @@ It provides endpoints for uploading and downloading files.</p>
                                         </tr>
                                         <tr>
                                                 <td>response</td>
+                                            <td>
+                                            </td>
 
                                             <td>
                                                     No
@@ -295,7 +299,7 @@ It provides endpoints for uploading and downloading files.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiCreatedResponse({type: FileResponseDto})<br />@Post(&#x27;v1/upload&#x27;)<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@ApiBody({schema: undefined})<br />@ApiFile()<br />@UseInterceptors(undefined)<br /></code>
+                    <code>@ApiCreatedResponse({type: FileResponseDto})<br />@Post(&#x27;upload&#x27;)<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@ApiBody({schema: undefined})<br />@ApiFile()<br />@UseInterceptors(undefined)<br /></code>
                 </td>
             </tr>
 
@@ -374,7 +378,7 @@ import {
     ApiBody,
     ApiConsumes,
     ApiCreatedResponse,
-    ApiExcludeEndpoint,
+    // ApiExcludeEndpoint,
     ApiTags,
 } from &#x27;@nestjs/swagger&#x27;;
 
@@ -415,7 +419,7 @@ export class FilesLocalController {
     @ApiCreatedResponse({
         type: FileResponseDto,
     })
-    @Post(&#x27;v1/upload&#x27;)
+    @Post(&#x27;upload&#x27;)
     @ApiConsumes(&#x27;multipart/form-data&#x27;)
     @ApiBody({
         schema: {
@@ -453,9 +457,9 @@ export class FilesLocalController {
      * @throws { HttpException } If the file cannot be found or there is an error during download.
      */
 
-    @Get(&#x27;:path&#x27;)
-    @ApiExcludeEndpoint()
-    download(@Param(&#x27;path&#x27;) path, @Response() response) {
+    @Get(&#x27;local/download/:path&#x27;)
+    //@ApiExcludeEndpoint()
+    download(@Param(&#x27;path&#x27;) path: string, @Response() response) {
         return response.sendFile(path, { root: filesRoot() + &#x27;/local&#x27; });
     }
 }

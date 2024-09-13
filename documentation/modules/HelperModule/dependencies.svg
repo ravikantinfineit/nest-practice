@@ -24,13 +24,13 @@
 <title>cluster_HelperModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="58.5,-70 58.5,-268 437.5,-268 437.5,-70 58.5,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_HelperModule_providers</title>
-<polygon fill="none" stroke="black" points="83.5,-78 83.5,-130 413.5,-130 413.5,-78 83.5,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_HelperModule_exports</title>
 <polygon fill="none" stroke="black" points="66.5,-208 66.5,-260 429.5,-260 429.5,-208 66.5,-208"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_HelperModule_providers</title>
+<polygon fill="none" stroke="black" points="83.5,-78 83.5,-130 413.5,-130 413.5,-78 83.5,-78"/>
 </g>
 <!-- PaginationService  -->
 <g id="node1" class="node">

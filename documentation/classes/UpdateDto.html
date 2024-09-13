@@ -119,28 +119,16 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/currencies/dto/update.dto.ts</code>
+            <code>src/modules/countries/dto/update.dto.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>This file defines the <code>UpdateDto</code> class, which represents the Data Transfer Object (DTO)
-used for updating an existing currency entity. It extends from the <code>CreateDto</code> class,
-making all fields optional for the update operation.</p>
-<p>The <code>UpdateDto</code> class is used to define the structure of the data required to update
-an existing currency entity. It inherits all properties from the <code>CreateDto</code> class but
-makes them optional, allowing partial updates.</p>
-
-            </p>
 
             <p class="comment">
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                            <code><a href="../classes/CreateDto.html" target="_self" >PartialType(CreateDto)</a></code>
+                        <code>PartialType(CreateCountryDto)</code>
             </p>
 
 
@@ -158,24 +146,11 @@ makes them optional, allowing partial updates.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/mapped-types&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PartialType } from &#x27;@nestjs/swagger&#x27;;
 
-import { CreateDto } from &#x27;./create.dto&#x27;;
+import { CreateCountryDto } from &#x27;./create.dto&#x27;;
 
-/**
- * @fileoverview
- * This file defines the &#x60;UpdateDto&#x60; class, which represents the Data Transfer Object (DTO)
- * used for updating an existing currency entity. It extends from the &#x60;CreateDto&#x60; class,
- * making all fields optional for the update operation.
- *
- * @module
- * @description
- * The &#x60;UpdateDto&#x60; class is used to define the structure of the data required to update
- * an existing currency entity. It inherits all properties from the &#x60;CreateDto&#x60; class but
- * makes them optional, allowing partial updates.
- */
-
-export class UpdateDto extends PartialType(CreateDto) {}
+export class UpdateDto extends PartialType(CreateCountryDto) {}
 </code></pre>
     </div>
 </div>

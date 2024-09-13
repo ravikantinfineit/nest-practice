@@ -94,13 +94,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/CountriesModule.html" data-type="entity-link" >CountriesModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#controllers-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' : 'data-bs-target="#xs-controllers-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' }>
+                                            'data-bs-target="#controllers-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' : 'data-bs-target="#xs-controllers-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' :
-                                            'id="xs-controllers-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' :
+                                            'id="xs-controllers-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' }>
                                             <li class="link">
                                                 <a href="controllers/CountriesController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CountriesController</a>
                                             </li>
@@ -108,13 +108,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' : 'data-bs-target="#xs-injectables-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' }>
+                                        'data-bs-target="#injectables-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' : 'data-bs-target="#xs-injectables-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' :
-                                        'id="xs-injectables-links-module-CountriesModule-0d3fa6df9471a682fae87bf01cb30a188f9af2d8d915d2deedecbe3ffb96500d11302786049bdfffbe4b082e6cd2c3086f1657312e0ed282d0c56ec8b4e26727"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' :
+                                        'id="xs-injectables-links-module-CountriesModule-364aa546ef382132e04e3b361592365562b34f33b7cb9fcd7eed2eaf4fe611d9292f0249c0aebfe4134838c1e28df21fcbb3da9540f445f80f65bf6edf96f8ce"' }>
                                         <li class="link">
                                             <a href="injectables/CountriesService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CountriesService</a>
                                         </li>
@@ -367,6 +367,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Country.html" data-type="entity-link" >Country</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CreateCountryDto.html" data-type="entity-link" >CreateCountryDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CreateDto.html" data-type="entity-link" >CreateDto</a>
                             </li>
                             <li class="link">
@@ -442,6 +445,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/Query-2.html" data-type="entity-link" >Query</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Query-3.html" data-type="entity-link" >Query</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/QueryCountryDto.html" data-type="entity-link" >QueryCountryDto</a>
                             </li>
                             <li class="link">
@@ -455,6 +461,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateDto.html" data-type="entity-link" >UpdateDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateDto-1.html" data-type="entity-link" >UpdateDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UserNotFoundException.html" data-type="entity-link" >UserNotFoundException</a>

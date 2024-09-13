@@ -119,10 +119,21 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/countries/query.ts</code>
+            <code>src/modules/currencies/query.ts</code>
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This file defines the <code>Query</code> class, which provides methods for generating SQL queries
+related to currency data management.</p>
+<p>The <code>Query</code> class includes methods to generate SQL queries for operations such as
+retrieving, inserting, updating, and deleting currency records from the database.
+It uses the lodash library for object manipulation and query construction.</p>
+
+            </p>
 
 
 
@@ -144,16 +155,19 @@
                                 <a href="#delete" >delete</a>
                             </li>
                             <li>
+                                <a href="#findByCode" >findByCode</a>
+                            </li>
+                            <li>
                                 <a href="#findById" >findById</a>
                             </li>
                             <li>
-                                <a href="#findByName" >findByName</a>
-                            </li>
-                            <li>
-                                <a href="#formatValue" >formatValue</a>
-                            </li>
-                            <li>
                                 <a href="#insert" >insert</a>
+                            </li>
+                            <li>
+                                <a href="#pgBaseQuery" >pgBaseQuery</a>
+                            </li>
+                            <li>
+                                <a href="#pgBaseSelectField" >pgBaseSelectField</a>
                             </li>
                             <li>
                                 <a href="#update" >update</a>
@@ -170,54 +184,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(utilsService: <a href="../classes/UtilsService.html" target="_self">UtilsService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="5" class="link-to-prism">src/modules/countries/query.ts:5</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>utilsService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../classes/UtilsService.html" target="_self" >UtilsService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
             <section data-compodoc="block-methods">
@@ -245,17 +211,94 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/modules/countries/query.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/modules/currencies/query.ts:139</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to delete a Country by its ID.</p>
+                        <div class="io-description"><p>Generates a SQL query to delete a currency by its ID.</p>
 </div>
 
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findByCode"></a>
+                    <span class="name">
+                        <span ><b>findByCode</b></span>
+                        <a href="#findByCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findByCode(id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/modules/currencies/query.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Generates a SQL query to find a currency by its code.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Optional ID to exclude from the search if provided.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
@@ -281,92 +324,22 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>findById()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="115"
-                                    class="link-to-prism">src/modules/countries/query.ts:115</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/modules/currencies/query.ts:21</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to find a Country by its ID.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The return select query string .</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findByName"></a>
-                    <span class="name">
-                        <span ><b>findByName</b></span>
-                        <a href="#findByName"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>findByName()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/modules/countries/query.ts:13</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to find a Country by its name.</p>
+                        <div class="io-description"><p>Generates a SQL query to find a currency by its ID.</p>
 </div>
 
                         <div class="io-description">
@@ -376,73 +349,6 @@
                             <div class="io-description">
                                 <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="formatValue"></a>
-                    <span class="name">
-                        <span ><b>formatValue</b></span>
-                        <a href="#formatValue"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>formatValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="159"
-                                    class="link-to-prism">src/modules/countries/query.ts:159</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>value</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
                             </div>
                 </td>
             </tr>
@@ -468,15 +374,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/modules/countries/query.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/modules/currencies/query.ts:71</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL insert query to insert new Country in database.</p>
+                        <div class="io-description"><p>Generates a SQL query to insert a new currency.</p>
 </div>
 
                         <div class="io-description">
@@ -485,6 +391,92 @@
                         </div>
                             <div class="io-description">
                                 <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pgBaseQuery"></a>
+                    <span class="name">
+                        <span ><b>pgBaseQuery</b></span>
+                        <a href="#pgBaseQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pgBaseQuery()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/modules/currencies/query.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides the base query for selecting currencies.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The base query string for selecting currencies.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pgBaseSelectField"></a>
+                    <span class="name">
+                        <span ><b>pgBaseSelectField</b></span>
+                        <a href="#pgBaseSelectField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>pgBaseSelectField()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/modules/currencies/query.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Provides the base fields for selecting currencies in pagination queries.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An array of column names to be selected in pagination queries.</p>
 
                             </div>
                 </td>
@@ -511,15 +503,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/modules/countries/query.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/modules/currencies/query.ts:100</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL update query to update country .</p>
+                        <div class="io-description"><p>Generates a SQL query to update an existing currency.</p>
 </div>
 
                         <div class="io-description">
@@ -544,33 +536,73 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import _ from &#x27;lodash&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as _ from &#x27;lodash&#x27;;
 
-import { UtilsService } from &#x27;@app/common/helper/services/util.service&#x27;;
+/**
+ * @fileoverview
+ * This file defines the &#x60;Query&#x60; class, which provides methods for generating SQL queries
+ * related to currency data management.
+ *
+ * @module
+ * @description
+ * The &#x60;Query&#x60; class includes methods to generate SQL queries for operations such as
+ * retrieving, inserting, updating, and deleting currency records from the database.
+ * It uses the lodash library for object manipulation and query construction.
+ */
 
 export class Query {
-    constructor(private readonly utilsService: UtilsService) {}
-
     /**
-     * Generates a SQL query to find a Country by its name.
-     * @param {string} [name] - using name of country finde data from database.
+     * Generates a SQL query to find a currency by its ID.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
-    findByName(): object {
+
+    findById(): object {
         return {
-            name: &#x60;findByName&#x60;,
+            name: &#x60;findById&#x60;,
             type: &#x60;SELECT_ONE&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                const allowedKeys &#x3D; [&#x27;id_country&#x27;, &#x27;name&#x27;, &#x27;iso3&#x27;];
-                const name &#x3D; _.get(where, &#x27;name&#x27;);
-
-                return &#x60;SELECT ${allowedKeys.join()} FROM countries  WHERE status &#x3D; 1 AND name &#x3D; &#x27;${name}&#x27;&#x60;;
+                const allowedKeys &#x3D; [
+                    &#x27;c.id_currency&#x27;,
+                    &#x27;c.code&#x27;,
+                    &#x27;c.name&#x27;,
+                    &#x27;c.name_plural&#x27;,
+                    &#x27;c.symbol&#x27;,
+                    &#x27;c.symbol_native&#x27;,
+                    &#x27;c.decimal_digits&#x27;,
+                    &#x27;c.rounding&#x27;,
+                ];
+                const id &#x3D; _.get(where, &#x27;id&#x27;);
+                const sql &#x3D; &#x60;select ${allowedKeys.join()} from currencies c WHERE c.status &#x3D; 1 AND c.id_currency &#x3D; &#x27;${id}&#x27;;&#x60;;
+                return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL insert query to insert new Country in database.
+     * Generates a SQL query to find a currency by its code.
+     * @param {string} [id] - Optional ID to exclude from the search if provided.
+     * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
+     */
+
+    findByCode(id?: string): object {
+        return {
+            name: &#x60;findByCode&#x60;,
+            type: &#x60;SELECT_ONE&#x60;,
+            syntax: (where: any) &#x3D;&gt; {
+                const allowedKeys &#x3D; [&#x27;c.id_currency&#x27;, &#x27;c.code&#x27;];
+                const code &#x3D; _.get(where, &#x27;code&#x27;);
+
+                let sql &#x3D; &#x60;SELECT ${allowedKeys.join()} FROM currencies c WHERE c.status &#x3D; 1 AND c.code &#x3D; &#x27;${code}&#x27;&#x60;;
+                if (id) {
+                    sql +&#x3D; &#x60; AND c.id_currency !&#x3D; &#x27;${id}&#x27;;&#x60;;
+                }
+                return sql;
+            },
+        };
+    }
+
+    /**
+     * Generates a SQL query to insert a new currency.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
 
@@ -580,64 +612,45 @@ export class Query {
             type: &#x60;INSERT&#x60;,
             syntax: (where: any) &#x3D;&gt; {
                 const allowedKeys &#x3D; [
+                    &#x27;code&#x27;,
                     &#x27;name&#x27;,
-                    &#x27;iso&#x27;,
-                    &#x27;nice_name&#x27;,
-                    &#x27;iso3&#x27;,
-                    &#x27;num_code&#x27;,
-                    &#x27;dial_code&#x27;,
-                    &#x27;continent&#x27;,
-                    &#x27;capital&#x27;,
-                    &#x27;id_currency&#x27;,
-                    &#x27;id_timezone&#x27;,
+                    &#x27;name_plural&#x27;,
+                    &#x27;symbol&#x27;,
+                    &#x27;symbol_native&#x27;,
+                    &#x27;decimal_digits&#x27;,
+                    &#x27;rounding&#x27;,
                 ];
                 const conds &#x3D; _.pick(where, allowedKeys);
                 const keys &#x3D; _.keys(conds);
                 const values &#x3D; _.values(conds);
-                const values1 &#x3D; keys.map((key) &#x3D;&gt; this.formatValue(conds[key])).join(&#x27;, &#x27;);
-                console.log(&#x27;keys --&#x27; + keys);
-                console.log(&#x27;values --&#x27; + values);
-                console.log(&#x27;Formated --&#x27; + values1);
-                // const query &#x3D; &#x60;INSERT INTO countries  (${keys.join()}) VALUES (&#x27;${values.join(&quot;&#x27;,&#x27;&quot;)}&#x27;) RETURNING id_country as insertid,name;&#x60;;
-                const query &#x3D; &#x60;INSERT INTO countries  (${keys.join()}) VALUES (${keys.map((key) &#x3D;&gt; this.formatValue(conds[key])).join(&#x27;, &#x27;)}) RETURNING id_country as insertid,name;&#x60;;
-                console.log(&#x27;Query--- &#x27; + query);
-                return query;
+                const sql &#x3D; &#x60;insert into currencies (${keys.join()}) values (&#x27;${values.join(&quot;&#x27;,&#x27;&quot;)}&#x27;) RETURNING id_currency as insertid, code;&#x60;;
+                console.log(&#x27;QUERY&#x27;, sql);
+                return sql;
             },
         };
     }
 
-    // async update1(id: string, data: any): Promise&lt;string&gt; {
-    //     const keys &#x3D; Object.keys(data).filter((key) &#x3D;&gt; data[key] !&#x3D;&#x3D; undefined);
-    //     const setColumnwithValue &#x3D; keys
-    //         .map((key) &#x3D;&gt; &#x60;${key} &#x3D; ${this.formatValue(data[key])}&#x60;)
-    //         .join(&#x27;, &#x27;);
-    //     return &#x60;UPDATE countries SET ${setColumnwithValue} WHERE id_country  &#x3D; ${this.formatValue(id)} AND status &#x3D; 1 RETURNING id_country as upadetId ;&#x60;;
-    // }
-
     /**
-     * Generates a SQL update query to update country .
-     * @param {string} [id_country] - using id_country of country to update country in database.
+     * Generates a SQL query to update an existing currency.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
+
     update(): object {
         return {
             name: &#x60;update&#x60;,
             type: &#x60;UPDATE&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                let sql &#x3D; &#x60;UPDATE countries SET &#x60;;
-                const id &#x3D; _.get(where, &#x27;id_country&#x27;);
-                _.unset(where, &#x27;id_country&#x27;);
+                let sql &#x3D; &#x60;UPDATE currencies SET &#x60;;
+                const id &#x3D; _.get(where, &#x27;id&#x27;);
+                _.unset(where, &#x27;id&#x27;);
                 const allowedKeys &#x3D; [
+                    &#x27;code&#x27;,
                     &#x27;name&#x27;,
-                    &#x27;iso&#x27;,
-                    &#x27;nice_name&#x27;,
-                    &#x27;iso3&#x27;,
-                    &#x27;num_code&#x27;,
-                    &#x27;dial_code&#x27;,
-                    &#x27;continent&#x27;,
-                    &#x27;capital&#x27;,
-                    &#x27;id_currency&#x27;,
-                    &#x27;id_timezone&#x27;,
+                    &#x27;name_plural&#x27;,
+                    &#x27;symbol&#x27;,
+                    &#x27;symbol_native&#x27;,
+                    &#x27;decimal_digits&#x27;,
+                    &#x27;rounding&#x27;,
                 ];
                 where &#x3D; _.pick(where, allowedKeys);
 
@@ -646,48 +659,18 @@ export class Query {
                     sql +&#x3D; &#x60;${key} &#x3D; &#x27;${value}&#x27;&#x60;;
                     sql +&#x3D; lastKey &#x3D;&#x3D; key ? &#x60;&#x60; : &#x60;, &#x60;;
                 });
-                sql +&#x3D; &#x60; WHERE status &#x3D; 1 AND id_country &#x3D; &#x27;${id}&#x27; RETURNING id_country as updatedid, name;&#x60;;
-                console.log(&#x27;update q--&#x27; + sql);
+                sql +&#x3D; &#x60; WHERE status &#x3D; 1 AND id_currency &#x3D; &#x27;${id}&#x27; RETURNING id_currency as updatedid, code;&#x60;;
+
+                console.log(&#x27;QQQQQQQQQQQQQQ&#x27;, sql);
+
                 return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL query to find a Country by its ID.
-     * @returns {string} The return select query string .
-     */
-
-    findById(id: string): string {
-        const allowedKeys &#x3D; [
-            &#x27;c.name&#x27;,
-            &#x27;c.iso&#x27;,
-            &#x27;c.nice_name&#x27;,
-            &#x27;c.iso3&#x27;,
-            &#x27;c.num_code&#x27;,
-            &#x27;c.dial_code&#x27;,
-            &#x27;c.continent&#x27;,
-            &#x27;c.capital&#x27;,
-            &#x27;cr.symbol&#x27;,
-            &#x27;cr.name as currency_name&#x27;,
-            &#x27;tz.value&#x27;,
-            &#x27;tz.offset&#x27;,
-            &#x27;tz.offset_in_minutes&#x27;,
-            &#x27;tz.abbr&#x27;,
-            &#x27;tz.text&#x27;,
-        ];
-
-        const query &#x3D; &#x60;SELECT ${allowedKeys} FROM countries as c 
-        JOIN currencies AS cr ON cr.id_currency&#x3D;c.id_currency
-        JOIN timezone AS tz ON tz.id_timezone&#x3D;c.id_timezone
-        WHERE c.status &#x3D; 1 AND c.id_country&#x3D;&#x27;${id}&#x27; &#x60;;
-        console.log(&#x27;Query--&#x27; + query);
-        return query;
-    }
-
-    /**
-     * Generates a SQL query to delete a Country by its ID.
-     * @param {string} id - The ID of the Country to delete.
+     * Generates a SQL query to delete a currency by its ID.
+     * @param {string} id - The ID of the currency to delete.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
 
@@ -696,25 +679,105 @@ export class Query {
             name: &#x60;delete&#x60;,
             type: &#x60;UPDATE&#x60;,
             syntax: (id: string) &#x3D;&gt; {
-                const sql &#x3D; &#x60;UPDATE countries SET status &#x3D; 127 WHERE status &#x3D; 1 AND id_country &#x3D; &#x27;${id}&#x27; RETURNING id_country as deletedid, name;&#x60;;
-                console.log(&#x27;delete --QQ &#x27; + sql);
+                const sql &#x3D; &#x60;UPDATE currencies SET status &#x3D; 127 WHERE status &#x3D; 1 AND id_currency &#x3D; &#x27;${id}&#x27; RETURNING id_currency as deletedid, code;&#x60;;
+
                 return sql;
             },
         };
     }
-    formatValue(value: any): string {
-        if (Array.isArray(value)) {
-            const formattedArray &#x3D; value.map((v) &#x3D;&gt; &#x60;${v.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;)}&#x60;).join(&#x27;, &#x27;);
-            return &#x60;&#x27;{${formattedArray}}&#x27;&#x60;;
-        } else if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
-            return &#x60;&#x27;${value.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;)}&#x27;&#x60;;
-        } else if (value &#x3D;&#x3D;&#x3D; null || value &#x3D;&#x3D;&#x3D; undefined) {
-            return &#x27;NULL&#x27;;
-        } else {
-            return &#x60;${value}&#x60;; // For numbers and other types
-        }
+
+    /**
+     * Provides the base fields for selecting currencies in pagination queries.
+     * @returns {string[]} An array of column names to be selected in pagination queries.
+     */
+
+    pgBaseSelectField(): string[] {
+        return [
+            &#x27;ptbl.id_currency&#x27;,
+            &#x27;ptbl.code&#x27;,
+            &#x27;ptbl.name&#x27;,
+            &#x27;ptbl.symbol&#x27;,
+            &#x27;ptbl.decimal_digits&#x27;,
+            &#x27;ptbl.rounding&#x27;,
+        ];
+    }
+
+    /**
+     * Provides the base query for selecting currencies.
+     * @returns {string} The base query string for selecting currencies.
+     */
+
+    pgBaseQuery(): string {
+        return &#x60; FROM currencies ptbl&#x60;;
     }
 }
+
+// import * as _ from &#x27;lodash&#x27;;
+
+// import { DynamicQueryBuilder, QueryOptions } from &#x27;@providers/dynamic-query.service&#x27;;
+
+// export class Query {
+//     private queryBuilder &#x3D; new DynamicQueryBuilder();
+
+//     findBy(key: string, value: string, id?: string) {
+//         const selectOptions: QueryOptions &#x3D; {
+//             table: &#x27;currencies&#x27;,
+//             fields: [&#x27;id_currency&#x27;, &#x27;code&#x27;],
+//             conditions: { status: 1, ...(key &amp;&amp; { [key]: value }) },
+//             ...(id &amp;&amp; {
+//                 optionalConditions: {
+//                     id_currency: id,
+//                 },
+//             }),
+//         };
+
+//         return this.queryBuilder.buildSelectQuery(selectOptions);
+//     }
+
+//     insert(values: any) {
+//         const insertOptions: QueryOptions &#x3D; {
+//             table: &#x27;currencies&#x27;,
+//             fields: [
+//                 &#x27;code&#x27;,
+//                 &#x27;name&#x27;,
+//                 &#x27;name_plural&#x27;,
+//                 &#x27;symbol&#x27;,
+//                 &#x27;symbol_native&#x27;,
+//                 &#x27;decimal_digits&#x27;,
+//                 &#x27;rounding&#x27;,
+//             ],
+//             values: values,
+//             returningFields: [&#x27;id_currency as insertid&#x27;, &#x27;code&#x27;],
+//         };
+
+//         return this.queryBuilder.buildInsertQuery(insertOptions);
+//     }
+
+//     delete(key: string, value: string) {
+//         const deleteOptions: QueryOptions &#x3D; {
+//             table: &#x27;currencies&#x27;,
+//             conditions: { status: 1, ...(key &amp;&amp; { [key]: value }) },
+//             returningFields: [&#x27;id_currency as deleteid&#x27;],
+//         };
+
+//         return this.queryBuilder.buildDeleteQuery(deleteOptions);
+//     }
+
+//     pgBaseSelectField(): string[] {
+//         return [
+//             &#x27;ptbl.id_currency&#x27;,
+//             &#x27;ptbl.code&#x27;,
+//             &#x27;ptbl.name&#x27;,
+//             &#x27;ptbl.symbol&#x27;,
+//             &#x27;ptbl.decimal_digits&#x27;,
+//             &#x27;ptbl.rounding&#x27;,
+//         ];
+//     }
+
+//     pgBaseQuery() {
+//         return &#x60; FROM currencies ptbl&#x60;;
+//     }
+// }
 </code></pre>
     </div>
 </div>
@@ -753,7 +816,7 @@ export class Query {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'Query-2.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Query-3.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

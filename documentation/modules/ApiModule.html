@@ -257,7 +257,7 @@ It serves as an aggregate module for the API-related functionalities of the appl
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
-import { APP_FILTER } from &#x27;@nestjs/core&#x27;;
+import { APP_FILTER, RouterModule } from &#x27;@nestjs/core&#x27;;
 
 import { HttpErrorFilter } from &#x27;@core/exceptions/http-error.filter&#x27;;
 
@@ -297,6 +297,18 @@ import { HomeModule } from &#x27;./home/home.module&#x27;;
          * Module responsible for managing home-related functionalities.
          */
         HomeModule,
+        RouterModule.register([
+            {
+                path: &#x27;v1&#x27;,
+                module: CountriesModule,
+            },
+        ]),
+        RouterModule.register([
+            {
+                path: &#x27;v1&#x27;,
+                module: CurrenciesModule,
+            },
+        ]),
     ],
     providers: [
         {

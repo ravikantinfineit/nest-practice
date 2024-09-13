@@ -604,13 +604,13 @@ export class CurrenciesController {
     constructor(private readonly currenciesService: CurrenciesService) {}
 
     /**
-     * @route POST /v1/currencies
+     * @route POST /currencies
      * @description Create a new currency.
      * @param {CreateDto} createDto - The data required to create a new currency.
      * @returns {Promise&lt;Currency&gt;} The created currency object.
      */
 
-    @Post(&#x60;v1/${modules}&#x60;)
+    @Post(&#x60;${modules}&#x60;)
     @HttpCode(HttpStatus.OK)
     @ApiCreatedResponse({
         type: Currency,
@@ -622,14 +622,14 @@ export class CurrenciesController {
     }
 
     /**
-     * @route PATCH /v1/currencies/:id_currency
+     * @route PATCH /currencies/:id_currency
      * @description Update an existing currency by its ID.
      * @param {string} id - The ID of the currency to be updated.
      * @param {UpdateDto} updateDto - The data to update the currency with.
      * @returns {Promise&lt;Currency | null&gt;} The updated currency object or null if not found.
      */
 
-    @Patch(&#x60;v1/${modules}/:id_currency&#x60;)
+    @Patch(&#x60;${modules}/:id_currency&#x60;)
     @HttpCode(HttpStatus.OK)
     @ApiParam({ name: &#x27;id_currency&#x27;, type: String })
     @ApiOkResponse({
@@ -646,13 +646,13 @@ export class CurrenciesController {
     }
 
     /**
-     * @route GET /v1/currencies
+     * @route GET /currencies
      * @description Retrieve a list of currencies with pagination.
      * @param {PaginationQueryDto} query - The pagination and filtering parameters.
      * @returns {Promise&lt;PaginationResponseDto&lt;Currency&gt;&gt;} A paginated list of currencies.
      */
 
-    @Get(&#x60;v1/${modules}&#x60;)
+    @Get(&#x60;${modules}&#x60;)
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: PaginationResponse(Currency) })
     async findAll(@Query() query: PaginationQueryDto): Promise&lt;PaginationResponseDto&lt;Currency&gt;&gt; {
@@ -668,7 +668,7 @@ export class CurrenciesController {
      * @returns {Promise&lt;object&gt;} An object indicating the deletion result.
      */
 
-    @Delete(&#x60;v1/${modules}/:id_currency&#x60;)
+    @Delete(&#x60;${modules}/:id_currency&#x60;)
     @HttpCode(HttpStatus.OK)
     @ApiParam({ name: &#x27;id_currency&#x27;, type: String })
     @ApiOkResponse({
