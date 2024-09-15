@@ -32,7 +32,6 @@ export class Query {
 
     /**
      * Generates a SQL query to find a country by its name.
-     * @param {string} [id] - Optional ID to exclude from the search if provided.
      * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
      */
     findByName(): object {
@@ -40,9 +39,8 @@ export class Query {
             name: `findByName`,
             type: `SELECT_ONE`,
             syntax: (where: any) => {
-                const allowedKeys = ['id_country', 'name'];
+                const allowedKeys = ['id_country', 'name', 'dial_code'];
                 const name = _.get(where, 'name');
-
                 const sql = `SELECT ${allowedKeys.join(', ')} FROM country_mas  WHERE status = 1 AND name = '${name}'`;
                 return sql;
             },
@@ -61,8 +59,8 @@ export class Query {
                 const allowedKeys = ['name', 'dial_code', 'status'];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
-                const values = _.values(conds);
-                const sql = `INSERT INTO country_mas (${keys.join(', ')}) VALUES ('${values.join("','")}') RETURNING id_country as insertid, name;`;
+                // const values = _.values(conds);
+                const sql = `INSERT INTO country_mas (${keys.join(', ')}) VALUES (${keys.map((key) => this.formatValue(conds[key])).join(', ')}) RETURNING id_country as insertid, name;`;
                 console.log('QUERY', sql);
                 return sql;
             },
@@ -112,5 +110,17 @@ export class Query {
                 return sql;
             },
         };
+    }
+    formatValue(value: any): string {
+        if (Array.isArray(value)) {
+            const formattedArray = value.map((v) => `${v.replace(/'/g, "''")}`).join(', ');
+            return `'{${formattedArray}}'`;
+        } else if (typeof value === 'string') {
+            return `'${value.replace(/'/g, "''")}'`;
+        } else if (value === null || value === undefined) {
+            return 'NULL';
+        } else {
+            return `${value}`; // For numbers and other types
+        }
     }
 }

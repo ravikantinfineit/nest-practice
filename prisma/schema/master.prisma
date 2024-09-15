@@ -41,7 +41,7 @@ model city_mas {
 model banks_mas {
     id_bank       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
     name          String    @unique @db.VarChar(50)
-    short_name    String?   @unique @db.VarChar(5)
+    short_name    String?   @db.VarChar(5)
     id_city       String?   @db.Uuid
     id_state      String?   @db.Uuid
     id_country    String    @db.Uuid
