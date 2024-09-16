@@ -6,6 +6,7 @@ import {
     HttpCode,
     HttpStatus,
     Param,
+    ParseUUIDPipe,
     Patch,
     Post,
     Query,
@@ -29,7 +30,7 @@ export class CityController {
      * @route POST /cities
      * @description Create a new city.
      * @param {CreateCityDto} createDto - The data required to create a new city.
-     * @returns {Promise<CityResponseDto>} The created city object.
+     * @returns {Promise<Cities>} The created city object.
      */
     @Post()
     @HttpCode(HttpStatus.CREATED)
@@ -45,8 +46,8 @@ export class CityController {
      * @route PATCH /cities/:id_city
      * @description Update an existing city by its ID.
      * @param {string} id - The ID of the city to be updated.
-     * @param {DeepPartial<CityResponseDto>} updateDto - The data to update the city with.
-     * @returns {Promise<CityResponseDto | null>} The updated city object or null if not found.
+     * @param {UpdateDto} updateDto - The data to update the city with.
+     * @returns {Promise<Cities | null>} The updated city object or null if not found.
      */
     @Patch(':id_city')
     @HttpCode(HttpStatus.OK)
@@ -56,7 +57,7 @@ export class CityController {
         description: 'Update City',
     })
     async update(
-        @Param('id_city') id: string,
+        @Param('id_city', ParseUUIDPipe) id: string,
         @Body() updateDto: UpdateDto
     ): Promise<Cities | null> {
         return this.cityService.update(id, updateDto);
@@ -66,7 +67,7 @@ export class CityController {
      * @route GET /cities
      * @description Retrieve a list of cities with pagination.
      * @param {PaginationQueryDto} query - The pagination and filtering parameters.
-     * @returns {Promise<PaginationResponseDto<CityResponseDto>>} A paginated list of cities.
+     * @returns {Promise<PaginationResponseDto<Cities>>} A paginated list of cities.
      */
     @Get()
     @HttpCode(HttpStatus.OK)
@@ -79,7 +80,7 @@ export class CityController {
      * @route GET /cities/:id_city
      * @description Retrieve a single city by its ID.
      * @param {string} id - The ID of the city to retrieve.
-     * @returns {Promise<CityResponseDto>} The city object.
+     * @returns {Promise<Cities>} The city object.
      */
     @Get(':id_city')
     @HttpCode(HttpStatus.OK)
@@ -88,7 +89,7 @@ export class CityController {
         type: Cities,
         description: 'Get City by ID',
     })
-    async findOne(@Param('id_city') id: string): Promise<Cities> {
+    async findOne(@Param('id_city', ParseUUIDPipe) id: string): Promise<Cities> {
         return this.cityService.findOne(id);
     }
 
@@ -105,7 +106,7 @@ export class CityController {
         status: HttpStatus.OK,
         description: 'City has been successfully deleted.',
     })
-    async delete(@Param('id_city') id: string): Promise<object> {
+    async delete(@Param('id_city', ParseUUIDPipe) id: string): Promise<object> {
         return this.cityService.delete(id);
     }
 }

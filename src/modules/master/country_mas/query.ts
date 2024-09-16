@@ -24,7 +24,9 @@ export class Query {
             syntax: (where: any) => {
                 const allowedKeys = ['id_country', 'name', 'dial_code', 'status'];
                 const id = _.get(where, 'id');
+                console.log('county Id' + id);
                 const sql = `SELECT ${allowedKeys.join(', ')} FROM country_mas  WHERE status = 1 AND id_country = '${id}';`;
+                console.log('FindByid query-- ' + sql);
                 return sql;
             },
         };
@@ -56,12 +58,12 @@ export class Query {
             name: `insert`,
             type: `INSERT`,
             syntax: (where: any) => {
-                const allowedKeys = ['name', 'dial_code', 'status'];
+                const allowedKeys = ['name', 'dial_code'];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
                 // const values = _.values(conds);
                 const sql = `INSERT INTO country_mas (${keys.join(', ')}) VALUES (${keys.map((key) => this.formatValue(conds[key])).join(', ')}) RETURNING id_country as insertid, name;`;
-                console.log('QUERY', sql);
+                console.log('Insert Query -- ', sql);
                 return sql;
             },
         };
@@ -77,19 +79,20 @@ export class Query {
             type: `UPDATE`,
             syntax: (where: any) => {
                 let sql = `UPDATE country_mas SET `;
-                const id = _.get(where, 'id');
-                _.unset(where, 'id');
+                const id = _.get(where, 'id_country');
+                _.unset(where, 'id_country');
                 const allowedKeys = ['name', 'dial_code', 'status'];
                 where = _.pick(where, allowedKeys);
 
                 const lastKey = Object.keys(where)[Object.keys(where).length - 1];
                 _.mapKeys(where, (value, key) => {
-                    sql += `${key} = '${value}'`;
+                    // sql += `${key} = '${value}'`;
+                    sql += `${key} = ${this.formatValue(value)}`;
                     sql += lastKey == key ? `` : `, `;
                 });
                 sql += ` WHERE status = 1 AND id_country = '${id}' RETURNING id_country as updatedid, name;`;
 
-                console.log('QUERY', sql);
+                console.log('Update Query --- ', sql);
 
                 return sql;
             },
@@ -111,6 +114,13 @@ export class Query {
             },
         };
     }
+
+    /**
+     * Formats a value for use in an SQL query.
+     * @param value - Value to format
+     * @returns - Formatted value as a string
+     */
+
     formatValue(value: any): string {
         if (Array.isArray(value)) {
             const formattedArray = value.map((v) => `${v.replace(/'/g, "''")}`).join(', ');

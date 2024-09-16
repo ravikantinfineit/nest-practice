@@ -1,32 +1,44 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
+import { PaginationService } from '@app/common/helper/services/pagination.service';
+import { UtilsService } from '@app/common/helper/services/util.service';
+import { IPaginationFieldConfig } from '@app/utils/types/pagination-options';
 import { PrismaService } from '@services/prisma.service';
 import { PaginationResponseDto } from '@utils/dto/pagination-response.dto';
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
-import { DeepPartial } from '@utils/types/deep-partial.type';
 
 import { StateDto } from './dto/create.dto';
 import { State } from './dto/state.dto';
+import { UpdateDto } from './dto/update.dto';
 import { Query } from './query';
 
 /**
- * Service class for managing state data.
+ * @fileoverview
+ * This file defines the `StateService` class, which provides methods to manage State data.
+ * It includes operations for creating, updating, retrieving, and deleting State.
+ *
+ * @module
+ * @description
+ * The `StateService` class is responsible for handling business logic related to State.
+ * It interacts with the database through the `PrismaService` and performs various operations using raw SQL queries.
  */
 @Injectable()
 export class StateService {
     private readonly MODULE: string;
 
     constructor(
+        private readonly paginationService: PaginationService,
         private readonly prisma: PrismaService,
-        private readonly query: Query
+        private readonly query: Query,
+        private readonly utilsService: UtilsService
     ) {
         this.MODULE = 'state';
     }
 
     /**
      * Creates a new state.
-     * @param {CreateStateDto} createDto - The data required to create a new state.
-     * @returns {Promise<StateResponseDto>} The created state object.
+     * @param {StateDto} createDto - The data required to create a new state.
+     * @returns {Promise<State>} The created state object.
      * @throws {HttpException} If a state with the same name already exists or if an error occurs.
      */
     async create(createDto: StateDto): Promise<State> {
@@ -36,9 +48,7 @@ export class StateService {
             throw new HttpException({ message: 'NAME ALREADY EXISTS' }, HttpStatus.CONFLICT);
         }
 
-        const inserted = await this.prisma.executeRawQuery(this.query.insert(), createDto, [
-            'name',
-        ]);
+        const inserted = await this.prisma.executeRawQuery(this.query.insert(), createDto);
 
         if (inserted && inserted.insertid) {
             const get = await this.findOne(inserted.insertid);
@@ -54,38 +64,55 @@ export class StateService {
     /**
      * Updates an existing state by its ID.
      * @param {string} id - The ID of the state to be updated.
-     * @param {DeepPartial<StateResponseDto>} payload - The data to update the state with.
-     * @returns {Promise<StateResponseDto | null>} The updated state object or null if not found.
+     * @param {UpdateDto} updateDto - The data to update the state with.
+     * @returns {Promise<State | null>} The updated state object or null if not found.
      * @throws {HttpException} If the state is not found or if an error occurs.
      */
-    async update(id: string, payload: DeepPartial<State>): Promise<State | null> {
-        const find = await this.prisma.executeRawQuery(this.query.findByName(id), payload);
-
-        if (find) {
-            throw new HttpException({ message: 'NAME ALREADY EXISTS' }, HttpStatus.CONFLICT);
+    async update(id: string, updateDto: UpdateDto): Promise<State | null> {
+        if (Object.keys(updateDto).length === 0) {
+            throw new HttpException({ message: 'Nothing to update!' }, HttpStatus.BAD_REQUEST);
         }
+        // check country exits or not
+        const recordExits = await this.findOne(id);
+        if (recordExits) {
+            updateDto.id_state = id;
+            // update
+            const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
-        const updated = await this.prisma.executeRawQuery(this.query.update(), { ...payload, id });
-
-        if (updated && updated.updatedid) {
-            const get = await this.findOne(updated.updatedid);
-            return get as any;
+            if (updated && updated[0].updatedid) {
+                const get = await this.findOne(updated[0].updatedid);
+                return get as any;
+            } else {
+                throw new HttpException(
+                    { message: 'Something went wrong' },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
         } else {
-            throw new HttpException(
-                { message: 'Something went wrong' },
-                HttpStatus.INTERNAL_SERVER_ERROR
-            );
+            throw new HttpException({ message: 'record not exits' }, HttpStatus.NOT_FOUND);
         }
     }
 
     /**
      * Retrieves a list of states with pagination.
-     * @param {PaginationQueryDto} _query - The pagination and filtering parameters.
-     * @returns {Promise<PaginationResponseDto<StateResponseDto>>} A paginated list of states.
+     * @param {PaginationQueryDto} query - The pagination and filtering parameters.
+     * @returns {Promise<PaginationResponseDto<State>>} A paginated list of states.
      */
-    async findAll(query: PaginationQueryDto): Promise<PaginationResponseDto<State>> {
-        console.log(query);
-        return;
+    async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<State>> {
+        const baseQuery = ['ptbl.id_state', 'ptbl.name', 'ptbl.id_country', 'ptbl.status'];
+        const fromQuery = ` FROM state_mas as ptbl`;
+
+        const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
+
+        const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
+            paginationQuery,
+            fieldConfigs,
+            baseQuery,
+            fromQuery,
+            'ptbl.id_state'
+        );
+
+        return this.paginationService.paginate<State>(selectQuery, countQuery, paginationQuery);
     }
 
     /**

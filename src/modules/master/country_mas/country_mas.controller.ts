@@ -6,6 +6,7 @@ import {
     HttpCode,
     HttpStatus,
     Param,
+    ParseUUIDPipe,
     Patch,
     Post,
     Query,
@@ -16,11 +17,11 @@ import { PaginationResponse, PaginationResponseDto } from '@utils/dto/pagination
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 
 import { CountriesService } from './country_mas.service';
-import { Country } from './dto/country_mas.dto';
+import { CountryMas } from './dto/country_mas.dto';
 import { CountryDto } from './dto/create.dto';
 import { UpdateDto } from './dto/update.dto';
 
-const modules = 'countries';
+const modules = 'country_mas';
 
 /**
  * @fileoverview
@@ -33,7 +34,7 @@ const modules = 'countries';
  * It uses various HTTP methods to manage country data and handles responses with appropriate HTTP status codes.
  */
 
-@ApiTags('Countries')
+@ApiTags('Country_mas')
 @Controller()
 export class CountryController {
     constructor(private readonly countriesService: CountriesService) {}
@@ -41,17 +42,17 @@ export class CountryController {
     /**
      * @route POST /countries
      * @description Create a new country.
-     * @param {CreateCountryDto} createDto - The data required to create a new country.
+     * @param {CountryDto} createDto - The data required to create a new country.
      * @returns {Promise<Country>} The created country object.
      */
 
     @Post(`${modules}`)
     @HttpCode(HttpStatus.OK)
     @ApiCreatedResponse({
-        type: Country,
+        type: CountryMas,
         description: 'Create country',
     })
-    async create(@Body() createDto: CountryDto): Promise<Country> {
+    async create(@Body() createDto: CountryDto): Promise<CountryMas> {
         const created = await this.countriesService.create(createDto);
         return created;
     }
@@ -60,7 +61,7 @@ export class CountryController {
      * @route PATCH /countries/:id_country
      * @description Update an existing country by its ID.
      * @param {string} id - The ID of the country to be updated.
-     * @param {UpdateCountryDto} updateDto - The data to update the country with.
+     * @param {UpdateDto} updateDto - The data to update the country with.
      * @returns {Promise<Country | null>} The updated country object or null if not found.
      */
 
@@ -68,13 +69,13 @@ export class CountryController {
     @HttpCode(HttpStatus.OK)
     @ApiParam({ name: 'id_country', type: String })
     @ApiOkResponse({
-        type: Country,
+        type: CountryMas,
         description: 'Update Country',
     })
     async update(
-        @Param('id_country') id: string,
+        @Param('id_country', ParseUUIDPipe) id: string,
         @Body() updateDto: UpdateDto
-    ): Promise<Country | null> {
+    ): Promise<CountryMas | null> {
         const updated = await this.countriesService.update(id, updateDto);
         return updated;
     }
@@ -88,10 +89,9 @@ export class CountryController {
 
     @Get(`${modules}`)
     @HttpCode(HttpStatus.OK)
-    @ApiOkResponse({ type: PaginationResponse(Country) })
-    async findAll(@Query() query: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
+    @ApiOkResponse({ type: PaginationResponse(CountryMas) })
+    async findAll(@Query() query: PaginationQueryDto): Promise<PaginationResponseDto<CountryMas>> {
         const get_all = await this.countriesService.findAll(query);
-
         return get_all;
     }
 
@@ -109,9 +109,8 @@ export class CountryController {
         status: HttpStatus.OK,
         description: `${modules} has been successfully deleted.`,
     })
-    async delete(@Param('id_country') id: string): Promise<object> {
+    async delete(@Param('id_country', ParseUUIDPipe) id: string): Promise<object> {
         const deleted = await this.countriesService.delete(id);
-
         return deleted;
     }
 }

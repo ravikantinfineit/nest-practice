@@ -1,30 +1,41 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+import { Exclude } from 'class-transformer';
 import { IsDefined, IsNotEmpty, IsString, MaxLength, IsOptional, IsNumber } from 'class-validator';
 
 /**
- * Data Transfer Object for creating a new city.
+ * @fileoverview
+ * This file defines the `CityDto` class, which represents the data transfer object (DTO)
+ * used for creating a new city record. It includes validation rules and transformation logic
+ * for the properties of the city.
+ *
+ * @module
+ * @description
+ * The `CityDto` class ensures that the data provided for creating a city adheres to
+ * specified validation rules and formats. It uses decorators from `class-validator` for validation
+ * and `class-transformer` for transforming input data.
  */
+
 export class CityDto {
     /**
-     * The name of the city (e.g., 'San Francisco').
-     * @example 'San Francisco'
+     * The name of the city (e.g., 'Surat').
+     * @example 'Surat'
      */
     @IsDefined()
     @IsNotEmpty()
     @IsString()
-    @MaxLength(100)
+    @MaxLength(20)
     @ApiProperty({
         type: String,
         description: 'City name',
-        example: 'San Francisco',
-        maxLength: 100,
+        example: 'Surat',
+        maxLength: 20,
     })
-    readonly name: string;
+    name: string;
 
     /**
-     * The ID of the state to which the city belongs (e.g., 'CA').
-     * @example 'CA'
+     * The ID of the state to which the city belongs.
+     * @example '09407516-c0ac-4298-a6a7-59f48b87c094'
      */
     @IsDefined()
     @IsNotEmpty()
@@ -32,9 +43,23 @@ export class CityDto {
     @ApiProperty({
         type: String,
         description: 'State ID',
-        example: 'CA',
+        example: '09407516-c0ac-4298-a6a7-59f48b87c094',
     })
-    readonly state_id: string;
+    id_state: string;
+
+    /**
+     * The ID of the Country to which the city belongs.
+     * @example 'f2d90547-a09a-4baa-a9f4-244e44a80875'
+     */
+    @IsDefined()
+    @IsNotEmpty()
+    @IsString()
+    @ApiProperty({
+        type: String,
+        description: 'Country ID',
+        example: 'f2d90547-a09a-4baa-a9f4-244e44a80875',
+    })
+    id_country: string;
 
     /**
      * The status of the city (e.g., 1 for active).
@@ -48,5 +73,12 @@ export class CityDto {
         example: 1,
         default: 1,
     })
-    readonly status?: number;
+    status?: number;
+
+    /**
+     * The unique identifier for the city.
+     * This property is excluded from the plain representation of the object.
+     */
+    @Exclude({ toPlainOnly: true })
+    id_city?: string;
 }

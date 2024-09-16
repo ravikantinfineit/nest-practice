@@ -1,59 +1,63 @@
-import { ApiProperty } from '@nestjs/swagger';
-
-import { Exclude } from 'class-transformer';
+import { ApiResponseProperty } from '@nestjs/swagger';
 
 /**
- * Data Transfer Object for city response.
+ * @fileoverview
+ * This file defines the `Cities` class, which represents the data structure of a city entity.
+ * It includes properties that describe the city and uses decorators for Swagger documentation.
+ *
+ * @module
+ * @description
+ * The `Cities` class is used to define the structure of a city object, including its name, state id,country id The class also uses decorators
+ * to configure how the properties should be documented and transformed.
  */
 export class Cities {
     /**
      * The unique identifier of the city (e.g., 'SF').
      * @example 'SF'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'City ID',
-        example: 'SF',
+        example: '09407516-c0ac-4298-a6a7-59f48b87c094',
     })
-    id: string;
+    id_city: string;
 
     /**
-     * The name of the city (e.g., 'San Francisco').
-     * @example 'San Francisco'
+     * The name of the city (e.g., 'Surat').
+     * @example 'Surat'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'City name',
-        example: 'San Francisco',
+        example: 'Surat',
     })
     name: string;
 
     /**
-     * The ID of the state to which the city belongs (e.g., 'CA').
-     * @example 'CA'
+     * The ID of the state to which the city belongs.
+     * @example 'f2d90547-a09a-4baa-a9f4-244e44a80875'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'State ID',
-        example: 'CA',
+        example: 'f2d90547-a09a-4baa-a9f4-244e44a80875',
     })
-    state_id: string;
+    id_state: string;
+
+    /**
+     * The ID of the country to which the city belongs.
+     * @example '3a10e186-c759-4aec-9a86-2e5e0c2e5870'
+     */
+    @ApiResponseProperty({
+        type: String,
+        example: '3a10e186-c759-4aec-9a86-2e5e0c2e5870',
+    })
+    id_country: string;
 
     /**
      * The status of the city (e.g., 1 for active).
      * @example 1
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: Number,
-        description: 'Status of the city',
         example: 1,
     })
     status: number;
-
-    /**
-     * The unique identifier for the city.
-     * This property is excluded from the plain representation of the object.
-     */
-    @Exclude({ toPlainOnly: true })
-    id_city?: string;
 }

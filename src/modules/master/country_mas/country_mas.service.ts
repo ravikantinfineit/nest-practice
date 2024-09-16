@@ -5,11 +5,11 @@ import { PrismaService } from '@services/prisma.service';
 import { UtilsService } from '@services/util.service';
 import { PaginationResponseDto } from '@utils/dto/pagination-response.dto';
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
-import { DeepPartial } from '@utils/types/deep-partial.type';
 import { IPaginationFieldConfig } from '@utils/types/pagination-options';
 
-import { Country } from './dto/country_mas.dto';
+import { CountryMas } from './dto/country_mas.dto';
 import { CountryDto } from './dto/create.dto';
+import { UpdateDto } from './dto/update.dto';
 import { Query } from './query';
 
 /**
@@ -30,7 +30,7 @@ export class CountriesService {
      * Creates an instance of `CountriesService`.
      * @param {PaginationService} paginationService - Service to handle pagination logic.
      * @param {PrismaService} prisma - Service to interact with the database.
-     * @param {CountryQuery} query - Service for SQL query generation.
+     * @param {Query} query - Service for SQL query generation.
      * @param {UtilsService} utilsService - Service for utility functions, including dynamic query building.
      */
     constructor(
@@ -44,22 +44,20 @@ export class CountriesService {
 
     /**
      * Creates a new country.
-     * @param {CreateCountryDto} createCountryDto - Data required to create a new country.
-     * @returns {Promise<Country>} The created country object.
+     * @param {CountryDto} CountryDto - Data required to create a new country.
+     * @returns {Promise<CountryMas>} The created country object.
      * @throws {HttpException} If the country already exists or if an error occurs during creation.
      */
-    async create(createCountryDto: CountryDto): Promise<Country> {
+    async create(CountryDto: CountryDto): Promise<CountryMas> {
         // Check if the country already exists
-        const find = await this.prisma.executeRawQuery(this.query.findByName(), createCountryDto);
+        const find = await this.prisma.executeRawQuery(this.query.findByName(), CountryDto);
 
         if (find) {
             throw new HttpException({ message: 'Country already exists' }, HttpStatus.CONFLICT);
         }
 
         // Create the country
-        const inserted = await this.prisma.executeRawQuery(this.query.insert(), createCountryDto, [
-            'name',
-        ]);
+        const inserted = await this.prisma.executeRawQuery(this.query.insert(), CountryDto);
 
         if (inserted && inserted.insertid) {
             const get = await this.findOne(inserted.insertid);
@@ -75,31 +73,39 @@ export class CountriesService {
     /**
      * Updates an existing country by its ID.
      * @param {string} id - The ID of the country to update.
-     * @param {DeepPartial<Country>} payload - Data to update the country with.
+     * @param {UpdateDto} updateDto - Data to update the country with.
      * @returns {Promise<Country | null>} The updated country object or null if not found.
      * @throws {HttpException} If nothing to update is provided or if an error occurs during the update.
      */
-    async update(id: string, payload: DeepPartial<Country>): Promise<Country | null> {
-        if (Object.keys(payload).length === 0) {
+    async update(id: string, updateDto: UpdateDto): Promise<CountryMas | null> {
+        if (Object.keys(updateDto).length === 0) {
             throw new HttpException({ message: 'Nothing to update!' }, HttpStatus.BAD_REQUEST);
         }
+        // check country exits or not
+        const recordExits = await this.findOne(id);
+        if (recordExits) {
+            // Update
+            updateDto.id_country = id;
+            const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
-        // Update
-        payload.id = id;
-        const updated = await this.prisma.executeRawQuery(this.query.update(), payload, ['name']);
+            if (!updated) {
+                throw new HttpException(
+                    { message: 'Something went wrong' },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
 
-        if (!updated) {
-            throw new HttpException(
-                { message: 'Something went wrong' },
-                HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
-
-        if (updated[0]?.updatedid) {
-            const get = await this.findOne(id);
-            return get;
+            if (updated[0]?.updatedid) {
+                const get = await this.findOne(id);
+                return get;
+            } else {
+                throw new HttpException(
+                    { message: `${this.MODULE} not found` },
+                    HttpStatus.NOT_FOUND
+                );
+            }
         } else {
-            throw new HttpException({ message: `${this.MODULE} not found` }, HttpStatus.NOT_FOUND);
+            throw new HttpException({ message: `country not found` }, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -108,19 +114,9 @@ export class CountriesService {
      * @param {PaginationQueryDto} paginationQuery - Pagination and filtering parameters.
      * @returns {Promise<PaginationResponseDto<Country>>} A paginated list of countries.
      */
-    async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Country>> {
-        const baseQuery = [
-            'ptbl.id_country',
-            'ptbl.name',
-            'ptbl.iso',
-            'ptbl.nice_name',
-            'ptbl.iso3',
-            'ptbl.num_code',
-            'ptbl.dial_code',
-            'ptbl.continent',
-            'ptbl.capital',
-        ];
-        const fromQuery = ` FROM countries ptbl`;
+    async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<CountryMas>> {
+        const baseQuery = ['ptbl.id_country', 'ptbl.name', 'ptbl.dial_code', 'ptbl.status'];
+        const fromQuery = ` FROM country_mas as ptbl`;
 
         const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
 
@@ -132,7 +128,11 @@ export class CountriesService {
             'ptbl.id_country'
         );
 
-        return this.paginationService.paginate<Country>(selectQuery, countQuery, paginationQuery);
+        return this.paginationService.paginate<CountryMas>(
+            selectQuery,
+            countQuery,
+            paginationQuery
+        );
     }
 
     /**
@@ -152,7 +152,7 @@ export class CountriesService {
         }
 
         if (deleted[0]?.deletedid) {
-            return { status: 'success' };
+            return { status: `${this.MODULE} has been successfully deleted` };
         } else {
             throw new HttpException({ message: `${this.MODULE} not found` }, HttpStatus.NOT_FOUND);
         }
@@ -165,7 +165,7 @@ export class CountriesService {
      * @param {string} id - The ID of the country to retrieve.
      * @returns {Promise<Country>} The country object.
      */
-    async findOne(id: string): Promise<Country> {
+    async findOne(id: string): Promise<CountryMas> {
         const data = await this.prisma.executeRawQuery(this.query.findById(), { id });
         return data;
     }

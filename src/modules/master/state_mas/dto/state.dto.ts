@@ -1,41 +1,47 @@
-import { ApiProperty } from '@nestjs/swagger';
-
-import { Exclude } from 'class-transformer';
+import { ApiProperty, ApiResponseProperty } from '@nestjs/swagger';
 
 /**
- * Data Transfer Object for state response.
+ * @fileoverview
+ * This file defines the `State` class, which represents the data structure of a country
+ * entity used in the application. The `State` class is used to describe various details
+ * about a State, including its identification, name, and other related attributes.
+ *
+ * @module
+ * @description
+ * The `State` class serves as a Data Transfer Object (DTO) for representing State data.
+ * It includes properties such as the State's ID, name, status Each property is annotated with `@ApiResponseProperty`
+ * to define its type and provide example values for API documentation purposes.
  */
 export class State {
     /**
-     * State ID.
-     * @example 'CA'
+     * The unique identifier for the state.
+     * @example 'f2d90547-a09a-4baa-a9f4-244e44a80875'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'State ID',
-        example: 'CA',
+        example: 'f2d90547-a09a-4baa-a9f4-244e44a80875',
     })
-    id: string;
+    id_state: string;
 
     /**
      * State name.
-     * @example 'California'
+     * @example 'Gujarat'
      */
     @ApiProperty({
         type: String,
         description: 'State name',
-        example: 'California',
+        example: 'Gujarat',
     })
     name: string;
 
     /**
      * Country ID to which the state belongs.
-     * @example 'US'
+     * @example '3a10e186-c759-4aec-9a86-2e5e0c2e5870'
      */
     @ApiProperty({
         type: String,
         description: 'Country ID',
-        example: 'US',
+        example: '3a10e186-c759-4aec-9a86-2e5e0c2e5870',
     })
     country_id: string;
 
@@ -49,11 +55,4 @@ export class State {
         example: 1,
     })
     status: number;
-
-    /**
-     * The unique identifier for the state.
-     * This property is excluded from the plain representation of the object.
-     */
-    @Exclude({ toPlainOnly: true })
-    id_state?: string;
 }

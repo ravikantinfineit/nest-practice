@@ -3,12 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AllConfigType } from '@config/type/config.type';
-import { CountriesModule } from '@modules/countries/countries.module';
-import { CurrenciesModule } from '@modules/currencies/currencies.module';
-import { FilesModule } from '@modules/files/files.module';
 import { HomeModule } from '@modules/home/home.module';
 
 import { AppModule } from './app/app.module';
+import { ApiModule } from './modules/api.module';
 
 // import { ConfigService } from './common/helper/services/config.service';
 
@@ -76,7 +74,7 @@ export default async function (app: INestApplication) {
 
     const documentCommon = SwaggerModule.createDocument(app, documentBuild, {
         deepScanRoutes: true,
-        include: [CountriesModule, CurrenciesModule, FilesModule],
+        include: [ApiModule],
     });
 
     SwaggerModule.setup('commons', app, documentCommon, {

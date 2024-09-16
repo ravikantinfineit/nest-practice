@@ -7,6 +7,9 @@ import { CountriesModule } from './countries/countries.module';
 import { CurrenciesModule } from './currencies/currencies.module';
 import { FilesModule } from './files/files.module';
 import { HomeModule } from './home/home.module';
+import { CityModule } from './master/city_mas/cities.modules';
+import { CountryMasModule } from './master/country_mas/country_mas.module';
+import { StateModule } from './master/state_mas/state.module';
 
 /**
  * @fileoverview
@@ -51,7 +54,22 @@ import { HomeModule } from './home/home.module';
                 module: CurrenciesModule,
             },
         ]),
+        /**
+         * Module responsible for managing country-related functionalities.
+         */
+        CountryMasModule,
+
+        /**
+         * Module responsible for managing city-related functionalities.
+         */
+        CityModule,
+
+        /**
+         * Module responsible for managing state-related functionalities.
+         */
+        StateModule,
     ],
+
     providers: [
         {
             provide: APP_FILTER,

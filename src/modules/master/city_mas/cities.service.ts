@@ -1,5 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
+import { IPaginationFieldConfig } from '@app/utils/types/pagination-options';
 import { PaginationService } from '@services/pagination.service';
 import { PrismaService } from '@services/prisma.service';
 import { UtilsService } from '@services/util.service';
@@ -30,7 +31,7 @@ export class CityService {
     /**
      * Creates a new city.
      * @param {CityDto} createDto - The data required to create a new city.
-     * @returns {Promise<CityResponseDto>} The created city object.
+     * @returns {Promise<Cities>} The created city object.
      * @throws {HttpException} If a city with the same name already exists or if an error occurs.
      */
     async create(createDto: CityDto): Promise<Cities> {
@@ -40,9 +41,7 @@ export class CityService {
             throw new HttpException({ message: 'NAME ALREADY EXISTS' }, HttpStatus.CONFLICT);
         }
 
-        const inserted = await this.prisma.executeRawQuery(this.query.insert(), createDto, [
-            'name',
-        ]);
+        const inserted = await this.prisma.executeRawQuery(this.query.insert(), createDto);
 
         if (inserted && inserted.insertid) {
             const get = await this.findOne(inserted.insertid);
@@ -58,27 +57,37 @@ export class CityService {
     /**
      * Updates an existing city by its ID.
      * @param {string} id - The ID of the city to be updated.
-     * @param {DeepPartial<CityResponseDto>} payload - The data to update the city with.
+     * @param {UpdateDto} payload - The data to update the city with.
      * @returns {Promise<CityResponseDto | null>} The updated city object or null if not found.
      * @throws {HttpException} If the city is not found or if an error occurs.
      */
-    async update(id: string, payload: UpdateDto): Promise<Cities | null> {
-        const find = await this.prisma.executeRawQuery(this.query.findByName(id), payload);
-
-        if (find) {
-            throw new HttpException({ message: 'NAME ALREADY EXISTS' }, HttpStatus.CONFLICT);
-        }
-
-        const updated = await this.prisma.executeRawQuery(this.query.update(), { ...payload, id });
-
-        if (updated && updated.updatedid) {
-            const get = await this.findOne(updated.updatedid);
-            return get as any;
-        } else {
+    async update(id: string, updateDto: UpdateDto): Promise<Cities | null> {
+        if (id == undefined && Object.keys(updateDto).length === 0) {
             throw new HttpException(
-                { message: 'Something went wrong' },
-                HttpStatus.INTERNAL_SERVER_ERROR
+                {
+                    message: 'Nothing to be update!',
+                },
+                HttpStatus.BAD_REQUEST
             );
+        }
+        //check Data is Exits or not
+        const recordExits = await this.findOne(id);
+        if (recordExits) {
+            updateDto.id_city = id;
+            //update
+            const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
+
+            if (updated && updated[0].updatedid) {
+                const get = await this.findOne(updated[0].updatedid);
+                return get as any;
+            } else {
+                throw new HttpException(
+                    { message: 'Something went wrong' },
+                    HttpStatus.INTERNAL_SERVER_ERROR
+                );
+            }
+        } else {
+            throw new HttpException({ message: 'city not found' }, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -87,9 +96,27 @@ export class CityService {
      * @param {PaginationQueryDto} query - The pagination and filtering parameters.
      * @returns {Promise<PaginationResponseDto<Cities>>} A paginated list of cities.
      */
-    async findAll(query: PaginationQueryDto): Promise<PaginationResponseDto<Cities>> {
-        console.log(query);
-        return;
+    async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Cities>> {
+        const baseQuery = [
+            'ptbl.id_city',
+            'ptbl.name',
+            'ptbl.id_state',
+            'ptbl.id_country',
+            'ptbl.status',
+        ];
+        const fromQuery = ` FROM city_mas as ptbl`;
+
+        const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
+
+        const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
+            paginationQuery,
+            fieldConfigs,
+            baseQuery,
+            fromQuery,
+            'ptbl.id_city'
+        );
+
+        return this.paginationService.paginate<Cities>(selectQuery, countQuery, paginationQuery);
     }
 
     /**

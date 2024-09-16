@@ -21,7 +21,7 @@ export class Query {
             name: `findById`,
             type: `SELECT_ONE`,
             syntax: (where: any) => {
-                const allowedKeys = ['id_city', 'name', 'state_id', 'status'];
+                const allowedKeys = ['id_city', 'name', 'id_state', 'id_country', 'status'];
                 const id = _.get(where, 'id');
                 const sql = `SELECT ${allowedKeys.join(', ')} FROM city_mas WHERE status = 1 AND id_city = '${id}';`;
                 return sql;
@@ -34,15 +34,14 @@ export class Query {
      * @param {string} [id] - Optional ID to exclude from the search if provided.
      * @returns {object} The query configuration object with `name`, `type`, and `syntax` properties.
      */
-    findByName(id?: string): object {
+    findByName(): object {
         return {
             name: `findByName`,
             type: `SELECT_ONE`,
             syntax: (where: any) => {
                 const allowedKeys = ['id_city', 'name'];
                 const name = _.get(where, 'name');
-                const condition = id ? `AND id_city != '${id}'` : '';
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM city_mas WHERE status = 1 AND name = '${name}' ${condition};`;
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM city_mas WHERE status = 1 AND name = '${name}';`;
                 return sql;
             },
         };
@@ -57,11 +56,11 @@ export class Query {
             name: `insert`,
             type: `INSERT`,
             syntax: (where: any) => {
-                const allowedKeys = ['name', 'state_id', 'status'];
+                const allowedKeys = ['name', 'id_state', 'id_country', 'status'];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
-                const values = _.values(conds);
-                const sql = `INSERT INTO city_mas (${keys.join(', ')}) VALUES ('${values.join("','")}') RETURNING id_city as insertid, name;`;
+                const sql = `INSERT INTO city_mas (${keys.join(', ')}) VALUES (${keys.map((key) => this.formatValue(conds[key])).join(', ')}) RETURNING id_city as insertid, name;`;
+                console.log('Insert Query-- ' + sql);
                 return sql;
             },
         };
@@ -77,9 +76,9 @@ export class Query {
             type: `UPDATE`,
             syntax: (where: any) => {
                 let sql = `UPDATE city_mas SET `;
-                const id = _.get(where, 'id');
-                _.unset(where, 'id');
-                const allowedKeys = ['name', 'state_id', 'status'];
+                const id = _.get(where, 'id_city');
+                _.unset(where, 'id_city');
+                const allowedKeys = ['name', 'id_state', 'status'];
                 where = _.pick(where, allowedKeys);
 
                 const lastKey = Object.keys(where)[Object.keys(where).length - 1];
@@ -88,7 +87,7 @@ export class Query {
                     sql += lastKey == key ? `` : `, `;
                 });
                 sql += ` WHERE status = 1 AND id_city = '${id}' RETURNING id_city as updatedid, name;`;
-
+                console.log('Update Query-- ' + sql);
                 return sql;
             },
         };
@@ -108,5 +107,24 @@ export class Query {
                 return sql;
             },
         };
+    }
+
+    /**
+     * Formats a value for use in an SQL query.
+     * @param value - Value to format
+     * @returns - Formatted value as a string
+     */
+
+    formatValue(value: any): string {
+        if (Array.isArray(value)) {
+            const formattedArray = value.map((v) => `${v.replace(/'/g, "''")}`).join(', ');
+            return `'{${formattedArray}}'`;
+        } else if (typeof value === 'string') {
+            return `'${value.replace(/'/g, "''")}'`;
+        } else if (value === null || value === undefined) {
+            return 'NULL';
+        } else {
+            return `${value}`; // For numbers and other types
+        }
     }
 }

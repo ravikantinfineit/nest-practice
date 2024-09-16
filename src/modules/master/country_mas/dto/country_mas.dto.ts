@@ -1,90 +1,56 @@
-import { ApiProperty } from '@nestjs/swagger';
-
-import { Exclude } from 'class-transformer';
+import { ApiResponseProperty } from '@nestjs/swagger';
 
 /**
  * @fileoverview
  * This file defines the `Country` class, which represents the data structure of a country entity.
- * It includes properties that describe the country and uses decorators for Swagger documentation
- * and data transformation.
+ * It includes properties that describe the country and uses decorators for Swagger documentation.
  *
  * @module
  * @description
- * The `Country` class is used to define the structure of a country object, including its code, name,
- * official name, native name, capital, and currency code. The class also uses decorators
+ * The `Country` class is used to define the structure of a country object, including its dial code, name, The class also uses decorators
  * to configure how the properties should be documented and transformed.
  */
-export class Country {
+export class CountryMas {
     /**
-     * The code of the country (ISO 3166-1 alpha-2).
-     * @example 'IN'
+     * The unique identifier for the country.
+     *
+     * @type {string}
+     * @example '123e4567-e89b-12d3-a456-426614174000'
      */
-    @ApiProperty({
+
+    @ApiResponseProperty({
         type: String,
-        description: 'Country Code (ISO 3166-1 alpha-2)',
-        example: 'IN',
+        example: '123e4567-e89b-12d3-a456-426614174000',
     })
-    code: string;
+    id_country: string;
 
     /**
      * The name of the country.
      * @example 'India'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'Name of the country',
         example: 'India',
     })
     name: string;
 
     /**
-     * The official name of the country.
-     * @example 'Republic of India'
+     * The dial code of the country .
+     * @example '+91'
      */
-    @ApiProperty({
+    @ApiResponseProperty({
         type: String,
-        description: 'Official name of the country',
-        example: 'Republic of India',
+        example: '+91',
     })
-    official_name: string;
+    dial_code: string;
 
     /**
-     * The native name of the country, in its local language.
-     * @example 'भारत'
+     * The Status of the country .
+     * @example 1
      */
-    @ApiProperty({
-        type: String,
-        description: 'Native name of the country',
-        example: 'भारत',
+    @ApiResponseProperty({
+        type: Number,
+        example: 1,
     })
-    native_name: string;
-
-    /**
-     * The capital city of the country.
-     * @example 'New Delhi'
-     */
-    @ApiProperty({
-        type: String,
-        description: 'Capital city of the country',
-        example: 'New Delhi',
-    })
-    capital: string;
-
-    /**
-     * The currency code associated with the country (ISO 4217 currency code).
-     * @example 'INR'
-     */
-    @ApiProperty({
-        type: String,
-        description: 'Currency code of the country (ISO 4217)',
-        example: 'INR',
-    })
-    currency_code: string;
-
-    /**
-     * The unique identifier for the country.
-     * This property is excluded from the plain representation of the object.
-     */
-    @Exclude({ toPlainOnly: true })
-    id?: string;
+    status: number;
 }

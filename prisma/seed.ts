@@ -2,229 +2,69 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function main() {
-    // Seed Countries with real data
-    const countries = await prisma.$transaction([
-        prisma.country_mas.create({
-            data: { name: 'India', dial_code: '+91' },
-        }),
-        prisma.country_mas.create({
-            data: { name: 'South Africa', dial_code: '+27' },
-        }),
-        prisma.country_mas.create({
-            data: { name: 'Namibia', dial_code: '+264' },
-        }),
-        prisma.country_mas.create({
-            data: { name: 'Botswana', dial_code: '+267' },
-        }),
-        prisma.country_mas.create({
-            data: { name: 'United States', dial_code: '+1' },
-        }),
-    ]);
+import { countries } from './data/countries-currencies-timezones';
 
-    // Data for states and cities of each country
-    const countryData = {
-        India: {
-            states: ['Maharashtra', 'Karnataka', 'Tamil Nadu', 'Uttar Pradesh', 'Gujarat'],
-            cities: {
-                Maharashtra: ['Mumbai', 'Pune', 'Nagpur', 'Nashik', 'Aurangabad'],
-                Karnataka: ['Bangalore', 'Mysore', 'Hubli', 'Mangalore', 'Belgaum'],
-                'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem'],
-                'Uttar Pradesh': ['Lucknow', 'Kanpur', 'Agra', 'Varanasi', 'Noida'],
-                Gujarat: ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot', 'Bhavnagar'],
-            },
-        },
-        'South Africa': {
-            states: ['Gauteng', 'Western Cape', 'KwaZulu-Natal', 'Eastern Cape', 'Limpopo'],
-            cities: {
-                Gauteng: ['Johannesburg', 'Pretoria', 'Vanderbijlpark', 'Krugersdorp', 'Benoni'],
-                'Western Cape': ['Cape Town', 'Stellenbosch', 'Paarl', 'George', 'Worcester'],
-                'KwaZulu-Natal': [
-                    'Durban',
-                    'Pietermaritzburg',
-                    'Richards Bay',
-                    'Newcastle',
-                    'Empangeni',
-                ],
-                'Eastern Cape': [
-                    'Port Elizabeth',
-                    'East London',
-                    'Mthatha',
-                    'Bhisho',
-                    'King William’s Town',
-                ],
-                Limpopo: ['Polokwane', 'Tzaneen', 'Thohoyandou', 'Giyani', 'Lebowakgomo'],
-            },
-        },
-        Namibia: {
-            states: ['Khomas', 'Erongo', 'Oshana', 'Otjozondjupa', 'Omaheke'],
-            cities: {
-                Khomas: ['Windhoek', 'Rehoboth'],
-                Erongo: ['Swakopmund', 'Walvis Bay'],
-                Oshana: ['Oshakati', 'Ondangwa'],
-                Otjozondjupa: ['Otjiwarongo', 'Okahandja'],
-                Omaheke: ['Gobabis', 'Leonardville'],
-            },
-        },
-        Botswana: {
-            states: ['South-East', 'Central', 'North-East', 'Kweneng', 'Kgatleng'],
-            cities: {
-                'South-East': ['Gaborone', 'Ramotswa'],
-                Central: ['Serowe', 'Palapye'],
-                'North-East': ['Francistown', 'Masunga'],
-                Kweneng: ['Molepolole', 'Thamaga'],
-                Kgatleng: ['Mochudi', 'Oodi'],
-            },
-        },
-        'United States': {
-            states: ['California', 'Texas', 'New York', 'Florida', 'Illinois'],
-            cities: {
-                California: ['Los Angeles', 'San Francisco', 'San Diego', 'Sacramento', 'San Jose'],
-                Texas: ['Houston', 'Dallas', 'Austin', 'San Antonio', 'Fort Worth'],
-                'New York': ['New York City', 'Buffalo', 'Rochester', 'Albany', 'Syracuse'],
-                Florida: ['Miami', 'Orlando', 'Tampa', 'Jacksonville', 'Tallahassee'],
-                Illinois: ['Chicago', 'Springfield', 'Aurora', 'Naperville', 'Rockford'],
-            },
-        },
-    };
-
-    // Create States and Cities
+export const seed = async (): Promise<void> => {
     for (const country of countries) {
-        const countryInfo = countryData[country.name];
-        if (countryInfo) {
-            for (const stateName of countryInfo.states) {
-                const state = await prisma.state_mas.create({
-                    data: {
-                        name: stateName,
-                        id_country: country.id_country,
-                    },
-                });
-
-                for (const cityName of countryInfo.cities[stateName]) {
-                    await prisma.city_mas.create({
-                        data: {
-                            name: cityName,
-                            id_state: state.id_state,
-                            id_country: country.id_country,
-                        },
-                    });
-                }
-            }
-        }
-
-        // Create 3 banks per country with realistic names
-        const bankNames = {
-            India: ['State Bank of India', 'HDFC Bank', 'ICICI Bank'],
-            'South Africa': ['Standard Bank', 'Nedbank', 'First National Bank'],
-            Namibia: ['Bank Windhoek', 'Standard Bank Namibia', 'Nedbank Namibia'],
-            Botswana: [
-                'First National Bank Botswana',
-                'Standard Chartered Botswana',
-                'Absa Bank Botswana',
-            ],
-            'United States': ['Chase Bank', 'Bank of America', 'Wells Fargo'],
-        };
-
-        for (const bankName of bankNames[country.name]) {
-            await prisma.banks_mas.create({
-                data: {
-                    name: bankName,
-                    short_name: bankName.substring(0, 5),
-                    id_country: country.id_country,
-                },
-            });
-        }
-    }
-
-    // Seed Document Groups and Documents
-    const documentGroups = [
-        {
-            name: 'Identity Documents',
-            documents: [
-                'Passport',
-                'Driver License',
-                'National ID Card',
-                'Birth Certificate',
-                'Social Security Card',
-            ],
-        },
-        {
-            name: 'Financial Documents',
-            documents: [
-                'Bank Statement',
-                'Credit Card Statement',
-                'Tax Return',
-                'Loan Agreement',
-                'Pay Stub',
-            ],
-        },
-        {
-            name: 'Medical Documents',
-            documents: [
-                'Medical History',
-                'Vaccination Record',
-                'Insurance Card',
-                'Test Results',
-                'Prescription',
-            ],
-        },
-        {
-            name: 'Employment Documents',
-            documents: [
-                'Employment Contract',
-                'Resume',
-                'Reference Letter',
-                'Performance Review',
-                'Job Application',
-            ],
-        },
-        {
-            name: 'Legal Documents',
-            documents: [
-                'Will',
-                'Power of Attorney',
-                'Marriage Certificate',
-                'Divorce Decree',
-                'Lease Agreement',
-            ],
-        },
-    ];
-
-    for (const group of documentGroups) {
-        const docGroup = await prisma.document_groups.create({
-            data: { name: group.name },
+        const resCountry = await prisma.countries.create({
+            data: {
+                name: country.name,
+                nice_name: country.nice_name,
+                iso: country.iso,
+                iso3: country.iso3,
+                num_code: country.num_code.toString(),
+                dial_code: country.dial_code,
+                capital: country.capital,
+                continent: country.continent,
+            },
         });
 
-        for (const docName of group.documents) {
-            await prisma.documents.create({
-                data: {
-                    name: docName,
-                    id_document_group: docGroup.id_document_group,
-                },
-            });
-        }
-    }
-
-    // Seed Address Types
-    const addressTypes = ['Home', 'Office', 'Billing', 'Shipping', 'Temporary'];
-    for (const addressType of addressTypes) {
-        await prisma.address_types.create({
-            data: { address_type: addressType },
+        const resCurrency = await prisma.currencies.create({
+            data: {
+                code: country.currency.code,
+                name: country.currency.name,
+                name_plural: country.currency.name_plural,
+                symbol: country.currency.symbol,
+                symbol_native: country.currency.symbol_native,
+                decimal_digits: country.currency.decimal_digits,
+                rounding: country.currency.rounding,
+                country_code: country.iso,
+            },
         });
-    }
 
-    // Seed Contact Types
-    const contactTypes = ['Phone', 'Email', 'Fax', 'Social Media', 'Postal Mail'];
-    for (const contactType of contactTypes) {
-        await prisma.contact_types.create({
-            data: { contact_type: contactType },
+        const resTimezone = await prisma.timezone.create({
+            data: {
+                value: country.timezone.value,
+                offset: country.timezone.offset,
+                offset_in_minutes: country.timezone.offset_in_minutes,
+                abbr: country.timezone.abbr,
+                text: country.timezone.text,
+            },
         });
+
+        await prisma.countries.update({
+            where: { id_country: resCountry.id_country },
+            data: {
+                id_currency: resCurrency.id_currency,
+                id_timezone: resTimezone.id_timezone,
+            },
+        });
+
+        // currency: {
+        //     code: 'AFN',
+        //     name: 'Afghan Afghani',
+        //     name_plural: 'Afghan Afghanis',
+        //     symbol: '؋',
+        //     symbol_native: '؋',
+        //     decimal_digits: 2,
+        //     rounding: 0,
+        // },
+
+        console.log(resCountry);
     }
+};
 
-    console.log('Data seeding completed successfully!');
-}
-
-main()
+void seed()
     .catch((e) => {
         console.error(e);
         process.exit(1);
@@ -232,3 +72,102 @@ main()
     .finally(async () => {
         await prisma.$disconnect();
     });
+
+// import { PrismaClient } from '@prisma/client';
+
+// const prisma = new PrismaClient();
+
+// // import { countries } from './data/countries';
+// // import { countriesjson } from './data/countries-json';
+// // import { currencies } from './data/currencies';
+
+// export const seed = async (): Promise<void> => {
+//     // Create countries
+//     // await prisma.countries.createMany({
+//     //     data: countries,
+//     //     skipDuplicates: true,
+//     // });
+//     // for (const ctrjsn of countriesjson) {
+//     //     const existingCountry = await prisma.countries.findFirst({
+//     //         where: { iso: ctrjsn.code },
+//     //     });
+//     //     if (existingCountry) {
+//     //         // hi
+//     //     } else {
+//     //         console.log('NOT FOUND', ctrjsn);
+//     //         await prisma.countries.create({
+//     //             data: {
+//     //                 iso: ctrjsn.code,
+//     //                 name: ctrjsn.name,
+//     //                 nice_name: ctrjsn.name,
+//     //                 iso3: ctrjsn.code,
+//     //                 dial_code: ctrjsn.phoneCode,
+//     //             },
+//     //         });
+//     //     }
+//     // }
+//     // for (const ctrjsn of countriesjson) {
+//     //     const existingCountry = await prisma.currencies.findFirst({
+//     //         where: { code: ctrjsn.currency },
+//     //     });
+//     //     if (existingCountry) {
+//     //         // hi
+//     //     } else {
+//     //         console.log('NOT FOUND', ctrjsn);
+//     //         // await prisma.countries.create({
+//     //         //     data: {
+//     //         //         iso: ctrjsn.code,
+//     //         //         name: ctrjsn.name,
+//     //         //         nice_name: ctrjsn.name,
+//     //         //         iso3: ctrjsn.code,
+//     //         //         dial_code: ctrjsn.phoneCode,
+//     //         //     },
+//     //         // });
+//     //     }
+//     // }
+//     // for (const currency of currencies) {
+//     //     console.log('hi', currency);
+//     //     // Check if there is a matching currency in the `currencies` table
+//     //     const existingCountry = await prisma.countries.findFirst({
+//     //         where: { iso: currency.code },
+//     //     });
+//     //     await prisma.currencies.create({
+//     //         data: {
+//     //             code: currency.currency.code,
+//     //             name: currency.currency.name,
+//     //             name_plural: currency.currency.name_plural,
+//     //             symbol: currency.currency.symbol,
+//     //             symbol_native: currency.currency.symbol_native,
+//     //             decimal_digits: currency.currency.decimal_digits,
+//     //             rounding: currency.currency.rounding,
+//     //             country_code: currency.code,
+//     //         },
+//     //     });
+//     //     if (existingCountry) {
+//     //         await prisma.countries.update({
+//     //             where: { idCountry: existingCountry.idCountry },
+//     //             data: {
+//     //                 continent: currency.continent,
+//     //                 capital: currency.capital,
+//     //             },
+//     //         });
+//     //         // // Upsert (create or update) the country
+//     //         // await prisma.countries.upsert({
+//     //         //     where: { iso: currency.code },
+//     //         //     update: countryData,
+//     //         //     create: countryData,
+//     //         // });
+//     //     }
+//     // }
+// };
+
+// // void seed();
+
+// void seed()
+//     .catch((e) => {
+//         console.error(e);
+//         process.exit(1);
+//     })
+//     .finally(async () => {
+//         await prisma.$disconnect();
+//     });
