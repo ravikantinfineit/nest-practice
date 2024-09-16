@@ -84,6 +84,7 @@ export default async function (app: INestApplication) {
             docExpansion: 'none',
             persistAuthorization: true,
             displayOperationId: true,
+            displayRequestDuration: true,
             operationsSorter: 'method',
             tagsSorter: 'alpha',
             tryItOutEnabled: true,

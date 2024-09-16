@@ -24,6 +24,7 @@ export class Query {
                 const allowedKeys = ['id_city', 'name', 'id_state', 'id_country', 'status'];
                 const id = _.get(where, 'id');
                 const sql = `SELECT ${allowedKeys.join(', ')} FROM city_mas WHERE status = 1 AND id_city = '${id}';`;
+                console.log('find by id query--' + sql);
                 return sql;
             },
         };
@@ -83,7 +84,7 @@ export class Query {
 
                 const lastKey = Object.keys(where)[Object.keys(where).length - 1];
                 _.mapKeys(where, (value, key) => {
-                    sql += `${key} = '${value}'`;
+                    sql += `${key} = ${this.formatValue(value)}`;
                     sql += lastKey == key ? `` : `, `;
                 });
                 sql += ` WHERE status = 1 AND id_city = '${id}' RETURNING id_city as updatedid, name;`;

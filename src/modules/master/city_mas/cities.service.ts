@@ -93,7 +93,7 @@ export class CityService {
 
     /**
      * Retrieves a list of cities with pagination.
-     * @param {PaginationQueryDto} query - The pagination and filtering parameters.
+     * @param {PaginationQueryDto} paginationQuery - The pagination and filtering parameters.
      * @returns {Promise<PaginationResponseDto<Cities>>} A paginated list of cities.
      */
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Cities>> {

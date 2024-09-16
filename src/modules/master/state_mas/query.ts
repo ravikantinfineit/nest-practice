@@ -84,7 +84,7 @@ export class Query {
 
                 const lastKey = Object.keys(where)[Object.keys(where).length - 1];
                 _.mapKeys(where, (value, key) => {
-                    sql += `${key} = '${value}'`;
+                    sql += `${key} = ${this.formatValue(value)}`;
                     sql += lastKey == key ? `` : `, `;
                 });
                 sql += ` WHERE status = 1 AND id_state = '${id}' RETURNING id_state as updatedid, name;`;
