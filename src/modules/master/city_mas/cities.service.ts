@@ -142,7 +142,7 @@ export class CityService {
     async delete(id: string): Promise<object> {
         const deleted = await this.prisma.executeRawQuery(this.query.delete(), id);
 
-        if (deleted && deleted.deletedid) {
+        if (deleted && deleted[0].deletedid) {
             return deleted;
         } else {
             throw new HttpException(

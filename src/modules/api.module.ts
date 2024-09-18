@@ -11,6 +11,7 @@ import { BankModule } from './master/banks/bank.module';
 import { CityModule } from './master/city_mas/cities.modules';
 import { CountryMasModule } from './master/country_mas/country_mas.module';
 import { DocumentGroupModule } from './master/document_groups/document_grp.module';
+import { DocumentModule } from './master/documents/documents.module';
 import { StateModule } from './master/state_mas/state.module';
 
 /**
@@ -79,6 +80,10 @@ import { StateModule } from './master/state_mas/state.module';
          * Module responsible for managing documentGroup-related functionalities.
          */
         DocumentGroupModule,
+        /**
+         * Module responsible for managing document-related functionalities.
+         */
+        DocumentModule,
     ],
 
     providers: [

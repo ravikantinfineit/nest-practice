@@ -99,8 +99,8 @@ export class DocumentService {
      * @returns {Promise<PaginationResponseDto<Document>>} A paginated list of documents.
      */
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Document>> {
-        const baseQuery = ['ptbl.id_document', 'ptbl.name', 'ptbl.description', 'ptbl.status'];
-        const fromQuery = ` FROM document_mas as ptbl`;
+        const baseQuery = ['ptbl.id_document', 'ptbl.name', 'ptbl.status'];
+        const fromQuery = ` FROM documents as ptbl`;
 
         const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
 
@@ -138,7 +138,7 @@ export class DocumentService {
     async delete(id: string): Promise<object> {
         const deleted = await this.prisma.executeRawQuery(this.query.delete(), id);
 
-        if (deleted && deleted.deletedid) {
+        if (deleted && deleted[0].deletedid) {
             return deleted;
         } else {
             throw new HttpException(

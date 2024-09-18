@@ -23,12 +23,10 @@ export class Query {
             type: `SELECT_ONE`,
             syntax: (where: any) => {
                 const allowedKeys = ['id_document', 'id_document_group', 'name', 'status'];
-                const id = _.get(where, 'id_document');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM documents WHERE id_document = $1;`;
-                return {
-                    text: sql, // Parameterized query
-                    values: [id], // Values to be bound to the placeholders
-                };
+                const id = _.get(where, 'id');
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM documents WHERE id_document = '${id}';`;
+                console.log('FindById query: ' + sql);
+                return sql;
             },
         };
     }
@@ -44,11 +42,9 @@ export class Query {
             syntax: (where: any) => {
                 const allowedKeys = ['id_document', 'id_document_group', 'name'];
                 const name = _.get(where, 'name');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM documents WHERE name = $1;`;
-                return {
-                    text: sql,
-                    values: [name],
-                };
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM documents WHERE name = '${name}';`;
+                console.log('FindByName query: ' + sql);
+                return sql;
             },
         };
     }
@@ -62,17 +58,14 @@ export class Query {
             name: `insert`,
             type: `INSERT`,
             syntax: (where: any) => {
-                const allowedKeys = ['id_document_group', 'name', 'status', 'id_created_by'];
+                const allowedKeys = ['id_document_group', 'name', 'status'];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
-                const values = _.values(conds);
-
-                const placeholders = values.map((_, i) => `$${i + 1}`).join(', '); // Creates $1, $2, $3, ...
-                const sql = `INSERT INTO documents (${keys.join(', ')}) VALUES (${placeholders}) RETURNING id_document as insertid, name;`;
-                return {
-                    text: sql,
-                    values: values, // Values to be passed as parameters
-                };
+                //const values = _.values(conds);
+                const values = keys.map((key) => this.formatValue(conds[key]));
+                const sql = `INSERT INTO documents (${keys.join(', ')}) VALUES (${values}) RETURNING id_document as insertid, name;`;
+                console.log('Insert query: ', sql);
+                return sql;
             },
         };
     }
@@ -91,14 +84,13 @@ export class Query {
                 const allowedKeys = ['id_document_group', 'name', 'status', 'id_updated_by'];
                 const updateData = _.pick(where, allowedKeys);
 
-                const setClauses = Object.keys(updateData).map((key, i) => `${key} = $${i + 1}`);
-                const values = Object.values(updateData).concat(id); // Concatenate update values with ID
+                const setClauses = Object.keys(updateData).map(
+                    (key) => `${key} = ${this.formatValue(updateData[key])}`
+                );
+                const sql = `UPDATE documents SET ${setClauses.join(', ')} WHERE id_document = '${id}' AND status = 1 RETURNING id_document as updatedid, name;`;
+                console.log('Update query: ', sql);
 
-                const sql = `UPDATE documents SET ${setClauses.join(', ')} WHERE id_document = $${values.length} RETURNING id_document as updatedid, name;`;
-                return {
-                    text: sql,
-                    values: values,
-                };
+                return sql;
             },
         };
     }
@@ -113,12 +105,28 @@ export class Query {
             name: `delete`,
             type: `UPDATE`,
             syntax: (id: string) => {
-                const sql = `UPDATE documents SET status = 127 WHERE id_document = $1 RETURNING id_document as deletedid, name;`;
-                return {
-                    text: sql,
-                    values: [id],
-                };
+                const sql = `UPDATE documents SET status = 127 WHERE id_document = '${id}' RETURNING id_document as deletedid, name;`;
+                console.log('Delete query: ', sql);
+                return sql;
             },
         };
+    }
+
+    /**
+     * Formats a value for use in an SQL query.
+     * @param value - Value to format
+     * @returns - Formatted value as a string
+     */
+    formatValue(value: any): string {
+        if (Array.isArray(value)) {
+            const formattedArray = value.map((v) => `'${v.replace(/'/g, "''")}'`).join(', ');
+            return `'{${formattedArray}}'`;
+        } else if (typeof value === 'string') {
+            return `'${value.replace(/'/g, "''")}'`;
+        } else if (value === null || value === undefined) {
+            return 'NULL';
+        } else {
+            return `${value}`; // For numbers and other types
+        }
     }
 }

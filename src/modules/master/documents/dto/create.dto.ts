@@ -5,13 +5,13 @@ import { IsDefined, IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-val
 
 /**
  * @fileoverview
- * This file defines the `CreateDocumentDto` class, which represents the data transfer object (DTO)
+ * This file defines the `DocumentDto` class, which represents the data transfer object (DTO)
  * used for creating a new document record. It includes validation rules and transformation logic
  * for the properties of the document.
  *
  * @module
  * @description
- * The `CreateDocumentDto` class ensures that the data provided for creating a document adheres to
+ * The `DocumentDto` class ensures that the data provided for creating a document adheres to
  * specified validation rules and formats. It uses decorators from `class-validator` for validation
  * and `class-transformer` for transforming input data.
  */
