@@ -25,8 +25,8 @@ import {
  */
 export class BankDto {
     /**
-     * The name of the bank (e.g., 'HDFC Bank').
-     * @example 'HDFC Bank'
+     * The name of the bank (e.g., 'State Bank Of India').
+     * @example 'State Bank Of India'
      */
     @IsDefined()
     @IsNotEmpty()
@@ -35,14 +35,14 @@ export class BankDto {
     @ApiProperty({
         type: String,
         description: 'Bank name',
-        example: 'HDFC Bank',
+        example: 'State Bank Of India',
         maxLength: 50,
     })
     name: string;
 
     /**
-     * The short name of the bank (optional, e.g., 'HDFC').
-     * @example 'HDFC'
+     * The short name of the bank (optional, e.g., 'SBI').
+     * @example 'SBI'
      */
     @IsOptional()
     @IsString()
@@ -50,7 +50,7 @@ export class BankDto {
     @ApiProperty({
         type: String,
         description: 'Short name of the bank (optional)',
-        example: 'HDFC',
+        example: 'SBI',
         maxLength: 5,
         required: false,
     })

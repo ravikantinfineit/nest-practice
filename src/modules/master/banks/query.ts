@@ -30,8 +30,8 @@ export class Query {
                     'id_country',
                     'status',
                 ];
-                const id = _.get(where, 'id_bank');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM bank_mas WHERE status = 1 AND id_bank = '${id}';`;
+                const id = _.get(where, 'id');
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM banks_mas WHERE status = 1 AND id_bank = '${id}';`;
                 console.log('FindById query: ' + sql);
                 return sql;
             },
@@ -49,7 +49,7 @@ export class Query {
             syntax: (where: any) => {
                 const allowedKeys = ['id_bank', 'name', 'short_name'];
                 const name = _.get(where, 'name');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM bank_mas WHERE status = 1 AND name = '${name}';`;
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM banks_mas WHERE status = 1 AND name = '${name}';`;
                 console.log('FindByName query: ' + sql);
                 return sql;
             },
@@ -72,13 +72,12 @@ export class Query {
                     'id_state',
                     'id_country',
                     'status',
-                    'id_created_by',
                 ];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
                 const values = keys.map((key) => this.formatValue(conds[key]));
 
-                const sql = `INSERT INTO bank_mas (${keys.join(', ')}) VALUES (${values.join(', ')}) RETURNING id_bank as insertid, name;`;
+                const sql = `INSERT INTO banks_mas (${keys.join(', ')}) VALUES (${values.join(', ')}) RETURNING id_bank as insertid, name;`;
                 console.log('Insert query: ', sql);
 
                 return sql;
@@ -104,14 +103,13 @@ export class Query {
                     'id_state',
                     'id_country',
                     'status',
-                    'id_updated_by',
                 ];
                 const updateData = _.pick(where, allowedKeys);
 
                 const setClauses = Object.keys(updateData).map(
                     (key) => `${key} = ${this.formatValue(updateData[key])}`
                 );
-                const sql = `UPDATE bank_mas SET ${setClauses.join(', ')} WHERE id_bank = '${id}' AND status = 1 RETURNING id_bank as updatedid, name;`;
+                const sql = `UPDATE banks_mas SET ${setClauses.join(', ')} WHERE id_bank = '${id}' AND status = 1 RETURNING id_bank as updatedid, name;`;
                 console.log('Update query: ', sql);
 
                 return sql;
@@ -129,7 +127,7 @@ export class Query {
             name: `delete`,
             type: `UPDATE`,
             syntax: (id: string) => {
-                const sql = `UPDATE bank_mas SET status = 127 WHERE id_bank = '${id}' RETURNING id_bank as deletedid, name;`;
+                const sql = `UPDATE banks_mas SET status = 127 WHERE id_bank = '${id}' RETURNING id_bank as deletedid, name;`;
                 console.log('Delete query: ', sql);
 
                 return sql;

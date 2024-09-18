@@ -114,7 +114,7 @@ export class BankService {
             'ptbl.id_country',
             'ptbl.status',
         ];
-        const fromQuery = ` FROM bank_mas as ptbl`;
+        const fromQuery = ` FROM banks_mas as ptbl`;
 
         const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
 

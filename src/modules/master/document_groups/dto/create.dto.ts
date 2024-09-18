@@ -5,13 +5,13 @@ import { IsDefined, IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-val
 
 /**
  * @fileoverview
- * This file defines the `CreateDocumentGroupDto` class, which represents the data transfer object (DTO)
+ * This file defines the `DocumentGroupDto` class, which represents the data transfer object (DTO)
  * used for creating a new document group record. It includes validation rules and transformation logic
  * for the properties of the document group.
  *
  * @module
  * @description
- * The `CreateDocumentGroupDto` class ensures that the data provided for creating a document group adheres to
+ * The `DocumentGroupDto` class ensures that the data provided for creating a document group adheres to
  * specified validation rules and formats. It uses decorators from `class-validator` for validation
  * and `class-transformer` for transforming input data.
  */

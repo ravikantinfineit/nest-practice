@@ -2,13 +2,13 @@ import { ApiResponseProperty } from '@nestjs/swagger';
 
 /**
  * @fileoverview
- * This file defines the `BankResponseDto` class, which represents the data structure of a bank entity.
+ * This file defines the `Banks` class, which represents the data structure of a bank entity.
  * It includes properties that describe the bank and uses decorators for Swagger documentation.
  *
  * @module
  * @description
- * The `BankResponseDto` class is used to define the structure of a bank object, including its name, short name,
- * associated city, state, and country IDs, along with the status of the bank. The class uses decorators to
+ * The `Banks` class is used to define the structure of a bank object, including its name, short name,
+ * city, state, and country IDs, along with the status of the bank. The class uses decorators to
  * configure how the properties should be documented in the Swagger API documentation.
  */
 export class Banks {
@@ -23,22 +23,22 @@ export class Banks {
     id_bank: string;
 
     /**
-     * The name of the bank (e.g., 'HDFC Bank').
-     * @example 'HDFC Bank'
+     * The name of the bank (e.g., 'State Bank Of India').
+     * @example 'State Bank Of India'
      */
     @ApiResponseProperty({
         type: String,
-        example: 'HDFC Bank',
+        example: 'State Bank Of India',
     })
     name: string;
 
     /**
-     * The short name of the bank (e.g., 'HDFC').
-     * @example 'HDFC'
+     * The short name of the bank (e.g., 'SBI').
+     * @example 'SBI'
      */
     @ApiResponseProperty({
         type: String,
-        example: 'HDFC',
+        example: 'SBI',
     })
     short_name: string;
 

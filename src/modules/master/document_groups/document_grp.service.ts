@@ -107,7 +107,7 @@ export class DocumentGroupService {
         paginationQuery: PaginationQueryDto
     ): Promise<PaginationResponseDto<DocumentGroup>> {
         const baseQuery = ['ptbl.id_document_group', 'ptbl.name', 'ptbl.status'];
-        const fromQuery = ` FROM document_group_mas as ptbl`;
+        const fromQuery = ` FROM document_groups as ptbl`;
 
         const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
 

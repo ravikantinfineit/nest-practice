@@ -21,9 +21,9 @@ export class Query {
             name: `findById`,
             type: `SELECT_ONE`,
             syntax: (where: any) => {
-                const allowedKeys = ['id_document_group', 'name', 'description', 'status'];
-                const id = _.get(where, 'id_document_group');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM document_group WHERE status = 1 AND id_document_group = '${id}';`;
+                const allowedKeys = ['id_document_group', 'name', 'status'];
+                const id = _.get(where, 'id');
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM document_groups WHERE status = 1 AND id_document_group = '${id}';`;
                 console.log('FindById query: ' + sql);
                 return sql;
             },
@@ -41,7 +41,7 @@ export class Query {
             syntax: (where: any) => {
                 const allowedKeys = ['id_document_group', 'name'];
                 const name = _.get(where, 'name');
-                const sql = `SELECT ${allowedKeys.join(', ')} FROM document_group WHERE status = 1 AND name = '${name}';`;
+                const sql = `SELECT ${allowedKeys.join(', ')} FROM document_groups WHERE status = 1 AND name = '${name}';`;
                 console.log('FindByName query: ' + sql);
                 return sql;
             },
@@ -57,12 +57,12 @@ export class Query {
             name: `insert`,
             type: `INSERT`,
             syntax: (where: any) => {
-                const allowedKeys = ['name', 'description', 'status'];
+                const allowedKeys = ['name', 'status'];
                 const conds = _.pick(where, allowedKeys);
                 const keys = _.keys(conds);
                 const values = keys.map((key) => this.formatValue(conds[key]));
 
-                const sql = `INSERT INTO document_group (${keys.join(', ')}) VALUES (${values.join(', ')}) RETURNING id_document_group as insertid, name;`;
+                const sql = `INSERT INTO document_groups (${keys.join(', ')}) VALUES (${values.join(', ')}) RETURNING id_document_group as insertid, name;`;
                 console.log('Insert query: ', sql);
 
                 return sql;
@@ -81,13 +81,13 @@ export class Query {
             syntax: (where: any) => {
                 const id = _.get(where, 'id_document_group');
                 _.unset(where, 'id_document_group');
-                const allowedKeys = ['name', 'description', 'status'];
+                const allowedKeys = ['name', 'status'];
                 const updateData = _.pick(where, allowedKeys);
 
                 const setClauses = Object.keys(updateData).map(
                     (key) => `${key} = ${this.formatValue(updateData[key])}`
                 );
-                const sql = `UPDATE document_group SET ${setClauses.join(', ')} WHERE id_document_group = '${id}' AND status = 1 RETURNING id_document_group as updatedid, name;`;
+                const sql = `UPDATE document_groups SET ${setClauses.join(', ')} WHERE id_document_group = '${id}' AND status = 1 RETURNING id_document_group as updatedid, name;`;
                 console.log('Update query: ', sql);
 
                 return sql;
@@ -105,7 +105,7 @@ export class Query {
             name: `delete`,
             type: `UPDATE`,
             syntax: (id: string) => {
-                const sql = `UPDATE document_group SET status = 127 WHERE id_document_group = '${id}' RETURNING id_document_group as deletedid, name;`;
+                const sql = `UPDATE document_groups SET status = 127 WHERE id_document_group = '${id}' RETURNING id_document_group as deletedid, name;`;
                 console.log('Delete query: ', sql);
 
                 return sql;

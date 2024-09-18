@@ -7,8 +7,10 @@ import { CountriesModule } from './countries/countries.module';
 import { CurrenciesModule } from './currencies/currencies.module';
 import { FilesModule } from './files/files.module';
 import { HomeModule } from './home/home.module';
+import { BankModule } from './master/banks/bank.module';
 import { CityModule } from './master/city_mas/cities.modules';
 import { CountryMasModule } from './master/country_mas/country_mas.module';
+import { DocumentGroupModule } from './master/document_groups/document_grp.module';
 import { StateModule } from './master/state_mas/state.module';
 
 /**
@@ -68,6 +70,15 @@ import { StateModule } from './master/state_mas/state.module';
          * Module responsible for managing state-related functionalities.
          */
         StateModule,
+
+        /**
+         * Module responsible for managing banks-related functionalities.
+         */
+        BankModule,
+        /**
+         * Module responsible for managing documentGroup-related functionalities.
+         */
+        DocumentGroupModule,
     ],
 
     providers: [
