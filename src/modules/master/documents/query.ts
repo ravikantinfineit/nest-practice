@@ -9,8 +9,7 @@ import * as _ from 'lodash';
  * @description
  * The `Query` class includes methods to generate SQL queries for operations such as
  * retrieving, inserting, updating, and deleting document records from the database.
- * It uses the lodash library for object manipulation and query construction, and
- * prevents SQL injection by using parameterized queries.
+ * It uses the lodash library for object manipulation and query construction.
  */
 export class Query {
     /**
@@ -81,7 +80,13 @@ export class Query {
             syntax: (where: any) => {
                 const id = _.get(where, 'id_document');
                 _.unset(where, 'id_document');
-                const allowedKeys = ['id_document_group', 'name', 'status', 'id_updated_by'];
+                const allowedKeys = [
+                    'id_document_group',
+                    'name',
+                    'status',
+                    'id_updated_by',
+                    'updated_at',
+                ];
                 const updateData = _.pick(where, allowedKeys);
 
                 const setClauses = Object.keys(updateData).map(

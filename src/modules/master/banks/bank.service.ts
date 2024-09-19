@@ -80,6 +80,7 @@ export class BankService {
         const recordExists = await this.findOne(id);
         if (recordExists) {
             updateDto.id_bank = id;
+            updateDto.updated_at = new Date().toISOString();
             // Update the bank details
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 

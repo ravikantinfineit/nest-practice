@@ -18,7 +18,7 @@ import { IsDefined, IsNotEmpty, IsString, IsOptional, IsNumber } from 'class-val
 export class DocumentDto {
     /**
      * The ID of the document group to which the document belongs.
-     * @example '09407516-c0ac-4298-a6a7-59f48b87c094'
+     * @example '"421939d4-b484-4f58-aa03-d8e94a843431"'
      */
     @IsDefined()
     @IsNotEmpty()
@@ -26,7 +26,7 @@ export class DocumentDto {
     @ApiProperty({
         type: String,
         description: 'Document group ID',
-        example: '09407516-c0ac-4298-a6a7-59f48b87c094',
+        example: '"421939d4-b484-4f58-aa03-d8e94a843431"',
     })
     id_document_group: string;
 
@@ -65,4 +65,7 @@ export class DocumentDto {
      */
     @Exclude({ toPlainOnly: true })
     id_document?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

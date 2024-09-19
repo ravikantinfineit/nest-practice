@@ -51,4 +51,7 @@ export class DocumentGroupDto {
      */
     @Exclude({ toPlainOnly: true })
     id_document_group?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

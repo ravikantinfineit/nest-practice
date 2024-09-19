@@ -43,7 +43,7 @@ export class State {
         description: 'Country ID',
         example: '3a10e186-c759-4aec-9a86-2e5e0c2e5870',
     })
-    country_id: string;
+    id_country: string;
 
     /**
      * Status of the state.

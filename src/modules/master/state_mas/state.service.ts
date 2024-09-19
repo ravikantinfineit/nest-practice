@@ -76,6 +76,7 @@ export class StateService {
         const recordExits = await this.findOne(id);
         if (recordExits) {
             updateDto.id_state = id;
+            updateDto.updated_at = new Date().toISOString();
             // update
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
@@ -102,7 +103,14 @@ export class StateService {
         const baseQuery = ['ptbl.id_state', 'ptbl.name', 'ptbl.id_country', 'ptbl.status'];
         const fromQuery = ` FROM state_mas as ptbl`;
 
-        const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
+        const fieldConfigs: Record<string, IPaginationFieldConfig> = {
+            id_country: {
+                joinTable: (alias: string) =>
+                    `JOIN country_mas ${alias} ON ${alias}.id_country = ptbl.id_country`,
+                alias: () => `c${0}`,
+                selectFields: (alias: string) => [`${alias}.name as country_name`],
+            },
+        };
 
         const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
             paginationQuery,

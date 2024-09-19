@@ -1,5 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 
+import { CommonQuery5 } from '@app/common/helper/services/comman.query';
 import { IPaginationFieldConfig } from '@app/utils/types/pagination-options';
 import { PaginationService } from '@services/pagination.service';
 import { PrismaService } from '@services/prisma.service';
@@ -23,8 +24,10 @@ export class CityService {
         private readonly paginationService: PaginationService,
         private readonly prisma: PrismaService,
         private readonly query: Query,
-        private readonly utilsService: UtilsService
+        private readonly utilsService: UtilsService,
+        private commonQuery: CommonQuery5<CityDto>
     ) {
+        this.commonQuery = new CommonQuery5<CityDto>('city_mas', ['id_city', 'name', 'status']);
         this.MODULE = 'city';
     }
 
@@ -74,6 +77,7 @@ export class CityService {
         const recordExits = await this.findOne(id);
         if (recordExits) {
             updateDto.id_city = id;
+            updateDto.updated_at = new Date().toISOString();
             //update
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
@@ -97,6 +101,36 @@ export class CityService {
      * @returns {Promise<PaginationResponseDto<Cities>>} A paginated list of cities.
      */
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Cities>> {
+        // const commonQuery = new CommonQuery5('city_mas', ['id_city', 'name', 'status']);
+        // const queryConfig = this.commonQuery.findWithDynamicJoin3(
+        //     [
+        //         {
+        //             table: 'state_mas',
+        //             condition: 'id_state=id_state', // Specify the join condition
+        //             type: 'JOIN',
+        //             selectFields: ['name', 'status'], // Specify fields to select from another_table
+        //             additionalConditions: ['status=1'],
+        //         },
+        //         {
+        //             table: 'country_mas',
+        //             condition: 'id_country=id_country', // Specify the join condition
+        //             selectFields: ['name', 'status'], // Specify fields to select from yet_another_table
+        //             additionalConditions: ['status=1'],
+        //         },
+        //     ]
+        //     //'country_mas.status=1 AND state_mas.status=1'
+        // );
+        // // const sqlQuery = queryConfig.syntax;
+        // console.log('Query Config:', JSON.stringify(queryConfig, null, 2));
+        // if (typeof queryConfig.syntax !== 'function') {
+        //     throw new Error('Syntax function is not defined.');
+        // }
+
+        // // Call the syntax method to generate the actual SQL query string
+        // const sqlQuery = queryConfig.syntax(1);
+
+        // // Log the generated SQL query
+        // console.log('Generated SQL Query:', sqlQuery);
         const baseQuery = [
             'ptbl.id_city',
             'ptbl.name',
@@ -106,7 +140,20 @@ export class CityService {
         ];
         const fromQuery = ` FROM city_mas as ptbl`;
 
-        const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
+        const fieldConfigs: Record<string, IPaginationFieldConfig> = {
+            id_country: {
+                joinTable: (alias: string) =>
+                    `JOIN country_mas ${alias} ON ${alias}.id_country = ptbl.id_country`,
+                alias: () => `c${0}`,
+                selectFields: (alias: string) => [`${alias}.name as country_name`],
+            },
+            id_state: {
+                joinTable: (alias: string) =>
+                    `JOIN state_mas ${alias} ON ${alias}.id_state = ptbl.id_state`,
+                alias: () => `c${0}`,
+                selectFields: (alias: string) => [`${alias}.name as state_name`],
+            },
+        };
 
         const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
             paginationQuery,
@@ -119,6 +166,34 @@ export class CityService {
         return this.paginationService.paginate<Cities>(selectQuery, countQuery, paginationQuery);
     }
 
+    // async getRecordsWithJoins(id: number): Promise<string> {
+    //     const queryConfig = this.commonQuery.findWithDynamicJoin1(
+    //         [
+    //             {
+    //                 table: 'state_mas',
+    //                 condition: 'id_state=id_state', // Specify the join condition
+    //                 type: 'JOIN',
+    //                 selectFields: ['name', 'status'], // Specify fields to select from another_table
+    //             },
+    //             {
+    //                 table: 'country_mas',
+    //                 condition: 'id_country=id_country', // Specify the join condition
+    //                 selectFields: ['name', 'status'], // Specify fields to select from yet_another_table
+    //             },
+    //         ],
+    //         'country_mas.status=1 AND state_mas.status=1'
+    //     );
+
+    //     // You can now use the generated SQL query in your database access layer
+    //     const sqlQuery = queryConfig.syntax(id); // This generates the actual SQL query string
+    //     console.log(sqlQuery); // Log the SQL query for debugging or execution
+
+    //     // Execute the SQL query using your preferred database library (e.g., TypeORM, Sequelize)
+    //     // For example, if using TypeORM:
+    //     // return await this.dataSource.query(sqlQuery);
+
+    //     return sqlQuery; // Just for demonstration; replace with actual execution
+    // }
     /**
      * Retrieves a single city by its ID.
      * @param {string} id - The ID of the city to retrieve.

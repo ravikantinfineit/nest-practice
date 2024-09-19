@@ -57,4 +57,7 @@ export class CountryDto {
      */
     @Exclude({ toPlainOnly: true })
     id_country?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

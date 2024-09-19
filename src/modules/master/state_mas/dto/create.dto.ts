@@ -67,4 +67,7 @@ export class StateDto {
      */
     @Exclude({ toPlainOnly: true })
     id_state?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

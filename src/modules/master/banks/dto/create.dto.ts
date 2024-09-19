@@ -118,4 +118,7 @@ export class BankDto {
      */
     @Exclude({ toPlainOnly: true })
     id_bank?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

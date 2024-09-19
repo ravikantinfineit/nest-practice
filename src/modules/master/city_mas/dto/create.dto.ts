@@ -81,4 +81,7 @@ export class CityDto {
      */
     @Exclude({ toPlainOnly: true })
     id_city?: string;
+
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }

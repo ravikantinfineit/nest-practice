@@ -80,6 +80,7 @@ export class DocumentGroupService {
         const recordExits = await this.findOne(id);
         if (recordExits) {
             updateDto.id_document_group = id;
+            updateDto.updated_at = new Date().toISOString();
             // Update the document group
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 

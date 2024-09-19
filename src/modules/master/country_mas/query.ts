@@ -81,7 +81,7 @@ export class Query {
                 let sql = `UPDATE country_mas SET `;
                 const id = _.get(where, 'id_country');
                 _.unset(where, 'id_country');
-                const allowedKeys = ['name', 'dial_code', 'status'];
+                const allowedKeys = ['name', 'dial_code', 'status', 'updated_at'];
                 where = _.pick(where, allowedKeys);
 
                 const lastKey = Object.keys(where)[Object.keys(where).length - 1];

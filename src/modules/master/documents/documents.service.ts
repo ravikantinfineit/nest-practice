@@ -76,12 +76,13 @@ export class DocumentService {
         const recordExists = await this.findOne(id);
         if (recordExists) {
             updateDto.id_document = id;
+            updateDto.updated_at = new Date().toISOString();
             // Update document
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
             if (updated && updated[0].updatedid) {
                 const get = await this.findOne(updated[0].updatedid);
-                return get as any;
+                return get;
             } else {
                 throw new HttpException(
                     { message: 'Something went wrong' },
@@ -99,10 +100,22 @@ export class DocumentService {
      * @returns {Promise<PaginationResponseDto<Document>>} A paginated list of documents.
      */
     async findAll(paginationQuery: PaginationQueryDto): Promise<PaginationResponseDto<Document>> {
-        const baseQuery = ['ptbl.id_document', 'ptbl.name', 'ptbl.status'];
+        const baseQuery = [
+            'ptbl.id_document',
+            'ptbl.id_document_group',
+            'ptbl.name',
+            'ptbl.status',
+        ];
         const fromQuery = ` FROM documents as ptbl`;
 
-        const fieldConfigs: Record<string, IPaginationFieldConfig> = null;
+        const fieldConfigs: Record<string, IPaginationFieldConfig> = {
+            id_document_group: {
+                joinTable: (alias: string) =>
+                    `JOIN document_groups ${alias} ON ${alias}.id_document_group = ptbl.id_document_group`,
+                alias: () => `c${0}`,
+                selectFields: (alias: string) => [`${alias}.name as documentgroup_name`],
+            },
+        };
 
         const { selectQuery, countQuery } = this.utilsService.buildDynamicQuery(
             paginationQuery,

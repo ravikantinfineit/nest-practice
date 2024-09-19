@@ -103,6 +103,7 @@ export class Query {
                     'id_state',
                     'id_country',
                     'status',
+                    'updated_at',
                 ];
                 const updateData = _.pick(where, allowedKeys);
 

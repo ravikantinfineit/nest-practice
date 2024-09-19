@@ -81,7 +81,7 @@ export class Query {
             syntax: (where: any) => {
                 const id = _.get(where, 'id_document_group');
                 _.unset(where, 'id_document_group');
-                const allowedKeys = ['name', 'status'];
+                const allowedKeys = ['name', 'status', 'updated_at'];
                 const updateData = _.pick(where, allowedKeys);
 
                 const setClauses = Object.keys(updateData).map(

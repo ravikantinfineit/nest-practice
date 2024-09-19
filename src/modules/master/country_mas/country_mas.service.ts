@@ -86,6 +86,7 @@ export class CountriesService {
         if (recordExits) {
             // Update
             updateDto.id_country = id;
+            updateDto.updated_at = new Date().toISOString();
             const updated = await this.prisma.executeRawQuery(this.query.update(), updateDto);
 
             if (!updated) {

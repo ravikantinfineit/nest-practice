@@ -70,6 +70,9 @@ export class UtilsService {
                             const values = filter.value.split(',').map((val) => `'${val.trim()}'`);
                             return `${alias}.${filter.field} IN (${values.join(', ')})`;
                         }
+                        if (operator === 'LIKE') {
+                            return `${alias}.${filter.field} ${filter.operator} '%${filter.value}%'`;
+                        }
                         // Add the value to the filterValues array for parameterized query
                         filterValues.push(filter.value);
 
