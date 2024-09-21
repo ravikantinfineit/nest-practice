@@ -9,7 +9,7 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 
 import { Banks } from './dto/bank.dto'; // DTO for bank data
 import { BankDto } from './dto/create.dto'; // DTO for creating a bank
-import { UpdateDto } from './dto/update.dto'; // DTO for updating a bank
+import { BankUpdateDto as UpdateDto } from './dto/update.dto'; // DTO for updating a bank
 import { Query } from './query'; // Query class for generating SQL queries
 
 /**

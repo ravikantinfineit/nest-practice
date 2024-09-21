@@ -368,8 +368,8 @@ countQuery: string;</code></pre></div><p>}} - An object containing the dynamical
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="154"
-                                    class="link-to-prism">src/common/helper/services/util.service.ts:154</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/common/helper/services/util.service.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -437,8 +437,8 @@ countQuery: string;</code></pre></div><p>}} - An object containing the dynamical
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="136"
-                                    class="link-to-prism">src/common/helper/services/util.service.ts:136</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/common/helper/services/util.service.ts:139</a></div>
                         </td>
                     </tr>
 
@@ -703,6 +703,9 @@ export class UtilsService {
                         if (operator &#x3D;&#x3D;&#x3D; &#x27;IN&#x27;) {
                             const values &#x3D; filter.value.split(&#x27;,&#x27;).map((val) &#x3D;&gt; &#x60;&#x27;${val.trim()}&#x27;&#x60;);
                             return &#x60;${alias}.${filter.field} IN (${values.join(&#x27;, &#x27;)})&#x60;;
+                        }
+                        if (operator &#x3D;&#x3D;&#x3D; &#x27;LIKE&#x27;) {
+                            return &#x60;${alias}.${filter.field} ${filter.operator} &#x27;%${filter.value}%&#x27;&#x60;;
                         }
                         // Add the value to the filterValues array for parameterized query
                         filterValues.push(filter.value);

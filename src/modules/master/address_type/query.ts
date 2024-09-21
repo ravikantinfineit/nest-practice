@@ -78,7 +78,7 @@ export class Query {
             syntax: (where: any) => {
                 const id = _.get(where, 'id_address_type');
                 _.unset(where, 'id_address_type');
-                const allowedKeys = ['address_type', 'status'];
+                const allowedKeys = ['address_type', 'status', 'updated_at'];
                 const updateData = _.pick(where, allowedKeys);
                 const setClauses = Object.keys(updateData).map(
                     (key) => `${key}=${this.formatValue(updateData[key])}`

@@ -207,7 +207,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createDto: <a href="../classes/CreateCountryDto.html" target="_self">CreateCountryDto</a>)</code>
+                    <code>create(createDto: createDto)</code>
                 </td>
             </tr>
 
@@ -246,7 +246,7 @@
                                         <tr>
                                                 <td>createDto</td>
                                             <td>
-                                                            <code><a href="../classes/CreateCountryDto.html" target="_self" >CreateCountryDto</a></code>
+                                                            <code><a href="../classes/AddresTypeDto.html" target="_self" >createDto</a></code>
                                             </td>
 
                                             <td>
@@ -588,7 +588,7 @@ import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
 import { CountriesService } from &#x27;./countries.service&#x27;;
 import { Country } from &#x27;./dto/country&#x27;;
 //import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
-import { CreateCountryDto } from &#x27;./dto/create.dto&#x27;;
+import { CreateCountryDto as createDto } from &#x27;./dto/create.dto&#x27;;
 import { UpdateDto } from &#x27;./dto/update.dto&#x27;;
 
 /**
@@ -640,7 +640,7 @@ export class CountriesController {
     @Post(&#x27;create&#x27;)
     @HttpCode(HttpStatus.OK)
     @ApiOkResponse({ type: Country, description: &#x27;Create Country&#x27; })
-    async create(@Body() createDto: CreateCountryDto): Promise&lt;Country&gt; {
+    async create(@Body() createDto: createDto): Promise&lt;Country&gt; {
         return await this.countriesService.create(createDto);
     }
 

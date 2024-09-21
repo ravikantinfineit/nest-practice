@@ -19,7 +19,7 @@ import { PaginationQueryDto } from '@utils/dto/pagination.dto';
 import { BankService } from './bank.service';
 import { Banks } from './dto/bank.dto';
 import { BankDto } from './dto/create.dto';
-import { UpdateDto } from './dto/update.dto';
+import { BankUpdateDto as UpdateDto } from './dto/update.dto';
 
 /**
  * @fileoverview

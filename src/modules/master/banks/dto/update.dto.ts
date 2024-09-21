@@ -1,4 +1,5 @@
-import { PartialType } from '@nestjs/mapped-types';
+//import { PartialType } from '@nestjs/mapped-types';
+import { PartialType } from '@nestjs/swagger';
 
 import { BankDto } from './create.dto';
 
@@ -14,4 +15,4 @@ import { BankDto } from './create.dto';
  * an existing Bank entity. It inherits all properties from the `BankDto` class but
  * makes them optional, allowing partial updates.
  */
-export class UpdateDto extends PartialType(BankDto) {}
+export class BankUpdateDto extends PartialType(BankDto) {}

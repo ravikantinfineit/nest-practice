@@ -28,13 +28,13 @@
 <title>cluster_FilesModule_providers</title>
 <polygon fill="none" stroke="black" points="331,-78 331,-130 465,-130 465,-78 331,-78"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_FilesModule_imports</title>
-<polygon fill="none" stroke="black" points="31,-78 31,-130 323,-130 323,-78 31,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_FilesModule_exports</title>
 <polygon fill="none" stroke="black" points="212,-208 212,-260 316,-260 316,-208 212,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_FilesModule_imports</title>
+<polygon fill="none" stroke="black" points="31,-78 31,-130 323,-130 323,-78 31,-78"/>
 </g>
 <!-- FilesS3Module -->
 <g id="node1" class="node">

@@ -1,3 +1,5 @@
+import { ApiResponseProperty } from '@nestjs/swagger';
+
 /**
  * @fileoverview
  * This file defines the `AddressType` class, which represents the data structure of a AddressType entity.
@@ -9,8 +11,6 @@
  * id_addres_type, along with the status of the AddressType. The class uses decorators to
  * configure how the properties should be documented in the Swagger API documentation.
  */
-
-import { ApiResponseProperty } from '@nestjs/swagger';
 
 export class AddressType {
     /**

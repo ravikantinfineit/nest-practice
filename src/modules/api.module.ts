@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { APP_FILTER, RouterModule } from '@nestjs/core';
+import { APP_FILTER } from '@nestjs/core';
 
 import { HttpErrorFilter } from '@core/exceptions/http-error.filter';
 
@@ -7,6 +7,7 @@ import { CountriesModule } from './countries/countries.module';
 import { CurrenciesModule } from './currencies/currencies.module';
 import { FilesModule } from './files/files.module';
 import { HomeModule } from './home/home.module';
+import { AddressTypeModule } from './master/address_type/address_type.module';
 import { BankModule } from './master/banks/bank.module';
 import { CityModule } from './master/city_mas/cities.modules';
 import { CountryMasModule } from './master/country_mas/country_mas.module';
@@ -45,18 +46,6 @@ import { StateModule } from './master/state_mas/state.module';
          * Module responsible for managing home-related functionalities.
          */
         HomeModule,
-        RouterModule.register([
-            {
-                path: 'v1',
-                module: CountriesModule,
-            },
-        ]),
-        RouterModule.register([
-            {
-                path: 'v1',
-                module: CurrenciesModule,
-            },
-        ]),
         /**
          * Module responsible for managing country-related functionalities.
          */
@@ -84,6 +73,10 @@ import { StateModule } from './master/state_mas/state.module';
          * Module responsible for managing document-related functionalities.
          */
         DocumentModule,
+        /**
+         * Module responsible for managing address_type-related functionalities.
+         */
+        AddressTypeModule,
     ],
 
     providers: [

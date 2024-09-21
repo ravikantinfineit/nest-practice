@@ -18,7 +18,7 @@ import { IsDefined, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from
 export class AddresTypeDto {
     /**
      * The type of address (e.g., 'Office') .
-     * @example '"Office"'
+     * @example 'Office'
      */
     @IsDefined()
     @IsNotEmpty()
@@ -27,7 +27,7 @@ export class AddresTypeDto {
     @ApiProperty({
         type: String,
         description: 'type of address',
-        example: '"Office"',
+        example: 'Office',
         maxLength: 50,
     })
     address_type: string;
@@ -52,4 +52,11 @@ export class AddresTypeDto {
      */
     @Exclude({ toPlainOnly: true })
     id_address_type?: string;
+
+    /**
+     * The date with time when data Update
+     * This property is excluded from the plain representation of the object.
+     */
+    @Exclude({ toPlainOnly: true })
+    updated_at?: string;
 }
