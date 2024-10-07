@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -92,34 +41,27 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >Query</li>
+  <li>Classes</li>
+  <li >Query</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" 
-                class="nav-link"
-                class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li class="nav-item">
-            <a href="#source" 
-                class="nav-link"
-                
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/master/banks/query.ts</code>
+            <code>src/modules/master/city_mas/query.ts</code>
         </p>
 
 
@@ -128,9 +70,9 @@
             </p>
             <p class="comment">
                 <p>This file defines the <code>Query</code> class, which provides methods for generating SQL queries
-related to bank data management.</p>
+related to city data management.</p>
 <p>The <code>Query</code> class includes methods to generate SQL queries for operations such as
-retrieving, inserting, updating, and deleting bank records from the database.
+retrieving, inserting, updating, and deleting city records from the database.
 It uses the lodash library for object manipulation and query construction.</p>
 
             </p>
@@ -138,7 +80,7 @@ It uses the lodash library for object manipulation and query construction.</p>
 
 
 
-            <section data-compodoc="block-index">
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -183,7 +125,7 @@ It uses the lodash library for object manipulation and query construction.</p>
 
 
 
-            <section data-compodoc="block-methods">
+            <section>
     
     <h3 id="methods">
         Methods
@@ -206,27 +148,29 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:126</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:102</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to delete a bank by its ID.</p>
+                    <div class="io-description"><p>Generates a SQL query to delete a city by its ID.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -249,27 +193,29 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:19</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:19</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to find a bank by its ID.</p>
+                    <div class="io-description"><p>Generates a SQL query to find a city by its ID.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -292,27 +238,29 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:45</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:38</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to find a bank by its name.</p>
+                    <div class="io-description"><p>Generates a SQL query to find a city by its name.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -335,63 +283,64 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="144"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:144</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:119</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Formats a value for use in an SQL query.</p>
+                    <div class="io-description"><p>Formats a value for use in an SQL query.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>value</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>Value to format</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <ul>
+                    </div>
+                    <div class="io-description">
+                        <ul>
 <li>Formatted value as a string</li>
 </ul>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -414,27 +363,29 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:63</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:55</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to insert a new bank.</p>
+                    <div class="io-description"><p>Generates a SQL query to insert a new city.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -457,27 +408,29 @@ It uses the lodash library for object manipulation and query construction.</p>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/modules/master/banks/query.ts:92</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/modules/master/city_mas/query.ts:74</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates a SQL query to update an existing bank.</p>
+                    <div class="io-description"><p>Generates a SQL query to update an existing city.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>The query configuration object with <code>name</code>, <code>type</code>, and <code>syntax</code> properties.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -491,23 +444,23 @@ It uses the lodash library for object manipulation and query construction.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import * as _ from &#x27;lodash&#x27;;
 
 /**
  * @fileoverview
  * This file defines the &#x60;Query&#x60; class, which provides methods for generating SQL queries
- * related to bank data management.
+ * related to city data management.
  *
  * @module
  * @description
  * The &#x60;Query&#x60; class includes methods to generate SQL queries for operations such as
- * retrieving, inserting, updating, and deleting bank records from the database.
+ * retrieving, inserting, updating, and deleting city records from the database.
  * It uses the lodash library for object manipulation and query construction.
  */
 export class Query {
     /**
-     * Generates a SQL query to find a bank by its ID.
+     * Generates a SQL query to find a city by its ID.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
     findById(): object {
@@ -515,25 +468,18 @@ export class Query {
             name: &#x60;findById&#x60;,
             type: &#x60;SELECT_ONE&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                const allowedKeys &#x3D; [
-                    &#x27;id_bank&#x27;,
-                    &#x27;name&#x27;,
-                    &#x27;short_name&#x27;,
-                    &#x27;id_city&#x27;,
-                    &#x27;id_state&#x27;,
-                    &#x27;id_country&#x27;,
-                    &#x27;status&#x27;,
-                ];
+                const allowedKeys &#x3D; [&#x27;id_city&#x27;, &#x27;name&#x27;, &#x27;id_state&#x27;, &#x27;id_country&#x27;, &#x27;status&#x27;];
                 const id &#x3D; _.get(where, &#x27;id&#x27;);
-                const sql &#x3D; &#x60;SELECT ${allowedKeys.join(&#x27;, &#x27;)} FROM banks_mas WHERE status &#x3D; 1 AND id_bank &#x3D; &#x27;${id}&#x27;;&#x60;;
-                console.log(&#x27;FindById query: &#x27; + sql);
+                const sql &#x3D; &#x60;SELECT ${allowedKeys.join(&#x27;, &#x27;)} FROM city_mas WHERE status &#x3D; 1 AND id_city &#x3D; &#x27;${id}&#x27;;&#x60;;
+                console.log(&#x27;find by id query--&#x27; + sql);
                 return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL query to find a bank by its name.
+     * Generates a SQL query to find a city by its name.
+     * @param {string} [id] - Optional ID to exclude from the search if provided.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
     findByName(): object {
@@ -541,17 +487,16 @@ export class Query {
             name: &#x60;findByName&#x60;,
             type: &#x60;SELECT_ONE&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                const allowedKeys &#x3D; [&#x27;id_bank&#x27;, &#x27;name&#x27;, &#x27;short_name&#x27;];
+                const allowedKeys &#x3D; [&#x27;id_city&#x27;, &#x27;name&#x27;];
                 const name &#x3D; _.get(where, &#x27;name&#x27;);
-                const sql &#x3D; &#x60;SELECT ${allowedKeys.join(&#x27;, &#x27;)} FROM banks_mas WHERE status &#x3D; 1 AND name &#x3D; &#x27;${name}&#x27;;&#x60;;
-                console.log(&#x27;FindByName query: &#x27; + sql);
+                const sql &#x3D; &#x60;SELECT ${allowedKeys.join(&#x27;, &#x27;)} FROM city_mas WHERE status &#x3D; 1 AND name &#x3D; &#x27;${name}&#x27;;&#x60;;
                 return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL query to insert a new bank.
+     * Generates a SQL query to insert a new city.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
     insert(): object {
@@ -559,28 +504,18 @@ export class Query {
             name: &#x60;insert&#x60;,
             type: &#x60;INSERT&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                const allowedKeys &#x3D; [
-                    &#x27;name&#x27;,
-                    &#x27;short_name&#x27;,
-                    &#x27;id_city&#x27;,
-                    &#x27;id_state&#x27;,
-                    &#x27;id_country&#x27;,
-                    &#x27;status&#x27;,
-                ];
+                const allowedKeys &#x3D; [&#x27;name&#x27;, &#x27;id_state&#x27;, &#x27;id_country&#x27;, &#x27;status&#x27;];
                 const conds &#x3D; _.pick(where, allowedKeys);
                 const keys &#x3D; _.keys(conds);
-                const values &#x3D; keys.map((key) &#x3D;&gt; this.formatValue(conds[key]));
-
-                const sql &#x3D; &#x60;INSERT INTO banks_mas (${keys.join(&#x27;, &#x27;)}) VALUES (${values.join(&#x27;, &#x27;)}) RETURNING id_bank as insertid, name;&#x60;;
-                console.log(&#x27;Insert query: &#x27;, sql);
-
+                const sql &#x3D; &#x60;INSERT INTO city_mas (${keys.join(&#x27;, &#x27;)}) VALUES (${keys.map((key) &#x3D;&gt; this.formatValue(conds[key])).join(&#x27;, &#x27;)}) RETURNING id_city as insertid, name;&#x60;;
+                console.log(&#x27;Insert Query-- &#x27; + sql);
                 return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL query to update an existing bank.
+     * Generates a SQL query to update an existing city.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
     update(): object {
@@ -588,33 +523,27 @@ export class Query {
             name: &#x60;update&#x60;,
             type: &#x60;UPDATE&#x60;,
             syntax: (where: any) &#x3D;&gt; {
-                const id &#x3D; _.get(where, &#x27;id_bank&#x27;);
-                _.unset(where, &#x27;id_bank&#x27;);
-                const allowedKeys &#x3D; [
-                    &#x27;name&#x27;,
-                    &#x27;short_name&#x27;,
-                    &#x27;id_city&#x27;,
-                    &#x27;id_state&#x27;,
-                    &#x27;id_country&#x27;,
-                    &#x27;status&#x27;,
-                    &#x27;updated_at&#x27;,
-                ];
-                const updateData &#x3D; _.pick(where, allowedKeys);
+                let sql &#x3D; &#x60;UPDATE city_mas SET &#x60;;
+                const id &#x3D; _.get(where, &#x27;id_city&#x27;);
+                _.unset(where, &#x27;id_city&#x27;);
+                const allowedKeys &#x3D; [&#x27;name&#x27;, &#x27;id_state&#x27;, &#x27;status&#x27;, &#x27;updated_at&#x27;];
+                where &#x3D; _.pick(where, allowedKeys);
 
-                const setClauses &#x3D; Object.keys(updateData).map(
-                    (key) &#x3D;&gt; &#x60;${key} &#x3D; ${this.formatValue(updateData[key])}&#x60;
-                );
-                const sql &#x3D; &#x60;UPDATE banks_mas SET ${setClauses.join(&#x27;, &#x27;)} WHERE id_bank &#x3D; &#x27;${id}&#x27; AND status &#x3D; 1 RETURNING id_bank as updatedid, name;&#x60;;
-                console.log(&#x27;Update query: &#x27;, sql);
-
+                const lastKey &#x3D; Object.keys(where)[Object.keys(where).length - 1];
+                _.mapKeys(where, (value, key) &#x3D;&gt; {
+                    sql +&#x3D; &#x60;${key} &#x3D; ${this.formatValue(value)}&#x60;;
+                    sql +&#x3D; lastKey &#x3D;&#x3D; key ? &#x60;&#x60; : &#x60;, &#x60;;
+                });
+                sql +&#x3D; &#x60; WHERE status &#x3D; 1 AND id_city &#x3D; &#x27;${id}&#x27; RETURNING id_city as updatedid, name;&#x60;;
+                console.log(&#x27;Update Query-- &#x27; + sql);
                 return sql;
             },
         };
     }
 
     /**
-     * Generates a SQL query to delete a bank by its ID.
-     * @param {string} id - The ID of the bank to delete.
+     * Generates a SQL query to delete a city by its ID.
+     * @param {string} id - The ID of the city to delete.
      * @returns {object} The query configuration object with &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; properties.
      */
     delete(): object {
@@ -622,9 +551,7 @@ export class Query {
             name: &#x60;delete&#x60;,
             type: &#x60;UPDATE&#x60;,
             syntax: (id: string) &#x3D;&gt; {
-                const sql &#x3D; &#x60;UPDATE banks_mas SET status &#x3D; 127 WHERE id_bank &#x3D; &#x27;${id}&#x27; RETURNING id_bank as deletedid, name;&#x60;;
-                console.log(&#x27;Delete query: &#x27;, sql);
-
+                const sql &#x3D; &#x60;UPDATE city_mas SET status &#x3D; 127 WHERE status &#x3D; 1 AND id_city &#x3D; &#x27;${id}&#x27; RETURNING id_city as deletedid, name;&#x60;;
                 return sql;
             },
         };
@@ -635,9 +562,10 @@ export class Query {
      * @param value - Value to format
      * @returns - Formatted value as a string
      */
+
     formatValue(value: any): string {
         if (Array.isArray(value)) {
-            const formattedArray &#x3D; value.map((v) &#x3D;&gt; &#x60;&#x27;${v.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;)}&#x27;&#x60;).join(&#x27;, &#x27;);
+            const formattedArray &#x3D; value.map((v) &#x3D;&gt; &#x60;${v.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;)}&#x60;).join(&#x27;, &#x27;);
             return &#x60;&#x27;{${formattedArray}}&#x27;&#x60;;
         } else if (typeof value &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
             return &#x60;&#x27;${value.replace(/&#x27;/g, &quot;&#x27;&#x27;&quot;)}&#x27;&#x60;;
@@ -654,15 +582,14 @@ export class Query {
 
 
 
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -674,15 +601,6 @@ export class Query {
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
@@ -690,23 +608,10 @@ export class Query {
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

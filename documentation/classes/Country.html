@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -92,29 +41,22 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >Country</li>
+  <li>Classes</li>
+  <li >Country</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" 
-                class="nav-link"
-                class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li class="nav-item">
-            <a href="#source" 
-                class="nav-link"
-                
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -140,7 +82,7 @@ to define its type and provide example values for API documentation purposes.</p
 
 
 
-            <section data-compodoc="block-index">
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -153,59 +95,45 @@ to define its type and provide example values for API documentation purposes.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#abbr" >abbr</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#capital" >capital</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#continent" >continent</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#currency_name" >currency_name</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#dial_code" >dial_code</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#id_country" >id_country</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#iso" >iso</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#iso3" >iso3</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#name" >name</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#offset" >offset</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#offset_in_minutes" >offset_in_minutes</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#symbol" >symbol</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#text" >text</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                 <a href="#value" >value</a>
                             </li>
                         </ul>
@@ -222,7 +150,7 @@ to define its type and provide example values for API documentation purposes.</p
 </section>
 
 
-            <section data-compodoc="block-properties">
+            <section>
     
     <h3 id="inputs">
         Properties
@@ -233,7 +161,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="abbr"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>abbr</b></span>
                         <a href="#abbr"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -263,7 +190,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The abbreviation for the timezone.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -275,7 +202,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="capital"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>capital</b></span>
                         <a href="#capital"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -305,7 +231,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The capital city of the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -317,7 +243,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="continent"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>continent</b></span>
                         <a href="#continent"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -347,7 +272,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The continent where the country is located.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -359,7 +284,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="currency_name"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>currency_name</b></span>
                         <a href="#currency_name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -389,7 +313,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The name of the currency used in the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -401,7 +325,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="dial_code"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>dial_code</b></span>
                         <a href="#dial_code"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -431,7 +354,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The international dialing code for the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -443,7 +366,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="id_country"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>id_country</b></span>
                         <a href="#id_country"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -473,7 +395,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The unique identifier for the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -485,7 +407,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="iso"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>iso</b></span>
                         <a href="#iso"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -515,7 +436,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The ISO 3166-1 alpha-2 code of the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -527,7 +448,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="iso3"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>iso3</b></span>
                         <a href="#iso3"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -557,7 +477,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The ISO 3166-1 alpha-3 code of the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -569,7 +489,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>name</b></span>
                         <a href="#name"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -599,7 +518,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The name of the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -611,7 +530,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="offset"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>offset</b></span>
                         <a href="#offset"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -641,7 +559,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The timezone offset from UTC.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -653,7 +571,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="offset_in_minutes"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>offset_in_minutes</b></span>
                         <a href="#offset_in_minutes"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -683,7 +600,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The timezone offset in minutes from UTC.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -695,7 +612,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="symbol"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>symbol</b></span>
                         <a href="#symbol"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -725,7 +641,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The symbol used for the country&#39;s currency.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -737,7 +653,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="text"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>text</b></span>
                         <a href="#text"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -767,7 +682,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The descriptive name of the timezone.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -779,7 +694,6 @@ to define its type and provide example values for API documentation purposes.</p
                 <td class="col-md-4">
                     <a name="value"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                         <span ><b>value</b></span>
                         <a href="#value"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -809,7 +723,7 @@ to define its type and provide example values for API documentation purposes.</p
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The timezone value of the country.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -826,7 +740,7 @@ to define its type and provide example values for API documentation purposes.</p
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiResponseProperty } from &#x27;@nestjs/swagger&#x27;;
 
 /**
@@ -1032,15 +946,14 @@ export class Country {
 
 
 
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1052,15 +965,6 @@ export class Country {
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
@@ -1068,23 +972,10 @@ export class Country {
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

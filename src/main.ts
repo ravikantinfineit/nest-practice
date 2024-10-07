@@ -49,6 +49,7 @@ import swaggerInit from './swagger';
 async function bootstrap(): Promise<void> {
     // Create a NestJS application instance
     const app = await NestFactory.create<NestExpressApplication>(AppModule, { bufferLogs: true });
+    app.enableCors();
 
     app.useLogger(app.get(NestjsLoggerServiceAdapter));
     app.flushLogs();

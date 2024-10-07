@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -95,22 +44,23 @@
 
 
 
-
-
-
+                   
 
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Functions</li>
+  <li>Miscellaneous</li>
+  <li>Functions</li>
 </ol>
 
-<section data-compodoc="block-index">
+<section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
             <tr>
                 <td class="col-md-4">
                     <ul class="index-list">
+                        <li>
+                            <a href="#ApiProperty" title="src/common/helper/services/apipropery.ts" ><b>ApiProperty</b>&nbsp;&nbsp;&nbsp;(src/.../apipropery.ts)</a>
+                        </li>
                         <li>
                             <a href="#bootstrap" title="src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(src/.../main.ts)</a>
                         </li>
@@ -145,8 +95,65 @@
     </table>
 </section>
 
-    <h3>src/main.ts</h3>
-    <section data-compodoc="block-methods">
+    <h3>src/common/helper/services/apipropery.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ApiProperty"></a>
+                    <span class="name">
+                        <span ><b>ApiProperty</b></span>
+                        <a href="#ApiProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ApiProperty(options: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/main.ts</h3>
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -169,25 +176,27 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Initializes and starts the NestJS application.
+                    <div class="io-description"><p>Initializes and starts the NestJS application.
 Configures global settings, middleware, and exception handling.
 Sets up Swagger documentation if in development, staging, or testing environments.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                        </div>
-                            <div class="io-description">
-                                <p>A promise that resolves when the server starts.</p>
+                    </div>
+                    <div class="io-description">
+                        <p>A promise that resolves when the server starts.</p>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/utils/deep-resolver.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -210,48 +219,70 @@ Sets up Swagger documentation if in development, staging, or testing environment
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Recursively resolves all nested promises in an object or array.</p>
+                    <div class="io-description"><p>Recursively resolves all nested promises in an object or array.</p>
 <p>This function takes an input that can be a promise, an array, an object, or a primitive value,
 and recursively resolves any promises contained within. It supports nested structures and
 preserves the original structure of the input while resolving promises.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>input</td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>input</td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The input to process, which may include promises.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">// Example usage with promises in an array
+const data = [Promise.resolve(1), Promise.resolve([2, Promise.resolve(3)])];
+deepResolvePromises(data).then(result =&amp;gt; {
+console.log(result); // Output: [1, [2, 3]]
+});</code></pre>
+                        </div>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">// Example usage with promises in an object
+const obj = {
+a: Promise.resolve(1),
+b: {
+c: Promise.resolve(2),
+d: [Promise.resolve(3), 4]
+}
+};
+deepResolvePromises(obj).then(result =&amp;gt; {
+console.log(result); // Output: { a: 1, b: { c: 2, d: [3, 4] } }
+});</code></pre>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/core/decorators/number.string.validator.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -265,7 +296,7 @@ preserves the original structure of the input while resolving promises.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>IsNumberStringOrNumber(validationOptions?: ValidationOptions)</code>
+<code>IsNumberStringOrNumber(validationOptions?)</code>
                 </td>
             </tr>
 
@@ -274,50 +305,52 @@ preserves the original structure of the input while resolving promises.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Custom decorator that checks if a value is a number or a numeric string,
+                    <div class="io-description"><p>Custom decorator that checks if a value is a number or a numeric string,
 and if it is greater than or equal to 1.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>validationOptions</td>
-                                            <td>
-                                                        <code>ValidationOptions</code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>validationOptions</td>
 
-                                            <td>
-                                                    Yes
-                                            </td>
+                                    <td>
+                                        Yes
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>Options used to pass to validation decorators.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">// Usage in a class property
+class ExampleDto {</code></pre>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/core/validators/field.validator.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -331,7 +364,7 @@ and if it is greater than or equal to 1.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>IsValidField(entity: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, validationOptions?: ValidationOptions)</code>
+<code>IsValidField(entity: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, validationOptions?)</code>
                 </td>
             </tr>
 
@@ -340,67 +373,67 @@ and if it is greater than or equal to 1.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Custom decorator to validate if a field is a valid key of the provided entity class.</p>
+                    <div class="io-description"><p>Custom decorator to validate if a field is a valid key of the provided entity class.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>entity</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>entity</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The class constructor of the entity to check against.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>validationOptions</td>
-                                            <td>
-                                                        <code>ValidationOptions</code>
-                                            </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>validationOptions</td>
+                                    <td>
+                                    </td>
 
-                                            <td>
-                                                    Yes
-                                            </td>
+                                    <td>
+                                        Yes
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>Optional validation options.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>prisma/seed1.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -424,7 +457,7 @@ and if it is greater than or equal to 1.</p>
         </tbody>
     </table>
 </section>    <h3>src/utils/dto/pagination-response.dto.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -438,7 +471,7 @@ and if it is greater than or equal to 1.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>PaginationResponse(classReference: Type)</code>
+<code>PaginationResponse(classReference)</code>
                 </td>
             </tr>
 
@@ -447,49 +480,46 @@ and if it is greater than or equal to 1.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Creates a pagination response DTO class with specified data type.</p>
+                    <div class="io-description"><p>Creates a pagination response DTO class with specified data type.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>classReference</td>
-                                            <td>
-                                                        <code>Type</code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>classReference</td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The class reference for the data type.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/core/decorators/transforms.decorator.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -512,25 +542,40 @@ and if it is greater than or equal to 1.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Decorator that converts a string number or number to an integer.</p>
+                    <div class="io-description"><p>Decorator that converts a string number or number to an integer.</p>
 </div>
 
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">```typescript&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;import { ToNumber } from &amp;#39;./path/to/decorator&amp;#39;;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;class ExampleClass {&lt;/li&gt;
+&lt;li&gt;  @ToNumber()&lt;/li&gt;
+&lt;li&gt;  public value: number;&lt;/li&gt;
+&lt;li&gt;}&lt;/li&gt;
+&lt;li&gt;```&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
                         </div>
-                            <div class="io-description">
-                                <ul>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <ul>
 <li>A property decorator function.</li>
 </ul>
 
-                            </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/swagger.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -544,7 +589,7 @@ and if it is greater than or equal to 1.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>Unnamed function(app: INestApplication)</code>
+<code>Unnamed function(app)</code>
                 </td>
             </tr>
 
@@ -553,52 +598,53 @@ and if it is greater than or equal to 1.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Configures and sets up Swagger documentation for the NestJS application.</p>
+                    <div class="io-description"><p>Configures and sets up Swagger documentation for the NestJS application.</p>
 <p>This function creates and configures Swagger documentation based on application configuration.
 It sets up two separate Swagger documents: one for the main application modules and another
 for common modules. It also configures various Swagger UI options.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>app</td>
-                                            <td>
-                                                        <code>INestApplication</code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>app</td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The NestJS application instance.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">import { NestFactory } from &amp;#39;</code></pre>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>    <h3>src/utils/validate-config.ts</h3>
-    <section data-compodoc="block-methods">
+    <section>
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -612,7 +658,7 @@ for common modules. It also configures various Swagger UI options.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>validateConfig(config: Record, envVariablesClass: ClassConstructor)</code>
+<code>validateConfig(config, envVariablesClass)</code>
                 </td>
             </tr>
 
@@ -621,64 +667,62 @@ for common modules. It also configures various Swagger UI options.</p>
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Validates and transforms a configuration object based on a class schema.</p>
+                    <div class="io-description"><p>Validates and transforms a configuration object based on a class schema.</p>
 <p>This function uses <code>class-transformer</code> to transform a plain object into an instance of a class
 and <code>class-validator</code> to validate the instance. If validation fails, it throws an error with
 detailed information about the validation errors.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>config</td>
-                                            <td>
-                                                        <code>Record</code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The configuration object to be validated.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>envVariablesClass</td>
-                                            <td>
-                                                        <code>ClassConstructor</code>
-                                            </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>envVariablesClass</td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <ul>
+                                    <td>
+                                        <ul>
 <li>The class constructor used for transforming and validating the configuration.</li>
 </ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">class Config {</code></pre>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -688,7 +732,7 @@ detailed information about the validation errors.</p>
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -700,15 +744,6 @@ detailed information about the validation errors.</p>
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-functions';
@@ -716,23 +751,10 @@ detailed information about the validation errors.</p>
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

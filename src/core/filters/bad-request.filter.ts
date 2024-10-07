@@ -1,5 +1,3 @@
-import { STATUS_CODES } from 'http';
-
 import {
     ArgumentsHost,
     BadRequestException,
@@ -46,6 +44,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
         const response = ctx.getResponse<Response>();
         // const request = ctx.getRequest();
         const statusCode = exception.getStatus();
+        // const mess = exception.message;
         const r = <any>exception.getResponse();
 
         if (_.isArray(r.message) && r.message[0] instanceof ValidationError) {
@@ -55,7 +54,7 @@ export class BadRequestExceptionFilter implements ExceptionFilter {
 
         //put api logic here to fetch from db is erro code found
         r.statusCode = statusCode;
-        r.message = STATUS_CODES[statusCode];
+        r.message = exception.message;
 
         response.status(statusCode).json(r);
 

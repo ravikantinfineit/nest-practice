@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -92,34 +41,27 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >Query</li>
+  <li>Classes</li>
+  <li >Query</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" 
-                class="nav-link"
-                class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li class="nav-item">
-            <a href="#source" 
-                class="nav-link"
-                
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/core/filters/query.ts</code>
+            <code>src/core/exceptions/query.ts</code>
         </p>
 
 
@@ -127,14 +69,24 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A utility class for generating SQL queries related to error logging.</p>
-
+                <p>Class representing SQL query builder for error logging.</p>
+<p>into an <code>Error</code> table. The query escapes single quotes in request and response data
+to prevent SQL injection.</p>
+<div><pre class="line-numbers"><code class="language-typescript">const query = new Query();
+const sqlQuery = query.addHttpQueryError(
+  &#39;UserModule&#39;,
+  &#39;GET&#39;,
+  &#39;/users&#39;,
+  JSON.stringify(requestData),
+  JSON.stringify(responseData)
+).syntax();
+console.log(sqlQuery); // Outputs the SQL query string</code></pre></div>
             </p>
 
 
 
 
-            <section data-compodoc="block-index">
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -148,7 +100,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addQueryError" >addQueryError</a>
+                                <a href="#addHttpQueryError" >addHttpQueryError</a>
                             </li>
                         </ul>
                     </td>
@@ -164,7 +116,7 @@
 
 
 
-            <section data-compodoc="block-methods">
+            <section>
     
     <h3 id="methods">
         Methods
@@ -173,137 +125,148 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addQueryError"></a>
+                    <a name="addHttpQueryError"></a>
                     <span class="name">
-                        <span ><b>addQueryError</b></span>
-                        <a href="#addQueryError"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addHttpQueryError</b></span>
+                        <a href="#addHttpQueryError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>addHttpQueryError(module: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, method: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reqdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, resdata: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/core/filters/query.ts:24</a></div>
-                        </td>
-                    </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/core/exceptions/query.ts:36</a></div>
+                </td>
+            </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Generates an SQL query for logging query errors.</p>
+                    <div class="io-description"><p>Constructs an SQL query to insert HTTP error details into the <code>Error</code> table.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>module</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>module</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The module where the error occurred.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>method</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <p>The method that caused the error.</p>
+                                    <td>
+                                        <ul>
+<li>The name of the module where the error occurred.</li>
+</ul>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>url</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>method</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The URL where the error occurred.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>reqdata</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <p>The request data associated with the error.</p>
+                                    <td>
+                                        <ul>
+<li>The HTTP method used in the request.</li>
+</ul>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>resdata</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                                            <td>
-                                                    No
-                                            </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                                            <td>
-                                                    <p>The response data associated with the error.</p>
+                                    <td>
+                                        <ul>
+<li>The URL of the request that caused the error.</li>
+</ul>
 
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>{ name: string; type: string; syntax: () &#x3D;&gt; string; }</code>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>reqdata</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
-                        </div>
-                            <div class="io-description">
-                                <p>An object containing the SQL query details.</p>
+                                    <td>
+                                        No
+                                    </td>
 
-                            </div>
+
+                                    <td>
+                                        <ul>
+<li>The request data, serialized as a JSON string.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>resdata</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <ul>
+<li>The response data, serialized as a JSON string.</li>
+</ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An object representing the SQL query with a <code>name</code>, <code>type</code>, and <code>syntax</code> function.</p>
+
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -317,27 +280,31 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Query {
     /**
-     * Generates an SQL query for logging query errors.
+     * Constructs an SQL query to insert HTTP error details into the &#x60;Error&#x60; table.
      *
-     * @param {any} module The module where the error occurred.
-     * @param {any} method The method that caused the error.
-     * @param {any} url The URL where the error occurred.
-     * @param {string} reqdata The request data associated with the error.
-     * @param {string} resdata The response data associated with the error.
-     * @returns {{ name: string, type: string, syntax: () &#x3D;&gt; string }} An object containing the SQL query details.
-     *
-     * @memberof Query
+     * @param {string} module - The name of the module where the error occurred.
+     * @param {string} method - The HTTP method used in the request.
+     * @param {string} url - The URL of the request that caused the error.
+     * @param {string} reqdata - The request data, serialized as a JSON string.
+     * @param {string} resdata - The response data, serialized as a JSON string.
+     * @returns {Object} An object representing the SQL query with a &#x60;name&#x60;, &#x60;type&#x60;, and &#x60;syntax&#x60; function.
      */
 
-    addQueryError(module: any, method: any, url: any, reqdata: string, resdata: string) {
+    addHttpQueryError(module: any, method: any, url: any, reqdata: string, resdata: string): any {
         return {
             name: &#x60;addQueryError&#x60;,
             type: &#x60;INSERT&#x60;,
-            syntax: () &#x3D;&gt; {
-                // data: any[]
+            /**
+             * Generates the SQL query string for inserting the error details.
+             *
+             * @returns {string} The SQL query string.
+             */
+
+            syntax: (): string &#x3D;&gt; {
+                //data: any[]
                 try {
                     let reqescValue &#x3D; reqdata;
                     let resescValue &#x3D; resdata;
@@ -359,15 +326,14 @@
 
 
 
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -379,15 +345,6 @@
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
@@ -395,23 +352,10 @@
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

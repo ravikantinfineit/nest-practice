@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -92,34 +41,27 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >EnvironmentVariablesValidator</li>
+  <li>Classes</li>
+  <li >EnvironmentVariablesValidator</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" 
-                class="nav-link"
-                class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li class="nav-item">
-            <a href="#source" 
-                class="nav-link"
-                
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/config/database.config.ts</code>
+            <code>src/config/app.config.ts</code>
         </p>
 
 
@@ -134,7 +76,7 @@
 
 
 
-            <section data-compodoc="block-index">
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -147,71 +89,31 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_CA" >DATABASE_CA</a>
+                                <a href="#API_PREFIX" >API_PREFIX</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_CERT" >DATABASE_CERT</a>
+                                <a href="#APP_DESCRIPTION" >APP_DESCRIPTION</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_KEY" >DATABASE_KEY</a>
+                                <a href="#APP_NAME" >APP_NAME</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_REJECT_UNAUTHORIZED" >DATABASE_REJECT_UNAUTHORIZED</a>
+                                <a href="#APP_PORT" >APP_PORT</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_SSL_ENABLED" >DATABASE_SSL_ENABLED</a>
+                                <a href="#APP_PREFIX" >APP_PREFIX</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_SYNCHRONIZE" >DATABASE_SYNCHRONIZE</a>
+                                <a href="#APP_VERSION" >APP_VERSION</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#DATABASE_URL" >DATABASE_URL</a>
+                                <a href="#BACKEND_DOMAIN" >BACKEND_DOMAIN</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_HOST" >POSTGRES_HOST</a>
+                                <a href="#FRONTEND_DOMAIN" >FRONTEND_DOMAIN</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_MAX_CONNECTIONS" >POSTGRES_MAX_CONNECTIONS</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_NAME" >POSTGRES_NAME</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_PASSWORD" >POSTGRES_PASSWORD</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_PORT" >POSTGRES_PORT</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                <a href="#POSTGRES_USER" >POSTGRES_USER</a>
+                                <a href="#NODE_ENV" >NODE_ENV</a>
                             </li>
                         </ul>
                     </td>
@@ -227,7 +129,7 @@
 </section>
 
 
-            <section data-compodoc="block-properties">
+            <section>
     
     <h3 id="inputs">
         Properties
@@ -236,12 +138,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DATABASE_CA"></a>
+                    <a name="API_PREFIX"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_CA</b></span>
-                        <a href="#DATABASE_CA"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>API_PREFIX</b></span>
+                        <a href="#API_PREFIX"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -262,16 +162,10 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/config/database.config.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/config/app.config.ts:59</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Path to the SSL CA certificate.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -279,12 +173,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DATABASE_CERT"></a>
+                    <a name="APP_DESCRIPTION"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_CERT</b></span>
-                        <a href="#DATABASE_CERT"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_DESCRIPTION</b></span>
+                        <a href="#APP_DESCRIPTION"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -305,16 +197,10 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/config/database.config.ts:161</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/config/app.config.ts:33</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Path to the SSL certificate file.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -322,12 +208,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DATABASE_KEY"></a>
+                    <a name="APP_NAME"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_KEY</b></span>
-                        <a href="#DATABASE_KEY"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_NAME</b></span>
+                        <a href="#APP_NAME"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -348,16 +232,10 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/config/database.config.ts:150</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/config/app.config.ts:29</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Path to the SSL key file.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -365,227 +243,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="DATABASE_REJECT_UNAUTHORIZED"></a>
+                    <a name="APP_PORT"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_REJECT_UNAUTHORIZED</b></span>
-                        <a href="#DATABASE_REJECT_UNAUTHORIZED"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsBoolean()<br />@IsOptional()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/config/database.config.ts:128</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Whether to reject unauthorized SSL certificates.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DATABASE_SSL_ENABLED"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_SSL_ENABLED</b></span>
-                        <a href="#DATABASE_SSL_ENABLED"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsBoolean()<br />@IsOptional()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/config/database.config.ts:117</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Whether to enable SSL for the database connection.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DATABASE_SYNCHRONIZE"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_SYNCHRONIZE</b></span>
-                        <a href="#DATABASE_SYNCHRONIZE"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @IsBoolean()<br />@IsOptional()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/config/database.config.ts:95</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Whether to synchronize the database schema on every application start.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="DATABASE_URL"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>DATABASE_URL</b></span>
-                        <a href="#DATABASE_URL"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ValidateIf(envValues &#x3D;&gt; envValues.DATABASE_URL)<br />@IsString()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/config/database.config.ts:26</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>URL for the database connection. Overrides individual PostgreSQL settings if provided.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="POSTGRES_HOST"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_HOST</b></span>
-                        <a href="#POSTGRES_HOST"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ValidateIf(envValues &#x3D;&gt; )<br />@IsString()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/config/database.config.ts:37</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>PostgreSQL host if <code>DATABASE_URL</code> is not provided.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="POSTGRES_MAX_CONNECTIONS"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_MAX_CONNECTIONS</b></span>
-                        <a href="#POSTGRES_MAX_CONNECTIONS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_PORT</b></span>
+                        <a href="#APP_PORT"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -600,22 +261,16 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsInt()<br />@IsOptional()<br />
+                            @IsInt()<br />@Min(0)<br />@Max(65535)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/config/database.config.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/config/app.config.ts:47</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Maximum number of PostgreSQL connections.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -623,12 +278,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="POSTGRES_NAME"></a>
+                    <a name="APP_PREFIX"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_NAME</b></span>
-                        <a href="#POSTGRES_NAME"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_PREFIX</b></span>
+                        <a href="#APP_PREFIX"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -643,22 +296,16 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ValidateIf(envValues &#x3D;&gt; )<br />@IsString()<br />
+                            @IsString()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/config/database.config.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/config/app.config.ts:41</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>PostgreSQL database name if <code>DATABASE_URL</code> is not provided.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -666,12 +313,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="POSTGRES_PASSWORD"></a>
+                    <a name="APP_VERSION"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_PASSWORD</b></span>
-                        <a href="#POSTGRES_PASSWORD"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_VERSION</b></span>
+                        <a href="#APP_VERSION"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -686,22 +331,16 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ValidateIf(envValues &#x3D;&gt; )<br />@IsString()<br />
+                            @IsString()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/config/database.config.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/config/app.config.ts:37</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>PostgreSQL password if <code>DATABASE_URL</code> is not provided.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -709,58 +348,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="POSTGRES_PORT"></a>
+                    <a name="BACKEND_DOMAIN"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_PORT</b></span>
-                        <a href="#POSTGRES_PORT"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ValidateIf(envValues &#x3D;&gt; )<br />@IsInt()<br />@Min(0)<br />@Max(65535)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/config/database.config.ts:51</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>PostgreSQL port if <code>DATABASE_URL</code> is not provided.
-Must be between 0 and 65535.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="POSTGRES_USER"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                        <span ><b>POSTGRES_USER</b></span>
-                        <a href="#POSTGRES_USER"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>BACKEND_DOMAIN</b></span>
+                        <a href="#BACKEND_DOMAIN"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -775,22 +366,86 @@ Must be between 0 and 65535.</p>
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ValidateIf(envValues &#x3D;&gt; )<br />@IsString()<br />
+                            @IsUrl({require_tld: false})<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/config/database.config.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/config/app.config.ts:55</a></div>
                         </td>
                     </tr>
 
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>PostgreSQL user if <code>DATABASE_URL</code> is not provided.</p>
-</div>
+                    <a name="FRONTEND_DOMAIN"></a>
+                    <span class="name">
+                        <span ><b>FRONTEND_DOMAIN</b></span>
+                        <a href="#FRONTEND_DOMAIN"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsUrl({require_tld: false})<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/config/app.config.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NODE_ENV"></a>
+                    <span class="name">
+                        <span ><b>NODE_ENV</b></span>
+                        <a href="#NODE_ENV"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Environment" target="_self" >Environment</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsEnum(Environment)<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/config/app.config.ts:25</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -805,14 +460,20 @@ Must be between 0 and 65535.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { registerAs } from &#x27;@nestjs/config&#x27;;
 
-import { IsOptional, IsInt, Min, Max, IsString, ValidateIf, IsBoolean } from &#x27;class-validator&#x27;;
+import { IsEnum, IsInt, IsOptional, IsString, IsUrl, Max, Min } from &#x27;class-validator&#x27;;
 
+import { AppConfig } from &#x27;@config/type/app-config.type&#x27;;
 import validateConfig from &#x27;@utils/validate-config&#x27;;
 
-import { DatabaseConfig } from &#x27;./type/database-config.type&#x27;;
+enum Environment {
+    Development &#x3D; &#x27;development&#x27;,
+    Production &#x3D; &#x27;production&#x27;,
+    Staging &#x3D; &#x27;staging&#x27;,
+    Test &#x3D; &#x27;testing&#x27;,
+}
 
 /**
  * Class to validate environment variables using class-validator decorators.
@@ -822,188 +483,75 @@ import { DatabaseConfig } from &#x27;./type/database-config.type&#x27;;
  */
 
 class EnvironmentVariablesValidator {
-    /**
-     * URL for the database connection. Overrides individual PostgreSQL settings if provided.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
+    @IsEnum(Environment)
+    @IsOptional()
+    NODE_ENV: Environment;
 
-    @ValidateIf((envValues) &#x3D;&gt; envValues.DATABASE_URL)
     @IsString()
-    DATABASE_URL: string;
+    @IsOptional()
+    APP_NAME: string;
 
-    /**
-     * PostgreSQL host if &#x60;DATABASE_URL&#x60; is not provided.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @ValidateIf((envValues) &#x3D;&gt; !envValues.DATABASE_URL)
     @IsString()
-    POSTGRES_HOST: string;
+    @IsOptional()
+    APP_DESCRIPTION: string;
 
-    /**
-     * PostgreSQL port if &#x60;DATABASE_URL&#x60; is not provided.
-     * Must be between 0 and 65535.
-     *
-     * @type {number}
-     * @memberof EnvironmentVariablesValidator
-     */
+    @IsString()
+    @IsOptional()
+    APP_VERSION: string;
 
-    @ValidateIf((envValues) &#x3D;&gt; !envValues.DATABASE_URL)
+    @IsString()
+    @IsOptional()
+    APP_PREFIX: string;
+
     @IsInt()
     @Min(0)
     @Max(65535)
-    POSTGRES_PORT: number;
-
-    /**
-     * PostgreSQL password if &#x60;DATABASE_URL&#x60; is not provided.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @ValidateIf((envValues) &#x3D;&gt; !envValues.DATABASE_URL)
-    @IsString()
-    POSTGRES_PASSWORD: string;
-
-    /**
-     * PostgreSQL database name if &#x60;DATABASE_URL&#x60; is not provided.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @ValidateIf((envValues) &#x3D;&gt; !envValues.DATABASE_URL)
-    @IsString()
-    POSTGRES_NAME: string;
-
-    /**
-     * PostgreSQL user if &#x60;DATABASE_URL&#x60; is not provided.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @ValidateIf((envValues) &#x3D;&gt; !envValues.DATABASE_URL)
-    @IsString()
-    POSTGRES_USER: string;
-
-    /**
-     * Whether to synchronize the database schema on every application start.
-     *
-     * @type {boolean}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsBoolean()
     @IsOptional()
-    DATABASE_SYNCHRONIZE: boolean;
+    APP_PORT: number;
 
-    /**
-     * Maximum number of PostgreSQL connections.
-     *
-     * @type {number}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsInt()
+    @IsUrl({ require_tld: false })
     @IsOptional()
-    POSTGRES_MAX_CONNECTIONS: number;
+    FRONTEND_DOMAIN: string;
 
-    /**
-     * Whether to enable SSL for the database connection.
-     *
-     * @type {boolean}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsBoolean()
+    @IsUrl({ require_tld: false })
     @IsOptional()
-    DATABASE_SSL_ENABLED: boolean;
-
-    /**
-     * Whether to reject unauthorized SSL certificates.
-     *
-     * @type {boolean}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsBoolean()
-    @IsOptional()
-    DATABASE_REJECT_UNAUTHORIZED: boolean;
-
-    /**
-     * Path to the SSL CA certificate.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
+    BACKEND_DOMAIN: string;
 
     @IsString()
     @IsOptional()
-    DATABASE_CA: string;
-
-    /**
-     * Path to the SSL key file.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsString()
-    @IsOptional()
-    DATABASE_KEY: string;
-
-    /**
-     * Path to the SSL certificate file.
-     *
-     * @type {string}
-     * @memberof EnvironmentVariablesValidator
-     */
-
-    @IsString()
-    @IsOptional()
-    DATABASE_CERT: string;
+    API_PREFIX: string;
 }
 
 /**
- * Configuration registration and validation for database settings.
+ * Configuration registration and validation.
  *
- * Registers the database configuration with NestJS and validates the environment variables
- * using &#x60;EnvironmentVariablesValidator&#x60;. Returns a &#x60;DatabaseConfig&#x60; object with default values
- * and environment variable values for the database configuration.
+ * Registers the configuration with NestJS and validates the environment variables
+ * using &#x60;EnvironmentVariablesValidator&#x60;. Returns an &#x60;AppConfig&#x60; object with default values
+ * for the application configuration.
  *
  * @export
  * @function
- * @returns {DatabaseConfig} The database configuration.
+ * @returns {AppConfig} The application configuration.
  */
 
-export default registerAs&lt;DatabaseConfig&gt;(&#x27;database&#x27;, (): DatabaseConfig &#x3D;&gt; {
+export default registerAs&lt;AppConfig&gt;(&#x27;app&#x27;, (): AppConfig &#x3D;&gt; {
     validateConfig(process.env, EnvironmentVariablesValidator);
 
     return {
-        url: &#x60;postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_NAME}?connection_limit&#x3D;${process.env.POSTGRES_MAX_CONNECTIONS}&amp;pool_timeout&#x3D;${process.env.POSTGRES_POOL_TIMEOUT}&amp;schema&#x3D;${process.env.POSTGRES_SCHEMA}&#x60;,
-        host: process.env.POSTGRES_HOST,
-        port: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT, 10) : 5432,
-        password: process.env.POSTGRES_PASSWORD,
-        name: process.env.POSTGRES_NAME,
-        username: process.env.POSTGRES_USER,
-        synchronize: process.env.DATABASE_SYNCHRONIZE &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-        maxConnections: process.env.POSTGRES_MAX_CONNECTIONS
-            ? parseInt(process.env.POSTGRES_MAX_CONNECTIONS, 10)
-            : 100,
-        poolTimeout: process.env.POSTGRES_POOL_TIMEOUT
-            ? parseInt(process.env.POSTGRES_POOL_TIMEOUT, 10)
-            : 100,
-        schema: process.env.POSTGRES_SCHEMA ? process.env.POSTGRES_SCHEMA : &#x27;public&#x27;,
-        sslEnabled: process.env.DATABASE_SSL_ENABLED &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-        rejectUnauthorized: process.env.DATABASE_REJECT_UNAUTHORIZED &#x3D;&#x3D;&#x3D; &#x27;true&#x27;,
-        ca: process.env.DATABASE_CA,
-        key: process.env.DATABASE_KEY,
-        cert: process.env.DATABASE_CERT,
+        nodeEnv: process.env.NODE_ENV || &#x27;development&#x27;,
+        name: process.env.APP_NAME || &#x27;app&#x27;,
+        description: process.env.APP_DESCRIPTION || &#x27;description&#x27;,
+        version: process.env.APP_VERSION || &#x27;1&#x27;,
+        appPrefix: process.env.APP_PREFIX || &#x27;docs&#x27;,
+        workingDirectory: process.env.PWD || process.cwd(),
+        frontendDomain: process.env.FRONTEND_DOMAIN,
+        backendDomain: process.env.BACKEND_DOMAIN ?? &#x27;http://localhost&#x27;,
+        port: process.env.APP_PORT
+            ? parseInt(process.env.APP_PORT, 10)
+            : process.env.PORT
+              ? parseInt(process.env.PORT, 10)
+              : 3000,
+        apiPrefix: process.env.API_PREFIX || &#x27;api&#x27;,
     };
 });
 </code></pre>
@@ -1012,15 +560,14 @@ export default registerAs&lt;DatabaseConfig&gt;(&#x27;database&#x27;, (): Databa
 
 
 
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1032,15 +579,6 @@ export default registerAs&lt;DatabaseConfig&gt;(&#x27;database&#x27;, (): Databa
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
@@ -1048,23 +586,10 @@ export default registerAs&lt;DatabaseConfig&gt;(&#x27;database&#x27;, (): Databa
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

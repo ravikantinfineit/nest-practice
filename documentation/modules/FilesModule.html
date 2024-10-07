@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -85,8 +34,8 @@
 
 
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">Modules</li>
-    <li class="breadcrumb-item" >FilesModule</li>
+    <li>Modules</li>
+    <li >FilesModule</li>
 </ol>
 
 <div class="text-center module-graph-container">
@@ -117,71 +66,71 @@
 <title>cluster_FilesModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="23,-70 23,-268 473,-268 473,-70 23,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_FilesModule_providers</title>
-<polygon fill="none" stroke="black" points="331,-78 331,-130 465,-130 465,-78 331,-78"/>
+<g id="clust3" class="cluster">
+<title>cluster_FilesModule_imports</title>
+<polygon fill="none" stroke="black" points="173,-78 173,-130 465,-130 465,-78 173,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_FilesModule_exports</title>
-<polygon fill="none" stroke="black" points="212,-208 212,-260 316,-260 316,-208 212,-208"/>
+<polygon fill="none" stroke="black" points="207,-208 207,-260 311,-260 311,-208 207,-208"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_FilesModule_imports</title>
-<polygon fill="none" stroke="black" points="31,-78 31,-130 323,-130 323,-78 31,-78"/>
+<g id="clust6" class="cluster">
+<title>cluster_FilesModule_providers</title>
+<polygon fill="none" stroke="black" points="31,-78 31,-130 165,-130 165,-78 31,-78"/>
 </g>
 <!-- FilesS3Module -->
 <g id="node1" class="node">
 <title>FilesS3Module</title>
-<polygon fill="#8dd3c7" stroke="black" points="314.56,-122 311.56,-126 290.56,-126 287.56,-122 213.44,-122 213.44,-86 314.56,-86 314.56,-122"/>
-<text text-anchor="middle" x="264" y="-99.8" font-family="Times,serif" font-size="14.00">FilesS3Module</text>
+<polygon fill="#8dd3c7" stroke="black" points="456.56,-122 453.56,-126 432.56,-126 429.56,-122 355.44,-122 355.44,-86 456.56,-86 456.56,-122"/>
+<text text-anchor="middle" x="406" y="-99.8" font-family="Times,serif" font-size="14.00">FilesS3Module</text>
 </g>
 <!-- FilesModule -->
 <g id="node3" class="node">
 <title>FilesModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="307.27,-187 304.27,-191 283.27,-191 280.27,-187 220.73,-187 220.73,-151 307.27,-151 307.27,-187"/>
-<text text-anchor="middle" x="264" y="-164.8" font-family="Times,serif" font-size="14.00">FilesModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="302.27,-187 299.27,-191 278.27,-191 275.27,-187 215.73,-187 215.73,-151 302.27,-151 302.27,-187"/>
+<text text-anchor="middle" x="259" y="-164.8" font-family="Times,serif" font-size="14.00">FilesModule</text>
 </g>
 <!-- FilesS3Module&#45;&gt;FilesModule -->
 <g id="edge1" class="edge">
 <title>FilesS3Module&#45;&gt;FilesModule</title>
-<path fill="none" stroke="black" d="M264,-122.11C264,-122.11 264,-140.99 264,-140.99"/>
-<polygon fill="black" stroke="black" points="260.5,-140.99 264,-150.99 267.5,-140.99 260.5,-140.99"/>
+<path fill="none" stroke="black" d="M406,-122.11C406,-141.34 406,-169 406,-169 406,-169 312.31,-169 312.31,-169"/>
+<polygon fill="black" stroke="black" points="312.31,-165.5 302.31,-169 312.31,-172.5 312.31,-165.5"/>
 </g>
 <!-- FilesS3PresignedModule -->
 <g id="node2" class="node">
 <title>FilesS3PresignedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="195.26,-122 192.26,-126 171.26,-126 168.26,-122 38.74,-122 38.74,-86 195.26,-86 195.26,-122"/>
-<text text-anchor="middle" x="117" y="-99.8" font-family="Times,serif" font-size="14.00">FilesS3PresignedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="337.26,-122 334.26,-126 313.26,-126 310.26,-122 180.74,-122 180.74,-86 337.26,-86 337.26,-122"/>
+<text text-anchor="middle" x="259" y="-99.8" font-family="Times,serif" font-size="14.00">FilesS3PresignedModule</text>
 </g>
 <!-- FilesS3PresignedModule&#45;&gt;FilesModule -->
 <g id="edge2" class="edge">
 <title>FilesS3PresignedModule&#45;&gt;FilesModule</title>
-<path fill="none" stroke="black" d="M117,-122.11C117,-141.34 117,-169 117,-169 117,-169 210.69,-169 210.69,-169"/>
-<polygon fill="black" stroke="black" points="210.69,-172.5 220.69,-169 210.69,-165.5 210.69,-172.5"/>
+<path fill="none" stroke="black" d="M259,-122.11C259,-122.11 259,-140.99 259,-140.99"/>
+<polygon fill="black" stroke="black" points="255.5,-140.99 259,-150.99 262.5,-140.99 255.5,-140.99"/>
 </g>
 <!-- FilesService  -->
 <g id="node4" class="node">
 <title>FilesService </title>
-<polygon fill="#fb8072" stroke="black" points="308.2,-252 219.8,-252 219.8,-216 308.2,-216 308.2,-252"/>
-<text text-anchor="middle" x="264" y="-229.8" font-family="Times,serif" font-size="14.00">FilesService </text>
+<polygon fill="#fb8072" stroke="black" points="303.2,-252 214.8,-252 214.8,-216 303.2,-216 303.2,-252"/>
+<text text-anchor="middle" x="259" y="-229.8" font-family="Times,serif" font-size="14.00">FilesService </text>
 </g>
 <!-- FilesModule&#45;&gt;FilesService  -->
 <g id="edge3" class="edge">
 <title>FilesModule&#45;&gt;FilesService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M264,-187.11C264,-187.11 264,-205.99 264,-205.99"/>
-<polygon fill="black" stroke="black" points="260.5,-205.99 264,-215.99 267.5,-205.99 260.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M259,-187.11C259,-187.11 259,-205.99 259,-205.99"/>
+<polygon fill="black" stroke="black" points="255.5,-205.99 259,-215.99 262.5,-205.99 255.5,-205.99"/>
 </g>
 <!-- FilesService -->
 <g id="node5" class="node">
 <title>FilesService</title>
-<ellipse fill="#fdb462" stroke="black" cx="398" cy="-104" rx="58.54" ry="18"/>
-<text text-anchor="middle" x="398" y="-99.8" font-family="Times,serif" font-size="14.00">FilesService</text>
+<ellipse fill="#fdb462" stroke="black" cx="98" cy="-104" rx="58.54" ry="18"/>
+<text text-anchor="middle" x="98" y="-99.8" font-family="Times,serif" font-size="14.00">FilesService</text>
 </g>
 <!-- FilesService&#45;&gt;FilesModule -->
 <g id="edge4" class="edge">
 <title>FilesService&#45;&gt;FilesModule</title>
-<path fill="none" stroke="black" d="M398,-122.11C398,-141.34 398,-169 398,-169 398,-169 317.51,-169 317.51,-169"/>
-<polygon fill="black" stroke="black" points="317.51,-165.5 307.51,-169 317.51,-172.5 317.51,-165.5"/>
+<path fill="none" stroke="black" d="M98,-122.11C98,-141.34 98,-169 98,-169 98,-169 205.43,-169 205.43,-169"/>
+<polygon fill="black" stroke="black" points="205.43,-172.5 215.43,-169 205.43,-165.5 205.43,-172.5"/>
 </g>
 </g>
 </svg>
@@ -198,22 +147,16 @@
 <script src="../js/svg-pan-zoom.controls.js"></script>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
-        <a href="#info" 
-            class="nav-link"
-            class="nav-link active"
-            role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+    <li  class="active" >
+        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
     </li>
-    <li class="nav-item">
-        <a href="#source" 
-            class="nav-link"
-            
-            role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+    <li >
+        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
     </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
 
         <p class="comment">
             <h3>File</h3>
@@ -242,7 +185,7 @@ S3 presigned uploads.</p>
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
+                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank"
                             title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -251,8 +194,7 @@ S3 presigned uploads.</p>
                     </ul>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module imports"><span
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" title="Official documentation about module imports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -264,12 +206,11 @@ S3 presigned uploads.</p>
                     </ul>
                 </div>
                 <div class="col-sm-3">
-                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module exports"><span
+                    <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../injectables/FilesService.html">FilesService</a>
+                            <a href="../s/FilesService.html">FilesService</a>
                         </li>
                     </ul>
                 </div>
@@ -280,7 +221,7 @@ S3 presigned uploads.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 
 import { FilesService } from &#x27;./files.service&#x27;;
@@ -354,16 +295,14 @@ export class FilesModule {}
 
 
 
-
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -375,15 +314,6 @@ export class FilesModule {}
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
@@ -391,23 +321,10 @@ export class FilesModule {}
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

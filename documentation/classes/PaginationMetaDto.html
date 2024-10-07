@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="../" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,7 +24,7 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
@@ -92,29 +41,22 @@
 
 
 
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >PaginationMetaDto</li>
+  <li>Classes</li>
+  <li >PaginationMetaDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" 
-                class="nav-link"
-                class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li class="nav-item">
-            <a href="#source" 
-                class="nav-link"
-                
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -130,7 +72,7 @@
                 <p>PaginationMetaDto provides metadata for paginated responses.
 This class helps in constructing the pagination information that can be used
 to navigate through large sets of data.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html">{
+<p>{
   totalItems: 77,
   currentPage: 7,
   pageSize: 10,
@@ -140,13 +82,14 @@ to navigate through large sets of data.</p>
   startIndex: 60,
   endIndex: 76,
   pages: [1, 2, 3, 4, 5, 6, 7]
-}</code></pre></div>
+}</p>
+
             </p>
 
 
 
 
-            <section data-compodoc="block-index">
+            <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -159,47 +102,38 @@ to navigate through large sets of data.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#currentPage" >currentPage</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#endIndex" >endIndex</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#endPage" >endPage</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#pages" >pages</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#pageSize" >pageSize</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#startIndex" >startIndex</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#startPage" >startPage</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#totalItems" >totalItems</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#totalPages" >totalPages</a>
                             </li>
@@ -216,7 +150,7 @@ to navigate through large sets of data.</p>
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
+            <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -227,7 +161,7 @@ to navigate through large sets of data.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:137</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:145</a></div>
                             </td>
                         </tr>
 
@@ -266,7 +200,7 @@ to navigate through large sets of data.</p>
         </table>
 </section>
 
-            <section data-compodoc="block-properties">
+            <section>
     
     <h3 id="inputs">
         Properties
@@ -277,7 +211,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="currentPage"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>currentPage</b></span>
                         <a href="#currentPage"><span class="icon ion-ios-link"></span></a>
@@ -301,14 +234,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:61</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The current page number.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -320,7 +253,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="endIndex"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>endIndex</b></span>
                         <a href="#endIndex"><span class="icon ion-ios-link"></span></a>
@@ -344,14 +276,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:133</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The index of the last item on the current page.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -363,7 +295,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="endPage"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>endPage</b></span>
                         <a href="#endPage"><span class="icon ion-ios-link"></span></a>
@@ -387,14 +318,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:109</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The end page in the pagination controls.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -406,7 +337,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="pages"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>pages</b></span>
                         <a href="#pages"><span class="icon ion-ios-link"></span></a>
@@ -430,14 +360,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:137</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:145</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>An array of page numbers to display in pagination controls.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -449,7 +379,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="pageSize"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>pageSize</b></span>
                         <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
@@ -473,14 +402,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:73</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The number of items per page (page size).</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -492,7 +421,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="startIndex"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>startIndex</b></span>
                         <a href="#startIndex"><span class="icon ion-ios-link"></span></a>
@@ -516,14 +444,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:121</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The index of the first item on the current page.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -535,7 +463,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="startPage"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>startPage</b></span>
                         <a href="#startPage"><span class="icon ion-ios-link"></span></a>
@@ -559,14 +486,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:97</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The start page in the pagination controls.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -578,7 +505,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="totalItems"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>totalItems</b></span>
                         <a href="#totalItems"><span class="icon ion-ios-link"></span></a>
@@ -602,14 +528,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:49</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The total number of items available.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -621,7 +547,6 @@ to navigate through large sets of data.</p>
                 <td class="col-md-4">
                     <a name="totalPages"></a>
                     <span class="name">
-                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>totalPages</b></span>
                         <a href="#totalPages"><span class="icon ion-ios-link"></span></a>
@@ -645,14 +570,14 @@ to navigate through large sets of data.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/utils/dto/pagination.meta.dto.ts:85</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The total number of pages based on total items and page size.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-html"></code></pre></div></div>
+</div>
                 </td>
             </tr>
 
@@ -669,11 +594,19 @@ to navigate through large sets of data.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
 
 import { PaginationQueryDto } from &#x27;@utils/dto/pagination.dto&#x27;;
-
+/**
+ * Interface representing the parameters required for creating pagination metadata.
+ *
+ * @interface IPageMetaDtoParameters
+ *
+ * @property {PaginationQueryDto} paginationQueryDto - The query parameters for pagination, including page number and limit.
+ * @property {number} totalItems - The total number of items available.
+ * @property {number} [maxPages] - The maximum number of pages to display in pagination controls. Optional.
+ */
 export interface IPageMetaDtoParameters {
     paginationQueryDto: PaginationQueryDto;
     totalItems: number;
@@ -879,15 +812,14 @@ export class PaginationMetaDto {
 
 
 
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -899,15 +831,6 @@ export class PaginationMetaDto {
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
@@ -915,23 +838,10 @@ export class PaginationMetaDto {
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
