@@ -13,6 +13,7 @@ import { CityModule } from './master/city_mas/cities.modules';
 import { CountryMasModule } from './master/country_mas/country_mas.module';
 import { DocumentGroupModule } from './master/document_groups/document_grp.module';
 import { DocumentModule } from './master/documents/documents.module';
+import { ContactModule } from './master/ms-contact-type/contact.module';
 import { StateModule } from './master/state_mas/state.module';
 
 /**
@@ -77,6 +78,7 @@ import { StateModule } from './master/state_mas/state.module';
          * Module responsible for managing address_type-related functionalities.
          */
         AddressTypeModule,
+        ContactModule,
     ],
 
     providers: [

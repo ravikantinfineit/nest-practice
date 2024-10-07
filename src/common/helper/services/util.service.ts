@@ -153,7 +153,16 @@ export class UtilsService {
 
         return { selectQuery, countQuery };
     }
-
+    /**
+     * Formats the given value into a string representation based on its type:
+     * - If the value is an array, each element is formatted and enclosed in curly braces, joined by commas.
+     * - If the value is a string, single quotes are added and any single quotes within the string are escaped.
+     * - If the value is null or undefined, 'NULL' is returned.
+     * - For other types (numbers and others), the value is returned as a string.
+     *
+     * @param {any} value - The value to be formatted.
+     * @returns {string} The formatted string representation of the value.
+     */
     public formatValue(value: any): string {
         if (Array.isArray(value)) {
             const formattedArray = value.map((v) => `${v.replace(/'/g, "''")}`).join(', ');

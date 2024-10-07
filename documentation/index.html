@@ -9,64 +9,13 @@
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	   <link rel="stylesheet" href="./styles/style.css">
-        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
     </head>
     <body>
-          <script>
-               // Blocking script to avoid flickering dark mode
-               // Dark mode toggle button
-               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
-               var darkModeState = useDark.matches;
-               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
-               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-               function checkToggle(check) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].checked = check;
-                    }
-               }
-
-               function toggleDarkMode(state) {
-                    if (window.localStorage) {
-                         localStorage.setItem('compodoc_darkmode-state', state);
-                    }
-
-                    checkToggle(state);
-
-                    const hasClass = document.body.classList.contains('dark');
-
-                    if (state) {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.add('dark');
-                         }
-                         if (!hasClass) {
-                              document.body.classList.add('dark');
-                         }
-                    } else {
-                         for (var i = 0; i < $darkModeToggles.length; i++) {
-                              $darkModeToggles[i].classList.remove('dark');
-                         }
-                         if (hasClass) {
-                              document.body.classList.remove('dark');
-                         }
-                    }
-               }
-
-               useDark.addEventListener('change', function (evt) {
-                    toggleDarkMode(evt.matches);
-               });
-               if (darkModeStateLocal) {
-                    darkModeState = darkModeStateLocal === 'true';
-               }
-               toggleDarkMode(darkModeState);
-          </script>
-
-        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
-               <div class="d-flex">
-                    <a href="./" class="navbar-brand">nestjs-starter documentation</a>
-                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
-               </div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">nestjs-starter documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
@@ -75,19 +24,19 @@
 
         <div class="container-fluid main">
            <div class="row main">
-               <div class="d-none d-md-block menu">
+               <div class="hidden-xs menu">
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1>NestJS Starter Boilerplate</h1>
-<h2>Introduction</h2>
+<h1 id="nestjs-starter-boilerplate">NestJS Starter Boilerplate</h1>
+<h2 id="introduction">Introduction</h2>
 <p>Introducing the NestJS boilerplate - a great way to get started on your next Node.js project! It&#39;s built using the latest version of NestJS, which is a powerful and flexible framework for creating efficient and scalable server-side applications. The boilerplate includes TypeScript, PostgreSQL, and JWT authentication right out of the box, so you don&#39;t have to worry about setting those up yourself.</p>
 <p>Other awesome features include configuration support with Dotenv, Prisma for interacting with databases, Swagger for API documentation, and Docker Compose for container orchestration. Plus, the boilerplate also comes with pre-configured linting tools and secure HTTP headers with Helmet.</p>
 <p>Getting started is easy - just clone the repository, install the dependencies, and you&#39;re ready to start building your next great idea!</p>
-<h2>🚀 Features</h2>
+<h2 id="🚀-features">🚀 Features</h2>
 <ul>
 <li>📱 <strong>NestJS</strong> — latest version</li>
 <li>🎉 <strong>TypeScript</strong> - Type checking</li>
@@ -105,21 +54,23 @@
 <li>✨ <strong>Commitlint</strong> - Lint your conventional commits</li>
 <li>🕵️‍♂️ <strong>Code Scanning</strong> - Code scanning with CodeQL</li>
 </ul>
-<h2>Getting Started</h2>
-<h3>Prerequisites</h3>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
 <p>Ensure you have the following installed:</p>
 <ul>
 <li>Node.js (20+)</li>
 <li>Yarn or npm (yarn recomandation)</li>
 <li>Docker (if applicable)</li>
 </ul>
-<h3>Installation</h3>
+<h3 id="installation">Installation</h3>
 <ol>
-<li>Clone the repository:<b>Example :</b><div><pre class="line-numbers"><code class="language-sh">git clone https://github.com/dharmesh--patel/nestjs-starter.git
-cd yourproject</code></pre></div></li>
+<li>Clone the repository:
+```sh
+git clone <a href="https://github.com/dharmesh--patel/nestjs-starter.git">https://github.com/dharmesh--patel/nestjs-starter.git</a>
+cd yourproject</li>
 </ol>
-<h2>Visual Studio Code Extensions</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">- ESLint - `dbaeumer.vscode-eslint` - Dirk Baeumer
+<h2 id="visual-studio-code-extensions">Visual Studio Code Extensions</h2>
+<div><pre class="line-numbers"><code class="language-none">- ESLint - `dbaeumer.vscode-eslint` - Dirk Baeumer
 
 - Prettier - Code formatter by `esbenp.prettier-vscode` - Esben Petersen
  
@@ -131,46 +82,46 @@ cd yourproject</code></pre></div></li>
 
 - To open the command pallette, 
   you can use Command + Shift + P on Mac or Control + Shift + P on Windows. 
-  In the command pallette search format, then choose Format Document.</code></pre></div><h2>Installation</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ yarn</code></pre></div><h2>Running Server</h2>
-<h2>Development / Staging / Production</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
+  In the command pallette search format, then choose Format Document.</code></pre></div><h2 id="installation-1">Installation</h2>
+<div><pre class="line-numbers"><code class="language-bash">$ yarn</code></pre></div><h2 id="running-server">Running Server</h2>
+<h2 id="development--staging--production">Development / Staging / Production</h2>
+<div><pre class="line-numbers"><code class="language-bash"># development
 $ yarn start
 
 # staging
 $ yarn staging
 
 # production
-$ yarn production</code></pre></div><h2>Build</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">yarn build</code></pre></div><h2>Tests</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># unit tests
+$ yarn production</code></pre></div><h2 id="build">Build</h2>
+<div><pre class="line-numbers"><code class="language-bash">yarn build</code></pre></div><h2 id="tests">Tests</h2>
+<div><pre class="line-numbers"><code class="language-bash"># unit tests
 $ yarn test
 
 # e2e tests
 $ yarn test:e2e
 
 # test coverage
-$ yarn test:cov</code></pre></div><h2>Database Migration Development</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # Change in database file (it will create migration file in prisma/migration)
-   $ yarn migration</code></pre></div><h2>Docker Container and Database Migration for Staging/Production</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
-   $ bash ./start.sh staging/production</code></pre></div><h2>Docker Container down</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
-   $ bash ./stop.sh staging/production</code></pre></div><h2>Running all services on Docker</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker-compose up --build</code></pre></div><h2>Run only database and redis services on Docker</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">docker-compose up postgres redis</code></pre></div><h2>Swagger Documentation</h2>
+$ yarn test:cov</code></pre></div><h2 id="database-migration-development">Database Migration Development</h2>
+<div><pre class="line-numbers"><code class="language-bash">   # Change in database file (it will create migration file in prisma/migration)
+   $ yarn migration</code></pre></div><h2 id="docker-container-and-database-migration-for-stagingproduction">Docker Container and Database Migration for Staging/Production</h2>
+<div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
+   $ bash ./start.sh staging/production</code></pre></div><h2 id="docker-container-down">Docker Container down</h2>
+<div><pre class="line-numbers"><code class="language-bash">   # To run docker file run script (it will create docker container run update database)
+   $ bash ./stop.sh staging/production</code></pre></div><h2 id="running-all-services-on-docker">Running all services on Docker</h2>
+<div><pre class="line-numbers"><code class="language-bash">docker-compose up --build</code></pre></div><h2 id="run-only-database-and-redis-services-on-docker">Run only database and redis services on Docker</h2>
+<div><pre class="line-numbers"><code class="language-bash">docker-compose up postgres redis</code></pre></div><h2 id="swagger-documentation">Swagger Documentation</h2>
 <ul>
 <li>Swagger documentation endpoint will be running at <b> <code>/docs</code> </b>.</li>
 </ul>
-<h2>K8s Deployment Local</h2>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># first start minikube
+<h2 id="k8s-deployment-local">K8s Deployment Local</h2>
+<div><pre class="line-numbers"><code class="language-bash"># first start minikube
 minikube start
 
 # deployment
 kubectl apply -f k8s/
 
 # get endpoint of k8s cluster
-minikube service nestjs-starter-service</code></pre></div><h2>Commit Message Guidelines</h2>
+minikube service nestjs-starter-service</code></pre></div><h2 id="commit-message-guidelines">Commit Message Guidelines</h2>
 <p><type>[optional scope]: <description></p>
 <p>[optional body]</p>
 <p>[optional footer(s)]</p>
@@ -181,11 +132,11 @@ Body: Detailed explanation of the change, which is optional.
 Footer: Any footer notes, such as breaking changes or issues closed, which is optional.</p>
 <p>git commit -m &quot;feat(api): add new endpoint for user registration&quot;
 git commit -m &quot;fix(core): handle edge case in data processing&quot;</p>
-<h2>Support</h2>
+<h2 id="support">Support</h2>
 <p>Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you&#39;d like to join them, please <a href="https://docs.nestjs.com/support">read more here</a>.</p>
-<h2>License</h2>
+<h2 id="license">License</h2>
 <p>Nest is <a href="LICENSE">MIT licensed</a>.</p>
-<h2>Author</h2>
+<h2 id="author">Author</h2>
 <p>🇮🇳 Dharmesh Patel <br>
 <a href="https://github.com/dharmesh-r-patel/nestjs-starter">Github</a>
 <a href="https://www.linkedin.com/in/dharmeshbbay">Linkedin</a>
@@ -204,16 +155,14 @@ git commit -m &quot;fix(core): handle edge case in data processing&quot;</p>
 
 
 
-
-
-
+                   
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -225,15 +174,6 @@ git commit -m &quot;fix(core): handle edge case in data processing&quot;</p>
            </div>
        </div>
 
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 0;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
@@ -241,23 +181,10 @@ git commit -m &quot;fix(core): handle edge case in data processing&quot;</p>
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
-       <script>
-               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
-               checkToggle(darkModeState);
-               if ($darkModeToggleSwitchers.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
-          </script>
-
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-
-       <script src="./js/menu-wc.js" defer></script>
+       
+       <script type="module" src="./js/menu-wc.js" defer></script>
        <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>

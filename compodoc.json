@@ -2,5 +2,9 @@
   "hideGenerator": true,
   "output": "documentation",
   "includes": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts"],
+  "customStyle": "path/to/custom.css",  
+  "name": "Your Project Name",  
+  "title": "Your Documentation Title",
+  "version": "1.0.0" 
 }

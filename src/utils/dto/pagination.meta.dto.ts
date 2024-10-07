@@ -1,7 +1,15 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 
 import { PaginationQueryDto } from '@utils/dto/pagination.dto';
-
+/**
+ * Interface representing the parameters required for creating pagination metadata.
+ *
+ * @interface IPageMetaDtoParameters
+ *
+ * @property {PaginationQueryDto} paginationQueryDto - The query parameters for pagination, including page number and limit.
+ * @property {number} totalItems - The total number of items available.
+ * @property {number} [maxPages] - The maximum number of pages to display in pagination controls. Optional.
+ */
 export interface IPageMetaDtoParameters {
     paginationQueryDto: PaginationQueryDto;
     totalItems: number;

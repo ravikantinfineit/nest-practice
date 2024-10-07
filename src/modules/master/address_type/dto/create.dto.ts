@@ -38,6 +38,7 @@ export class AddresTypeDto {
      */
     @IsOptional()
     @IsNumber()
+    //@Transform(({ value }) => (typeof value === 'string' ? parseInt(value) : value))
     @ApiProperty({
         type: Number,
         description: 'Status of the address type (optional)',
